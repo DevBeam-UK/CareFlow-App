@@ -15,9 +15,10 @@ export interface LogoutVariables {
 
 const logoutKeys = ['auth', 'logout'] as const;
 
+import { type UseMutationResult } from "@tanstack/react-query";
 export function useLogoutMutation(
   options?: Parameters<typeof useApiMutation<LogoutResponse, LogoutVariables>>[0]
-) {
+): UseMutationResult<LogoutResponse, Error, LogoutVariables, unknown> {
   const queryClient = useQueryClient();
   const {update} = useSession()
 

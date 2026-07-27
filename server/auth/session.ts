@@ -6,7 +6,9 @@ import { auth } from "@/auth";
 
 
 
-export async function requireSession() {
+import type { Session } from "next-auth";
+
+export async function requireSession(): Promise<Session> {
   const session = await auth();
   
   if (!session?.user) {

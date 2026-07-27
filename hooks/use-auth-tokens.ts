@@ -4,7 +4,15 @@
 import { User } from 'next-auth';
 import { useSession } from 'next-auth/react';
 
-export function useAuthTokens() {
+export interface AuthTokens {
+  accessToken: string | undefined;
+  refreshToken: string | undefined;
+  user: User | undefined;
+  isLoading: boolean;
+  isAuthenticated: boolean;
+}
+
+export function useAuthTokens(): AuthTokens {
   const { data: session, status } = useSession();
 
   return {

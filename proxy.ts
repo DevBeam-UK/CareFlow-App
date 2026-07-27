@@ -3,7 +3,7 @@ import type { NextRequest } from "next/server";
 import { auth } from "./auth";
 
 
-export async function proxy(request: NextRequest) {
+export async function proxy(request: NextRequest): Promise<NextResponse> {
   const session = await auth();
   const isLoggedIn = !!session?.user;
   
