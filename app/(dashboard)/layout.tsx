@@ -1,11 +1,15 @@
+import { redirect } from "next/navigation";
+import { auth } from "@/auth";
 import { DashboardShell } from "@/features/layout";
-import { requireSession } from "@/server/auth/session";
 
 export default async function DashboardLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  await requireSession();
+  const session = await auth();
+  if (!session?.user) {
+    redirect("/login");
+  }
   return <DashboardShell>{children}</DashboardShell>;
 }

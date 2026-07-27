@@ -1,12 +1,14 @@
 import "server-only";
 
 import { redirect } from "next/navigation";
-import type { Session } from "next-auth";
-
+import { getSession } from "next-auth/react";
 import { auth } from "@/auth";
 
-export async function requireSession(): Promise<Session> {
+
+
+export async function requireSession() {
   const session = await auth();
+  
   if (!session?.user) {
     redirect("/login");
   }

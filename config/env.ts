@@ -11,9 +11,11 @@ export const env = createEnv({
     AUTH_SECRET: z.string().min(1),
     AUTH_URL: z.url().optional(),
     CRON_SECRET: z.string().optional(),
+    
   },
   client: {
     NEXT_PUBLIC_APP_URL: z.url().optional(),
+    NEXT_PUBLIC_API_URL: z.url().optional()
   },
   runtimeEnv: {
     NODE_ENV: process.env.NODE_ENV,
@@ -23,6 +25,8 @@ export const env = createEnv({
     AUTH_URL: process.env.AUTH_URL,
     CRON_SECRET: process.env.CRON_SECRET,
     NEXT_PUBLIC_APP_URL: process.env.NEXT_PUBLIC_APP_URL,
+    NEXT_PUBLIC_API_URL: process.env.NEXT_PUBLIC_API_URL
+
   },
   skipValidation:
     Boolean(process.env.SKIP_ENV_VALIDATION) ||
