@@ -3,8 +3,7 @@
 import { motion } from "framer-motion";
 import { Building2 } from "lucide-react";
 import { useRouter } from "next/navigation";
-
-import { AgencyForm, type AgencyFormPayload } from "@/features/onboarding/agency-form";
+import { AgencyForm, type AgencyFormPayload } from "@/components/onboarding/agency-form";
 
 export default function AgencyOnboardingPage() {
   const router = useRouter();

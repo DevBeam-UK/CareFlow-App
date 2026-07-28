@@ -6,7 +6,7 @@ import { useState } from "react";
 import { type ReactElement } from "react";
 import { Button, Input, Label } from "ui-components";
 
-const AGENCY_TYPES = ["Domiciliary care", "Live-in care", "Both"];
+import { AGENCY_TYPES } from "./data";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 12 },
