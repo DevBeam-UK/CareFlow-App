@@ -48,9 +48,6 @@ const RegisterForm = ({ className }: RegisterFormProps) => {
 
     const data = await response.json();
 
-    console.log('this is the signup response :', data);
-    
-
     if (data.success === false) {
 
       toast.error(data.message)

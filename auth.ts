@@ -40,8 +40,6 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
             throw new Error("invalid response from the server");
           }
 
-          console.log("this is response data from auth.ts", data);
-
           if (!response.ok) {
             const error = new customAuthError();
             error.code = data.message || data.error || "Login failed";
@@ -87,20 +85,15 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
 
           if (response.ok) {
             const userData = await response.json();
-            console.log('User data from /auth/me:', userData);
-            
-            // Handle both { user: ... } and direct user object formats
             const actualUser = userData.user || userData;
             
             token.emailVerified = actualUser.emailVerified;
             token.status = actualUser.status;
             token.email = actualUser.email;
             token.fullName = actualUser.fullName;
-          } else {
-            console.warn("Failed to fetch user data from /me");
           }
-        } catch (error) {
-          console.error("Error fetching user data:", error);
+        } catch  {
+          return null
         }
       }
 

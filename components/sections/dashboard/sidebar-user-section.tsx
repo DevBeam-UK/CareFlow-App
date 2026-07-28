@@ -34,6 +34,7 @@ export function SidebarUserSection({
 
   const handleLogout = async () => {
     try {
+      if (!refreshToken || !accessToken) return;
       const data = await mutateAsync({ refreshToken, accessToken });
       if (data.success) {
         toast.success("Logged out successfully");

@@ -1,5 +1,4 @@
 import { Mail } from 'lucide-react'
-import React from 'react'
 
 export interface VerifyEmailHeaderProps {
   email : string

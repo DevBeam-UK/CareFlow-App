@@ -1,12 +1,27 @@
 'use client'
 
-import { useSendVerificationCodeApi, useVerifyUserEmailApi } from "@/lib/hooks/use-email-verification-api";
+import { useSendVerificationCodeApi, useVerifyUserEmailApi } from "lib";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
 
-export function useEmailVerification(){
+export interface UseEmailVerificationReturn {
+    otp: string;
+    email: string | null | undefined;
+    isError: string | null;
+    handleEmailVerification: () => Promise<void>;
+    handleResend: () => Promise<void>;
+    startCountdown: (seconds?: number) => void;
+    formatTime: (seconds: number) => string;
+    setOtp: (otp: string) => void;
+    canResend: boolean;
+    countdown: number;
+    loading: boolean;
+    success: boolean;
+}
+
+export function useEmailVerification(): UseEmailVerificationReturn {
     const router = useRouter()
     const [otp , setOtp] = useState('')
     const [isError, setIsError] = useState<string | null>(null)

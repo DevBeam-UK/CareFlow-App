@@ -1,9 +1,8 @@
-import React from 'react'
 import { InputOTP, InputOTPGroup, InputOTPSlot } from '../../input-otp'
 
 export interface OtpBoxesProps {
     value : string;
-    setValue : () => void;
+    setValue : (value: string) => void;
 }
 
 const OtpBoxes = ({

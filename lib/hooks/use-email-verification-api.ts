@@ -25,9 +25,11 @@ export interface VerifyUserEmailVariables {
 const sendVerificationCodeKeys = ['auth', 'send-verification'] as const
 const verifyUserEmailKeys = ['auth', 'verify-email'] as const
 
+import { type UseMutationResult } from "@tanstack/react-query";
+
 export function useSendVerificationCodeApi(
     options? : Parameters<typeof useApiMutation<SendVerificationCodeApiResponse, SendVerificationCodeVariables>>[0]
-){
+): UseMutationResult<SendVerificationCodeApiResponse, Error, SendVerificationCodeVariables, unknown> {
     const queryClient = useQueryClient()
 
     return useApiMutation<SendVerificationCodeApiResponse , SendVerificationCodeVariables>({
@@ -49,7 +51,7 @@ export function useSendVerificationCodeApi(
 
 export function useVerifyUserEmailApi(
     options?: Parameters<typeof useApiMutation<VerifyUserEmailResponse, VerifyUserEmailVariables>>[0]
-){
+): UseMutationResult<VerifyUserEmailResponse, Error, VerifyUserEmailVariables, unknown> {
     const queryClient = useQueryClient()
     return useApiMutation<VerifyUserEmailResponse, VerifyUserEmailVariables>({
         mutationKey: [...verifyUserEmailKeys],

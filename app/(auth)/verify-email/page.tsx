@@ -1,4 +1,4 @@
-import { VerifyEmailUI } from '@/components/sections/auth/VerifyEmail'
+import { VerifyEmailUI } from "sections"
 
 const page = () => {
   return (

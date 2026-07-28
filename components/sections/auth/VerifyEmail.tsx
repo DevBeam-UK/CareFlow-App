@@ -1,12 +1,12 @@
 "use client";
 
 import { Button, Card, CardContent } from "@/components/ui";
-import OtpBoxes from "@/components/ui/auth/verify-email/otp-boxes";
-import VerifyEmailHeader from "@/components/ui/auth/verify-email/verify-email-header";
-import { useEmailVerification } from "@/hooks/use-email-verification";
+import { OtpBoxes } from "ui-components";
+import { VerifyEmailHeader } from "ui-components";
+import { useEmailVerification } from "hooks";
 import { useEffect, useState } from "react";
 
-export function VerifyEmailUI() {
+export function VerifyEmailUI(): React.JSX.Element {
   const {
     handleEmailVerification,
     isError,

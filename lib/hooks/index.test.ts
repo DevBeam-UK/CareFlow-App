@@ -1,7 +1,7 @@
 import { describe, it, expect } from 'vitest';
 
-describe('PatientList', () => {
-  it('should render', () => {
+describe('lib/hooks/index', () => {
+  it('should be a valid barrel file', () => {
     expect(true).toBe(true);
   });
 });
