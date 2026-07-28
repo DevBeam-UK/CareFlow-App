@@ -2,7 +2,7 @@
 
 import { motion, AnimatePresence } from "framer-motion";
 import { Check } from "lucide-react";
-import type { PricingPlan } from "../pricing-data";
+import type { PricingPlan } from "./data";
 import type { BillingCycle } from "./billing-toggle";
 
 interface PricingCardProps {

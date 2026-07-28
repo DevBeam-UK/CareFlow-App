@@ -4,7 +4,7 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { BillingToggle, type BillingCycle } from "./billing-toggle";
 import { PricingCard } from "./pricing-card";
-import { PRICING_PLANS, INCLUDED_IN_ALL } from "../pricing-data";
+import { PRICING_PLANS, INCLUDED_IN_ALL } from "./data";
 
 export interface PricingCardsProps {
   onSelectPlan?: (planId: string) => void;
