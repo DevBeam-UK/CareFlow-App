@@ -3,7 +3,7 @@
 import { ArrowRightIcon, LockKeyholeIcon, MailIcon } from "lucide-react"
 import React, { useState } from "react"
 
-import { Button } from "ui-components"
+import { Button, toast } from "ui-components"
 import { Checkbox } from "ui-components"
 import { Input } from "ui-components"
 import { Label } from "ui-components"
@@ -45,7 +45,7 @@ const LoginForm = ({ className }: LoginFormProps) => {
         setLoading(false);
         return;
       }
-
+      toast.success('Logged In SuccessFully')
       router.push("/");
     } catch {
       setError("Something went wrong");

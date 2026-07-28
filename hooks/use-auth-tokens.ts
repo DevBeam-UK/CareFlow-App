@@ -5,7 +5,7 @@ import { User } from 'next-auth';
 import { useSession } from 'next-auth/react';
 
 export interface AuthTokens {
-  accessToken: string | undefined;
+  accessToken: string ;
   refreshToken: string | undefined;
   user: User | undefined;
   isLoading: boolean;

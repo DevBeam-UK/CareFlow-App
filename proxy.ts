@@ -2,11 +2,13 @@ import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 import { auth } from "./auth";
 
+export const VERIFICATION_ROUTE = '/verify-email'
 
 export async function proxy(request: NextRequest): Promise<NextResponse> {
+  const {pathname} = request.nextUrl
   const session = await auth();
   const isLoggedIn = !!session?.user;
-  
+  const isEmailVerified = session?.emailVerified
  
   if (request.nextUrl.pathname.startsWith("/api/auth")) {
     return NextResponse.next();
@@ -26,6 +28,14 @@ export async function proxy(request: NextRequest): Promise<NextResponse> {
 
   if (!isLoggedIn) {
     return NextResponse.redirect(new URL("/login", request.url));
+  }
+
+  if (!isEmailVerified && pathname !== VERIFICATION_ROUTE) {
+    return NextResponse.redirect(new URL(VERIFICATION_ROUTE, request.url));
+  }
+
+  if (isEmailVerified && pathname === VERIFICATION_ROUTE) {
+    return NextResponse.redirect(new URL("/", request.url));
   }
 
   return NextResponse.next();

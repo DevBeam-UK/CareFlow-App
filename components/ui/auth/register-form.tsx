@@ -3,7 +3,7 @@
 import { ArrowRightIcon, LockKeyholeIcon, MailIcon, PhoneIcon, UserRoundIcon } from "lucide-react"
 import React, { use, useState } from "react"
 
-import { Button } from "ui-components"
+import { Button, toast } from "ui-components"
 import { Input } from "ui-components"
 import { Label } from "ui-components"
 import { cn } from "lib"
@@ -48,17 +48,12 @@ const RegisterForm = ({ className }: RegisterFormProps) => {
 
     const data = await response.json();
 
+    console.log('this is the signup response :', data);
+    
 
-    if (!response.ok) {
+    if (data.success === false) {
 
-      let errorMsg = "Signup failed";
-      if (Array.isArray(data.message)) {
-        errorMsg = data.message[0];
-      } else if (data.message) {
-        errorMsg = data.message;
-      }
-      setError(errorMsg);
-      return;
+      toast.error(data.message)
     }
 
     // ✅ Success!

@@ -10,6 +10,7 @@ declare module "next-auth" {
     name: string;
     accessToken?: string;
     refreshToken?: string;
+    emailVerified?: boolean;
   }
 
   // ✅ Extend the Session type
@@ -18,9 +19,11 @@ declare module "next-auth" {
       id: string;
       email: string;
       name: string;
+      emailVerified: boolean;
     } & DefaultSession["user"];
     accessToken?: string;
     refreshToken?: string;
+    emailVerified?: boolean;
   }
 }
 
@@ -30,5 +33,6 @@ declare module "next-auth/jwt" {
     id?: string;
     accessToken?: string;
     refreshToken?: string;
+    emailVerified?: boolean;
   }
 }
