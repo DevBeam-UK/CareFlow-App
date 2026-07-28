@@ -2,16 +2,14 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { BillingToggle, type BillingCycle } from "./billing-toggle";
-import { PricingCard } from "./pricing-card";
-import { PRICING_PLANS, INCLUDED_IN_ALL } from "./data";
-
-export interface PricingCardsProps {
-  onSelectPlan?: (planId: string) => void;
-}
+import type { PricingCardsProps, BillingCycle } from "@/lib/utils/components";
+import { PRICING_PLANS, INCLUDED_IN_ALL, SINGLE_AGENCY_NOTE } from "@/lib/utils/data";
+import { BillingToggle } from "@/components/ui/subscription/billing-toggle";
+import { PricingCard } from "@/components/ui/subscription/pricing-card";
 
 export function PricingCards({ onSelectPlan }: PricingCardsProps) {
   const [cycle, setCycle] = useState<BillingCycle>("monthly");
+
 
   return (
     <div className="mx-auto max-w-5xl">

@@ -2,15 +2,7 @@
 
 import { motion, AnimatePresence } from "framer-motion";
 import { Check } from "lucide-react";
-import type { PricingPlan } from "./data";
-import type { BillingCycle } from "./billing-toggle";
-
-interface PricingCardProps {
-  plan: PricingPlan;
-  cycle: BillingCycle;
-  index: number;
-  onSelect?: (planId: PricingPlan["id"]) => void;
-}
+import type { PricingPlan, BillingCycle, PricingCardProps } from "@/lib/utils/components";
 
 export function PricingCard({ plan, cycle, index, onSelect }: PricingCardProps) {
   const price = cycle === "monthly" ? plan.monthlyPrice : plan.annualPrice;

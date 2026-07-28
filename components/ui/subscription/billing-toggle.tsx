@@ -1,7 +1,8 @@
 "use client";
 
 import { motion } from "framer-motion";
-export type BillingCycle = "monthly" | "annual";
+import type { BillingCycle } from "@/lib/utils/components";
+
 
 interface BillingToggleProps {
   value: BillingCycle;

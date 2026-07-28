@@ -1,21 +1,4 @@
-export interface PricingFeature {
-  label: string;
-}
-
-export interface PricingPlan {
-  id: "starter" | "professional" | "enterprise";
-  name: string;
-  tagline: string;
-  monthlyPrice: number | null; // null = "Contact us"
-  annualPrice: number | null;
-  agencies: string;
-  caregivers: string;
-  serviceUsers: string;
-  familyMembers: string;
-  features: PricingFeature[];
-  cta: string;
-  highlighted?: boolean;
-}
+import type { PricingPlan } from "./components";
 
 export const PRICING_PLANS: PricingPlan[] = [
   {
@@ -83,6 +66,7 @@ export const INCLUDED_IN_ALL = [
   "GDPR compliant",
 ];
 
-/** Every plan currently allows exactly one agency per account. */
 export const SINGLE_AGENCY_NOTE =
   "Each account can create one agency. Need multiple agencies? Contact sales.";
+
+export const AGENCY_TYPES = ["Domiciliary care", "Live-in care", "Both"];
