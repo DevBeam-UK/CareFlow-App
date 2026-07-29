@@ -2,11 +2,11 @@
 
 import { motion } from "framer-motion";
 import { CheckCircle2, ChevronDown, Loader2 } from "lucide-react";
-import { useState } from "react";
-import { type ReactElement } from "react";
-import { Button, Input, Label } from "ui-components";
+import { useState, type ReactElement } from "react";
 
-import { AGENCY_TYPES } from "./data";
+import { Button, Input, Label } from 'ui-components';
+import { AGENCY_TYPES } from 'lib';
+import type { AgencyFormPayload, AgencyFormProps } from 'lib';
 
 const fadeUp = {
   hidden: { opacity: 0, y: 12 },
@@ -17,19 +17,6 @@ const fadeUp = {
   }),
 };
 
-export interface AgencyFormPayload {
-  name: string;
-  registrationNumber: string;
-  address: string;
-  city: string;
-  postcode: string;
-  type: string;
-  locations: string;
-}
-
-export interface AgencyFormProps {
-  onSubmit?: (data: AgencyFormPayload) => Promise<{ error?: string | null }>;
-}
 
 export function AgencyForm({ onSubmit }: AgencyFormProps): ReactElement {
   const [pending, setPending] = useState(false);

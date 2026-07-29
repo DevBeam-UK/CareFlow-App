@@ -1,1 +1,0 @@
-export const AGENCY_TYPES = ["Domiciliary care", "Live-in care", "Both"];
