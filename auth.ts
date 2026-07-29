@@ -57,6 +57,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
             accessToken: data.accessToken,
             refreshToken: data.refreshToken,
             emailVerified: data.user.emailVerified,
+            hasActiveSubscription : data.user.hasActiveSubscription,
           };
         } catch (error) {
           return null;
@@ -72,6 +73,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
         token.accessToken = user.accessToken;
         token.refreshToken = user.refreshToken;
         token.emailVerified = user.emailVerified;
+        token.hasActiveSubscription= user.hasActiveSubscription
         return token;
       }
 
@@ -91,6 +93,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
             token.status = actualUser.status;
             token.email = actualUser.email;
             token.fullName = actualUser.fullName;
+            token.hasActiveSubscription = actualUser.hasActiveSubscription
           }
         } catch  {
           return null
@@ -106,6 +109,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
         session.accessToken = token.accessToken as string;
         session.refreshToken = token.refreshToken as string;
         session.emailVerified = token.emailVerified as boolean;
+        session.user.hasActiveSubscription = token.hasActiveSubscription as boolean
       }
       return session;
     },

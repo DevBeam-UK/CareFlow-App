@@ -11,6 +11,7 @@ declare module "next-auth" {
     accessToken?: string;
     refreshToken?: string;
     emailVerified?: boolean;
+    hasActiveSubscription?: boolean;
   }
 
   // ✅ Extend the Session type
@@ -20,6 +21,7 @@ declare module "next-auth" {
       email: string;
       name: string;
       emailVerified: boolean;
+      hasActiveSubscription?: boolean;
     } & DefaultSession["user"];
     accessToken?: string;
     refreshToken?: string;
