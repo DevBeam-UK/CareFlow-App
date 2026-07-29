@@ -37,3 +37,5 @@ export * from "./tabs"
 export * from "./textarea"
 export * from "./toast"
 export * from "./tooltip"
+export { AgencyForm } from "./onboarding/agency-form";
+export type { AgencyFormPayload, AgencyFormProps } from 'lib';
