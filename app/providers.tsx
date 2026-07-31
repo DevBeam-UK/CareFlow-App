@@ -6,6 +6,7 @@ import { useState, type ReactElement, type ReactNode } from "react";
 
 import { Toaster, TooltipProvider } from "ui-components";
 import { getQueryClient } from "lib";
+import { SessionProvider } from "next-auth/react";
 
 export function Providers({
   children,
@@ -15,6 +16,7 @@ export function Providers({
   const [queryClient] = useState(() => getQueryClient());
 
   return (
+    <SessionProvider>
     <QueryClientProvider client={queryClient}>
       <TooltipProvider>
         {children}
@@ -22,5 +24,6 @@ export function Providers({
       </TooltipProvider>
       <ReactQueryDevtools buttonPosition="bottom-left" initialIsOpen={false} />
     </QueryClientProvider>
+    </SessionProvider>
   );
 }

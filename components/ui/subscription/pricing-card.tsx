@@ -3,9 +3,35 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { Check } from "lucide-react";
 import type { PricingPlan, BillingCycle, PricingCardProps } from "@/lib/utils/components";
+import { formatPrice } from "@/utils";
+import { useCreateCheckoutApi } from "@/lib";
+import { useAuthTokens } from "@/hooks";
+import { toast } from "sonner";
+import { useRouter } from "next/navigation";
 
 export function PricingCard({ plan, cycle, index, onSelect }: PricingCardProps) {
+  const router = useRouter()
   const price = cycle === "monthly" ? plan.monthlyPrice : plan.annualPrice;
+  const {mutate: createCheckout, error, isPending} = useCreateCheckoutApi()
+  const {accessToken} = useAuthTokens()
+
+
+  const handleSubscribePlan = () => {
+    if (plan.id === "enterprise") {
+      router.push("/contact-sales");
+      return;
+    }
+
+    createCheckout({
+      planId: plan.planId,
+      billingCycle: cycle,
+      accessToken
+    }, {
+      onSuccess: (data) => {
+        window.location.href = data.url;
+      },
+    })
+  }
 
   return (
     <motion.div
@@ -38,7 +64,7 @@ export function PricingCard({ plan, cycle, index, onSelect }: PricingCardProps) 
       </p>
 
       <div className="mt-5 flex h-10 items-baseline gap-1 overflow-hidden">
-        {price !== null ? (
+        {price !== null && price > 0 ? (
           <AnimatePresence mode="wait">
             <motion.div
               key={`${plan.id}-${cycle}`}
@@ -49,7 +75,7 @@ export function PricingCard({ plan, cycle, index, onSelect }: PricingCardProps) 
               className="flex items-baseline gap-1"
             >
               <span className={`text-3xl font-bold tabular-nums ${plan.highlighted ? "text-white" : "text-zinc-900"}`}>
-                £{price}
+                {formatPrice(price)}
               </span>
               <span className={`text-sm ${plan.highlighted ? "text-white/60" : "text-zinc-400"}`}>
                 {cycle === "monthly" ? "/mo" : "/year"}
@@ -63,11 +89,11 @@ export function PricingCard({ plan, cycle, index, onSelect }: PricingCardProps) 
         )}
       </div>
 
-     <div className={`mt-4 space-y-1 border-t pt-4 text-sm ${plan.highlighted ? "border-white/15 text-white/80" : "border-zinc-100 text-zinc-600"}`}>
-        <p>{plan.agencies}</p>
-        <p>{plan.caregivers}</p>
-        <p>{plan.serviceUsers}</p>
-        <p>{plan.familyMembers}</p>
+      <div className={`mt-4 space-y-1 border-t pt-4 text-sm ${plan.highlighted ? "border-white/15 text-white/80" : "border-zinc-100 text-zinc-600"}`}>
+        <p>{plan.agencies} Agency</p>
+        <p>{plan.caregivers} Care Givers</p>
+        <p>{plan.serviceUsers} Service Users</p>
+        <p>{plan.familyMembers} Family Members</p>
       </div>
       
       <ul className="mt-5 flex-1 space-y-2.5">
@@ -88,14 +114,22 @@ export function PricingCard({ plan, cycle, index, onSelect }: PricingCardProps) 
       <motion.button
         type="button"
         whileTap={{ scale: 0.97 }}
-        onClick={() => onSelect?.(plan.id)}
+        onClick={handleSubscribePlan}
+        disabled={isPending}
         className={`mt-6 flex h-10 w-full items-center justify-center rounded-md text-sm font-medium transition-colors ${
           plan.highlighted
             ? "bg-white text-[#1a6b3c] hover:bg-zinc-50"
             : "bg-[#1a6b3c] text-white hover:bg-[#155c32]"
-        }`}
+        } disabled:opacity-50 disabled:cursor-not-allowed`}
       >
-        {plan.cta}
+        {isPending ? (
+          <span className="flex items-center gap-2">
+            <span className="h-4 w-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
+            Processing...
+          </span>
+        ) : (
+          plan.cta
+        )}
       </motion.button>
     </motion.div>
   );

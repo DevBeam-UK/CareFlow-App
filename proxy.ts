@@ -40,7 +40,7 @@ export async function proxy(request: NextRequest): Promise<NextResponse> {
     return NextResponse.redirect(new URL("/", request.url));
   }
 
-  if (!isUserSubscribed) {
+  if (!isUserSubscribed && pathname !== SUBSCRIPTION_ROUTE) {
     return NextResponse.redirect(new URL(SUBSCRIPTION_ROUTE, request.url))
   }
 

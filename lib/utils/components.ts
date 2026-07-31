@@ -5,6 +5,7 @@ export interface PricingFeature {
 
 export interface PricingPlan {
   id: "starter" | "professional" | "enterprise";
+  planId: string;
   name: string;
   tagline: string;
   monthlyPrice: number | null;
@@ -18,7 +19,7 @@ export interface PricingPlan {
   highlighted?: boolean;
 }
 
-export type BillingCycle = "monthly" | "annual";
+export type BillingCycle = "monthly" | "yearly";
 
 export interface PricingCardProps {
   plan: PricingPlan;

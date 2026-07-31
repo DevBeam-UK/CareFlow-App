@@ -3,13 +3,31 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import type { PricingCardsProps, BillingCycle } from "@/lib/utils/components";
-import { PRICING_PLANS, INCLUDED_IN_ALL, SINGLE_AGENCY_NOTE } from "@/lib/utils/data";
+import {
+  PRICING_PLANS,
+  INCLUDED_IN_ALL,
+  SINGLE_AGENCY_NOTE,
+} from "@/lib/utils/data";
 import { BillingToggle } from "@/components/ui/subscription/billing-toggle";
 import { PricingCard } from "@/components/ui/subscription/pricing-card";
+import { mapSubscriptionPlansToPricingPlans, useGetAllSubscriptionPlansApi } from "@/lib";
+import { Loader } from "lucide-react";
 
 export function PricingCards({ onSelectPlan }: PricingCardsProps) {
   const [cycle, setCycle] = useState<BillingCycle>("monthly");
+  const {data, error, isLoading} = useGetAllSubscriptionPlansApi()
 
+  if(isLoading) return <> <Loader /></> 
+  if (error) return <div>Failed to load plans</div>;
+  if(data?.success !== true) return <>Couldnt Find Out Any Plans</>
+
+  const pricingPlans = mapSubscriptionPlansToPricingPlans(data.plans)
+  const filteredPlans = pricingPlans.filter((plan) => {
+    if (cycle === "monthly") {
+      return plan.monthlyPrice !== null;
+    }
+    return plan.annualPrice !== null;
+  });
 
   return (
     <div className="mx-auto max-w-5xl">
@@ -18,8 +36,14 @@ export function PricingCards({ onSelectPlan }: PricingCardsProps) {
       </div>
 
       <div className="mt-10 grid gap-6 lg:grid-cols-3">
-        {PRICING_PLANS.map((plan, i) => (
-          <PricingCard key={plan.id} plan={plan} cycle={cycle} index={i} onSelect={onSelectPlan} />
+        {filteredPlans.map((plan, i) => (
+          <PricingCard
+            key={plan.id}
+            plan={plan}
+            cycle={cycle}
+            index={i}
+            onSelect={onSelectPlan}
+          />
         ))}
       </div>
 
@@ -29,7 +53,9 @@ export function PricingCards({ onSelectPlan }: PricingCardsProps) {
         transition={{ delay: 0.4, duration: 0.5 }}
         className="mt-8 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 rounded-xl bg-zinc-50 px-6 py-4 text-sm text-zinc-500"
       >
-        <span className="font-medium text-zinc-700">Included in every plan:</span>
+        <span className="font-medium text-zinc-700">
+          Included in every plan:
+        </span>
         {INCLUDED_IN_ALL.map((item) => (
           <span key={item}>{item}</span>
         ))}
