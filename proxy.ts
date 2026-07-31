@@ -49,6 +49,7 @@ export async function proxy(request: NextRequest): Promise<NextResponse> {
   }
 
   return NextResponse.next();
+
 }
 
 export const config = {
