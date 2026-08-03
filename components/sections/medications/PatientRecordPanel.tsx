@@ -1,7 +1,3 @@
-// app/(dashboard)/medications/_components/PatientRecordPanel.tsx
-// Full medication record for whichever patient is selected in the grid above.
-// Animates open/closed with Framer Motion's AnimatePresence + height auto.
-
 "use client"
 
 import { AnimatePresence, motion } from "framer-motion"

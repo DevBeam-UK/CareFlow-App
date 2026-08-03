@@ -1,8 +1,3 @@
-// app/(dashboard)/medications/_components/MedicationsBoard.tsx
-// Owns which patient is "selected" and renders the patient card grid plus
-// that patient's expandable record panel underneath. Kept as its own client
-// component so page.tsx itself can stay a server component.
-
 "use client"
 
 import { useState } from "react"
@@ -10,7 +5,7 @@ import { motion } from "framer-motion"
 
 import PatientMedicationCard, {
   type PatientMedicationSummary,
-} from "./PatientMedicationCard"
+} from "../../ui/medications/PatientMedicationCard"
 import PatientRecordPanel, { type PatientRecord } from "./PatientRecordPanel"
 
 interface MedicationsBoardProps {

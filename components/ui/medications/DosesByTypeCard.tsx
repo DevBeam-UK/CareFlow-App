@@ -1,7 +1,3 @@
-// app/(dashboard)/medications/_components/DosesByTypeCard.tsx
-// Donut chart showing the split between scheduled, PRN, and controlled doses.
-// Pure SVG (stroke-dasharray segments) — no charting library needed for 3 slices.
-
 "use client"
 
 import { motion } from "framer-motion"

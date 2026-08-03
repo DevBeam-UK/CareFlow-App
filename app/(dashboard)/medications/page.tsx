@@ -1,19 +1,13 @@
-// app/(dashboard)/medications/page.tsx
-// Medications page — header -> KPI row -> patient card grid + record panel
-// -> chart row. Data below is static sample data; swap for real fetches
-// when the API is ready.
-
-import MedicationsHeader from "./_components/MedicationsHeader"
-import MedicationsStats from "./_components/MedicationsStats"
-import MedicationsBoard from "./_components/MedicationsBoard"
-import type { PatientMedicationSummary } from "./_components/PatientMedicationCard"
-import type { PatientRecord } from "./_components/PatientRecordPanel"
-import AdherenceChart, { type AdherencePoint } from "./_components/AdherenceChart"
-import DosesByTypeCard, { type DoseTypeShare } from "./_components/DosesByTypeCard"
+import MedicationsHeader from "@/components/ui/medications/MedicationsHeader"
+import MedicationsStats from "@/components/sections/medications/MedicationsStats"
+import MedicationsBoard from "@/components/sections/medications/MedicationsBoard"
+import type { PatientMedicationSummary } from "@/components/ui/medications/PatientMedicationCard"
+import type { PatientRecord } from "@/components/sections/medications/PatientRecordPanel"
+import AdherenceChart, { type AdherencePoint } from "@/components/ui/medications/AdherenceChart"
+import DosesByTypeCard, { type DoseTypeShare } from "@/components/ui/medications/DosesByTypeCard"
 import MissedDoseReasonsCard, {
   type MissedDoseReason,
-} from "./_components/MissedDoseReasonsCard"
-
+} from "@/components/ui/medications/MissedDoseReasonsCard"
 // ── Sample data ─────────────────────────────────────────────────────────
 const patients: PatientMedicationSummary[] = [
   {

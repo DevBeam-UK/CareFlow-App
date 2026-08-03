@@ -1,7 +1,3 @@
-// app/(dashboard)/medications/_components/MedicationsHeader.tsx
-// Top header bar for the Medications page — same structure as FinanceHeader
-// and DashboardHeader (title/subtitle, search, notifications, primary CTA).
-
 "use client"
 
 import { motion } from "framer-motion"

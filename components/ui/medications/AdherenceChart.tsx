@@ -1,16 +1,4 @@
-// app/(dashboard)/medications/_components/AdherenceChart.tsx
-// Bar chart — adherence rate over the last 7 days. One low day is flagged
-// in coral so it stands out against the otherwise-teal bars.
-//
-// Layout note: the outer row uses default (stretch) alignment so each
-// column actually fills the fixed chart height — using `items-end` here
-// would let columns shrink to content size, making percentage-height bars
-// resolve against a 0px parent (i.e. invisible bars).
-
-"use client"
-
 import { motion } from "framer-motion"
-
 import { Card } from "@/components/ui/card"
 
 // ── Types ─────────────────────────────────────────────────────────────────

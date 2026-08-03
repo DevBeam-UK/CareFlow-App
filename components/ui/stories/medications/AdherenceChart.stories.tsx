@@ -1,7 +1,7 @@
 // components/ui/stories/medications/DosesByTypeCard.stories.tsx
 import type { Meta, StoryObj } from "@storybook/nextjs-vite"
 
-import DosesByTypeCard from "@/app/(dashboard)/medications/_components/DosesByTypeCard"
+import DosesByTypeCard from "@/components/ui/medications/_components/DosesByTypeCard"
 
 const meta: Meta<typeof DosesByTypeCard> = {
   title: "Medications / DosesByTypeCard",

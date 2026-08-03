@@ -1,8 +1,3 @@
-// app/(dashboard)/medications/_components/PatientMedicationCard.tsx
-// A single patient summary card in the "Patients on medication" grid.
-// Clicking a card selects it (accent border + "Selected" badge) and the
-// parent (MedicationsBoard) opens that patient's full record panel below.
-
 "use client"
 
 import { motion } from "framer-motion"

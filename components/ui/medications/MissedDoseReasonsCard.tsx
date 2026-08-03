@@ -1,7 +1,3 @@
-// app/(dashboard)/medications/_components/MissedDoseReasonsCard.tsx
-// Breakdown of why doses were missed — useful for spotting patterns
-// (e.g. one carer or one patient accounting for most misses).
-
 "use client"
 
 import { motion } from "framer-motion"

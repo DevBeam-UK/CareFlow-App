@@ -1,7 +1,7 @@
 // components/ui/stories/medications/AdherenceChart.stories.tsx
 import type { Meta, StoryObj } from "@storybook/nextjs-vite"
 
-import AdherenceChart from "@/app/(dashboard)/medications/_components/AdherenceChart"
+import AdherenceChart from "@/components/ui/medications/_components/AdherenceChart"
 
 const meta: Meta<typeof AdherenceChart> = {
   title: "Medications / AdherenceChart",
