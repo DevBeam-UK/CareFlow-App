@@ -66,6 +66,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
             isAgencyOwner: data.isAgencyOwner,
             role: data.role,
             userType: data.userType,
+            agencyId: data.agencyId
           };
         } catch (error) {
           return null;
@@ -86,6 +87,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
         token.userType = user.userType;
         token.isAgencyOwner = user.isAgencyOwner;
         token.hasAgency = user.hasAgency;
+        token.agencyId = user.agencyId
         return token;
       }
 
@@ -110,6 +112,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
             token.userType = actualUser.userType;
             token.isAgencyOwner = actualUser.isAgencyOwner;
             token.hasAgency = actualUser.hasAgency;
+            token.agencyId = actualUser.agencyId
           }
         } catch {
           return null;
@@ -134,6 +137,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
           | "ADMIN_OWNER"
           | "ADMIN_MEMBER"
           | "STAFF";
+          session.user.agencyId = token.agencyId as string
       }
       return session;
     },

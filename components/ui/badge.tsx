@@ -52,14 +52,18 @@ const badgeVariants = cva(
           "rounded-md border border-[#F2B0B0] bg-transparent px-2.5 py-0.5 text-[11.5px] leading-4 text-[#A82B2B]",
         outlineMuted:
           "rounded-md border border-border bg-transparent px-2.5 py-0.5 text-[11.5px] leading-4 text-cf-ink-60",
+          'pastel-success': 'bg-green-300/20  text-green-500',
+          'pastel-warning': 'bg-yellow-300/10  text-yellow-500',
+          'pastel-info': 'bg-blue-300/10  text-blue-500',
+          'pastel-danger': 'bg-red-300/10  text-red-500'
       },
       badgeSize: {
         default: "",
-        lg: "rounded-lg px-3 py-1.5 text-[13px] leading-4",
+        lg: "rounded-lg p-3 text-[13px] ",
       },
       shape: {
         rounded: "",
-        pill: "rounded-full",
+        pill: "rounded-full p-1 px-4 text-xs",
       },
     },
     defaultVariants: {

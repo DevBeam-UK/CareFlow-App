@@ -1,5 +1,102 @@
-import { SectionPlaceholder } from "@/components/shared/section-placeholder";
+'use client'
+
+import StaffHeader from "@/components/sections/staff/StaffHeader";
+import { StaffTable } from "@/components/sections/staff/StaffTable";
+import { StaffToolbar } from "@/components/sections/staff/StaffToolbar";
+import StatCard from "@/components/shared/stat-card";
+import { StaffTableSkeleton } from "@/components/ui/staff/staff-table-skeleton";
+import { mapToStaffMemberArray, useGetAllAgencyStaffApi } from "@/lib/hooks/use-staff-api";
+import { StaffMember } from "@/types/components";
+import { staffStatsData } from "@/utils";
+import { useSession } from "next-auth/react";
+import { useMemo, useState } from "react";
 
 export default function StaffPage() {
-  return <SectionPlaceholder title="Staff" />;
+  const [activeRole, setActiveRole] = useState("all");
+  const [searchQuery, setSearchQuery] = useState("");
+
+  const session = useSession();
+  
+  // 1. Check if the session is still loading
+  const isSessionLoading = session.status === "loading";
+  
+  // 2. Safely extract values (remove the '!' assertions)
+  const accessToken = session.data?.accessToken;
+  const agencyId = session.data?.user.agencyId;
+
+  // 3. Only call the API if the session is loaded AND we actually have an agencyId
+  const { data, error, isLoading } = useGetAllAgencyStaffApi(
+    agencyId as string, 
+    accessToken as string,
+  );
+
+  const staffMembers = data ? mapToStaffMemberArray(data) : [];
+
+  const filteredData = useMemo(() => {
+    return staffMembers.filter((member) => {
+      const matchesSearch =
+        member.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        member.email.toLowerCase().includes(searchQuery.toLowerCase());
+
+      const matchesRole = activeRole === "all" || member.role === activeRole;
+
+      return matchesSearch && matchesRole;
+    });
+  }, [staffMembers, searchQuery, activeRole]);
+
+  // 4. If NextAuth is still fetching the JWT, show the skeleton so it doesn't flash undefined
+  if (isSessionLoading) {
+    return (
+      <div className="h-screen w-full p-6 border rounded-2xl shadow bg-cf-surface space-y-8 overflow-y-scroll no-scrollbar">
+        <StaffHeader />
+        <div className="w-full gap-x-4 flex items-center">
+           {/* You can map empty stat skeletons here if you want, or just leave it blank for the split second it takes */}
+        </div>
+        <div className="w-full bg-cf-surface p-4 flex flex-col gap-y-2 rounded-xl border">
+          <StaffToolbar 
+            activeRole={activeRole}
+            onRoleChange={setActiveRole}
+            onSearchChange={setSearchQuery}
+            searchQuery={searchQuery}
+          />
+          <StaffTableSkeleton />
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div className="h-screen w-full p-6 border rounded-2xl shadow bg-cf-surface space-y-8 overflow-y-scroll no-scrollbar">
+      <StaffHeader />
+      <div className="w-full gap-x-4 flex items-center">
+        {staffStatsData.map((stat, index) => (
+          <StatCard 
+            Icon={stat.Icon}
+            description={stat.description}
+            label={stat.label}
+            value={stat.value}
+            key={index}
+            showTrend
+            trend="neutral"
+            hasCqcScore
+            cqcScore={23}
+          />
+        ))}
+      </div>
+      
+      <div className="w-full bg-cf-surface p-4 flex flex-col gap-y-2 rounded-xl border">
+        <StaffToolbar 
+          activeRole={activeRole}
+          onRoleChange={setActiveRole}
+          onSearchChange={setSearchQuery}
+          searchQuery={searchQuery}
+        />
+        {isLoading ? (
+          <StaffTableSkeleton />
+        ) : (
+          <StaffTable data={filteredData as StaffMember[]} />
+        )}
+      </div>
+    </div>
+  );
 }

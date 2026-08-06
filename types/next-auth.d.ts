@@ -16,6 +16,7 @@ declare module "next-auth" {
     isAgencyOwner? : boolean;
     role? : string
     userType? : string
+    agencyId? : string;
   }
 
 
@@ -30,6 +31,7 @@ declare module "next-auth" {
       role? : string;
       isAgencyOwner? : boolean;
       userType? : string
+      agencyId? : string;
     } & DefaultSession["user"];
     accessToken?: string;
     refreshToken?: string;
