@@ -40,23 +40,32 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
             throw new Error("invalid response from the server");
           }
 
+          console.log("This is the raw data from backend : ", data);
+
           if (!response.ok) {
             const error = new customAuthError();
             error.code = data.message || data.error || "Login failed";
             throw error;
           }
 
-          if (!data.user || !data.user.id || !data.user.email) {
+          if (!data || !data.id || !data.email) {
             throw new Error("Invalid user data recieved from the server");
           }
 
+          console.log("This is the data from backend:", data);
+
           return {
-            id: data.user.id,
-            email: data.user.email,
-            name: data.user.fullName,
+            id: data.id,
+            email: data.email,
+            name: data.fullName,
             accessToken: data.accessToken,
             refreshToken: data.refreshToken,
-            emailVerified: data.user.emailVerified,
+            emailVerified: data.emailVerified,
+            hasActiveSubscription: data.hasActiveSubscription,
+            hasAgency: data.hasAgency,
+            isAgencyOwner: data.isAgencyOwner,
+            role: data.role,
+            userType: data.userType,
           };
         } catch (error) {
           return null;
@@ -72,6 +81,11 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
         token.accessToken = user.accessToken;
         token.refreshToken = user.refreshToken;
         token.emailVerified = user.emailVerified;
+        token.hasActiveSubscription = user.hasActiveSubscription;
+        token.role = user.role;
+        token.userType = user.userType;
+        token.isAgencyOwner = user.isAgencyOwner;
+        token.hasAgency = user.hasAgency;
         return token;
       }
 
@@ -86,14 +100,19 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
           if (response.ok) {
             const userData = await response.json();
             const actualUser = userData.user || userData;
-            
+
             token.emailVerified = actualUser.emailVerified;
             token.status = actualUser.status;
             token.email = actualUser.email;
             token.fullName = actualUser.fullName;
+            token.hasActiveSubscription = actualUser.hasActiveSubscription;
+            token.role = actualUser.role;
+            token.userType = actualUser.userType;
+            token.isAgencyOwner = actualUser.isAgencyOwner;
+            token.hasAgency = actualUser.hasAgency;
           }
-        } catch  {
-          return null
+        } catch {
+          return null;
         }
       }
 
@@ -106,6 +125,15 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
         session.accessToken = token.accessToken as string;
         session.refreshToken = token.refreshToken as string;
         session.emailVerified = token.emailVerified as boolean;
+        session.user.hasActiveSubscription =
+          token.hasActiveSubscription as boolean;
+        session.user.hasAgency = token.hasAgency as boolean;
+        session.user.role = token.role as string;
+        session.user.isAgencyOwner = token.isAgencyOwner as boolean;
+        session.user.userType = token.userType as
+          | "ADMIN_OWNER"
+          | "ADMIN_MEMBER"
+          | "STAFF";
       }
       return session;
     },

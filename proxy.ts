@@ -3,12 +3,16 @@ import type { NextRequest } from "next/server";
 import { auth } from "./auth";
 
 export const VERIFICATION_ROUTE = '/verify-email'
+export const SUBSCRIPTION_ROUTE = '/subscription'
+export const AGENCY_CREATION_ROUTE = '/create-agency'
 
 export async function proxy(request: NextRequest): Promise<NextResponse> {
   const {pathname} = request.nextUrl
   const session = await auth();
   const isLoggedIn = !!session?.user;
-  const isEmailVerified = session?.emailVerified
+  const isEmailVerified = session?.user.emailVerified
+  const isUserSubscribed = session?.user.hasActiveSubscription
+  const hasAgency = session?.user.hasAgency
  
   if (request.nextUrl.pathname.startsWith("/api/auth")) {
     return NextResponse.next();
@@ -38,7 +42,24 @@ export async function proxy(request: NextRequest): Promise<NextResponse> {
     return NextResponse.redirect(new URL("/", request.url));
   }
 
+  if (!isUserSubscribed && pathname !== SUBSCRIPTION_ROUTE) {
+    return NextResponse.redirect(new URL(SUBSCRIPTION_ROUTE, request.url))
+  }
+
+  if (isUserSubscribed && pathname === SUBSCRIPTION_ROUTE) {
+    return NextResponse.redirect(new URL('/', request.url))
+  }
+
+  if (!hasAgency && pathname !== AGENCY_CREATION_ROUTE) {
+    return NextResponse.redirect(new URL(AGENCY_CREATION_ROUTE, request.url))
+  }
+
+  if (hasAgency && pathname === AGENCY_CREATION_ROUTE) {
+    return NextResponse.redirect(new URL('/', request.url))
+  }
+
   return NextResponse.next();
+
 }
 
 export const config = {

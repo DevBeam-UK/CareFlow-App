@@ -8,4 +8,5 @@ export default function LoginPage() {
       <FormSection />
     </div>
   )
+
 }
