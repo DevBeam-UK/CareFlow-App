@@ -32,7 +32,7 @@ export type StaffMember = {
   email: string;                 // users.email
   phone?: string | null;         // users.phone
   profilePicture?: string | null; // users.picture
-  role: "CARER" | "ADMIN" | "PATIENT" | "MANAGER";
+  role: string;
   status: EmployeeStatus;        // agency_memberships.status
   joinDate: Date | string;       // agency_memberships.acceptedAt or createdAt
   invitedBy: string | null;      // agency_memberships.invitedBy
@@ -50,6 +50,39 @@ export interface StaffTableProps {
   onEdit?: (staff: StaffMember) => void;
   onDelete?: (id: string) => void;
   onView?: (staff: StaffMember) => void;
+}
+
+export interface Role {
+  id: string;
+  name: string;
+  description: string | null;
+  isSystem: boolean;
+  createdAt: string | Date;
+  updatedAt: string | Date;
+}
+
+export type PermissionSource = 'role' | 'grant' | 'block';
+
+export interface Permission {
+  module: string;
+  action: string;
+  source: PermissionSource;
+}
+
+export interface GroupedPermission {
+  module: string;
+  displayName: string;
+  icon: string;
+  actions: {
+    action: string;
+    displayName: string;
+    source: 'role' | 'grant' | 'block';
+    isGranted: boolean;
+  }[];
+  granted: number;
+  total: number;
+  isAllGranted: boolean;
+  isPartiallyGranted: boolean;
 }
 
 export type SortField = keyof StaffMember;

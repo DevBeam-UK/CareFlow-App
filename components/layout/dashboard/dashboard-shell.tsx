@@ -32,7 +32,7 @@ export function DashboardShell({
   const userAvatarUrl = session.data?.user.image || '';
   
   if (error) {
-    console.log('got this error : ', error
+    console.log('error getting agency : ', error
 
     );
     

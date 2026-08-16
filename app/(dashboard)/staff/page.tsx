@@ -17,14 +17,14 @@ export default function StaffPage() {
 
   const session = useSession();
   
-  // 1. Check if the session is still loading
+
   const isSessionLoading = session.status === "loading";
   
-  // 2. Safely extract values (remove the '!' assertions)
+
   const accessToken = session.data?.accessToken;
   const agencyId = session.data?.user.agencyId;
 
-  // 3. Only call the API if the session is loaded AND we actually have an agencyId
+
   const { data, error, isLoading } = useGetAllAgencyStaffApi(
     agencyId as string, 
     accessToken as string,
@@ -44,13 +44,13 @@ export default function StaffPage() {
     });
   }, [staffMembers, searchQuery, activeRole]);
 
-  // 4. If NextAuth is still fetching the JWT, show the skeleton so it doesn't flash undefined
+
   if (isSessionLoading) {
     return (
       <div className="h-screen w-full p-6 border rounded-2xl shadow bg-cf-surface space-y-8 overflow-y-scroll no-scrollbar">
         <StaffHeader />
         <div className="w-full gap-x-4 flex items-center">
-           {/* You can map empty stat skeletons here if you want, or just leave it blank for the split second it takes */}
+      
         </div>
         <div className="w-full bg-cf-surface p-4 flex flex-col gap-y-2 rounded-xl border">
           <StaffToolbar 

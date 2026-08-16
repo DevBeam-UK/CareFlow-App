@@ -10,7 +10,7 @@ declare module "next-auth" {
     name: string;
     accessToken?: string;
     refreshToken?: string;
-    emailVerified?: boolean;
+    isEmailVerified?: boolean;
     hasActiveSubscription?: boolean;
     hasAgency? : boolean
     isAgencyOwner? : boolean;
@@ -25,7 +25,7 @@ declare module "next-auth" {
       id: string;
       email: string;
       name: string;
-      emailVerified: boolean;
+      isEmailVerified: boolean;
       hasActiveSubscription?: boolean;
       hasAgency? : boolean;
       role? : string;
@@ -35,7 +35,7 @@ declare module "next-auth" {
     } & DefaultSession["user"];
     accessToken?: string;
     refreshToken?: string;
-    emailVerified?: boolean;
+    isEmailVerified?: boolean;
   }
 }
 
@@ -45,6 +45,6 @@ declare module "next-auth/jwt" {
     id?: string;
     accessToken?: string;
     refreshToken?: string;
-    emailVerified?: boolean;
+    isEmailVerified?: boolean;
   }
 }

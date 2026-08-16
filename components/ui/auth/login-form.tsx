@@ -10,7 +10,7 @@ import { Label } from "ui-components"
 import { cn } from "lib"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
-import { signIn } from "next-auth/react"
+import { signIn, useSession } from "next-auth/react"
 
 
 
@@ -25,6 +25,8 @@ const LoginForm = ({ className }: LoginFormProps) => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [rememberMe, setRememberMe] = useState(true)
+
+  const {update, data} = useSession()
 
 
      const handleSubmit = async (e: React.FormEvent) => {
@@ -46,7 +48,9 @@ const LoginForm = ({ className }: LoginFormProps) => {
         return;
       }
       toast.success('Logged In SuccessFully')
+      update()
       router.push("/");
+      
     } catch {
       setError("Something went wrong");
       setLoading(false);

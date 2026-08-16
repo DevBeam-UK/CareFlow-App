@@ -2,12 +2,12 @@ import { useQueryClient } from "@tanstack/react-query";
 import { useApiMutation, useApiQuery } from "./use-api";
 import { apiClient } from "../api";
 import { env } from "@/config/env";
-import { StaffMember } from "@/types/components";
+import { Role, StaffMember } from "@/types/components";
 
 export interface AddStaffVariables {
     fullname : string;
     email: string;
-    role : string;
+    roleId : string;
     phone? : string;
     accessToken : string;
     agencyId : string;
@@ -30,7 +30,7 @@ export interface GetAllAgencyStaffResponse {
     id: string;
     agencyId: string;
     userId: string;
-    role: "CARER" | "ADMIN" | "PATIENT" | "MANAGER";
+    roleId: string;
     status: "ACTIVE" | "SUSPENDED" | "ON_LEAVE" | "TERMINATED";
     invitedBy: string | null;
     invitedAt: Date | null;
@@ -55,6 +55,7 @@ export interface GetAllAgencyStaffResponse {
     updatedAt: Date;
     deletedAt: Date | null;
   };
+  roles: Role
 }
 
 export function mapToStaffMember(
@@ -67,7 +68,7 @@ export function mapToStaffMember(
     email: response.users.email,
     phone: response.users.phone,
     profilePicture: response.users.picture,
-    role: response.agency_memberships.role,
+    role: response.roles.name,
     status: response.agency_memberships.status,
     joinDate: response.agency_memberships.acceptedAt || response.agency_memberships.createdAt,
     invitedBy: response.agency_memberships.invitedBy,
@@ -95,11 +96,11 @@ export function useAddStaffApi(
     const queryClient = useQueryClient()
     return useApiMutation<AddStaffResponse , AddStaffVariables>({
         mutationKey: [...allStaffKeys],
-        mutationFn: ({email , fullname , role , phone, accessToken, agencyId,password}) => {
+        mutationFn: ({email , fullname , roleId , phone, accessToken, agencyId,password}) => {
             return apiClient.post(`${env.NEXT_PUBLIC_API_URL}/agency/add-employee`,{
                 email,
                 fullname,
-                role,
+                roleId,
                 phone,
                 agencyId,
                 password

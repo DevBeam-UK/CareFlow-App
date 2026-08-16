@@ -139,56 +139,79 @@ export const staffStatsData: StatCardProps[] = [
 ];
 
 
-export const MOCK_STAFF_DATA: StaffMember[] = [
+
+export const PERMISSION_MODULES = [
   {
-    id: "mem-001",
-    name: "Alice Johnson",
-    email: "alice.johnson@careflow.app",
-    phone: "020 7123 4567",
-    profilePicture: null,
-    role: "carer",
-    status: "ACTIVE",
-    joinDate: "2024-01-15",
+    id: 'dashboard',
+    label: 'Dashboard',
+    actions: ['read'],
   },
   {
-    id: "mem-002",
-    name: "Bob Smith",
-    email: "bob.smith@careflow.app",
-    phone: "020 7123 4568",
-    profilePicture: null,
-    role: "manager",
-    status: "ACTIVE",
-    joinDate: "2023-11-20",
+    id: 'patients',
+    label: 'Patients',
+    actions: ['create', 'read', 'update', 'delete', 'all'],
   },
   {
-    id: "mem-003",
-    name: "Carol White",
-    email: "carol.white@careflow.app",
-    phone: "020 7123 4569",
-    profilePicture: null,
-    role: "admin",
-    status: "ACTIVE",
-    joinDate: "2023-08-10",
+    id: 'schedule',
+    label: 'Schedule',
+    actions: ['create', 'read', 'update', 'delete', 'all'],
   },
   {
-    id: "mem-004",
-    name: "David Brown",
-    email: "david.brown@careflow.app",
-    phone: "020 7123 4570",
-    profilePicture: null,
-    role: "carer",
-    status: "SUSPENDED",
-    joinDate: "2024-02-05",
+    id: 'visits',
+    label: 'Visits',
+    actions: ['create', 'read', 'update', 'delete', 'all'],
   },
   {
-    id: "mem-005",
-    name: "Emma Davis",
-    email: "emma.davis@careflow.app",
-    phone: "020 7123 4571",
-    profilePicture: null,
-    role: "manager",
-    status: "ACTIVE",
-    joinDate: "2024-01-10",
+    id: 'staff',
+    label: 'Staff',
+    actions: ['create', 'read', 'update', 'delete', 'all'],
   },
- 
+  {
+    id: 'finance',
+    label: 'Finance',
+    actions: ['create', 'read', 'update', 'delete', 'all'],
+  },
+  {
+    id: 'reports',
+    label: 'Reports',
+    actions: ['create', 'read', 'export'],
+  },
+  {
+    id: 'settings',
+    label: 'Settings',
+    actions: ['read', 'update', 'manage'],
+  },
+  {
+    id: 'permissions',
+    label: 'Permissions',
+    actions: ['create', 'read', 'update', 'delete', 'all'],
+  },
+  {
+    id: 'users',
+    label: 'Users',
+    actions: ['create', 'read', 'update', 'delete', 'all'],
+  },
+  {
+    id: 'agencies',
+    label: 'Agencies',
+    actions: ['create', 'read', 'update', 'delete', 'all'],
+  },
+];
+
+export const ACTION_TO_COLUMN: Record<string, string> = {
+  create: 'Create',
+  read: 'Read',
+  update: 'Update',
+  delete: 'Delete',
+  export: 'Export',
+  manage: 'Manage',
+  all: 'All',
+};
+
+export const PERMISSIONS_TABLE_HEADER_COLUMNS = [
+  { label: 'Module' },
+  { label: 'Create' },  
+  { label: 'Read' },
+  { label: 'Update' },
+  { label: 'Delete' },
 ];

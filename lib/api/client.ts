@@ -51,8 +51,8 @@ export const apiClient = {
   put<T>(url: string, body?: unknown): Promise<T> {
     return request<T>(url, { method: 'PUT', body });
   },
-  patch<T>(url: string, body?: unknown): Promise<T> {
-    return request<T>(url, { method: 'PATCH', body });
+  patch<T>(url: string, body?: unknown, headers?: Record<string, string>): Promise<T> {
+    return request<T>(url, { method: 'PATCH', body, headers });
   },
   delete<T>(url: string): Promise<T> {
     return request<T>(url, { method: 'DELETE' });

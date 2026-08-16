@@ -7,7 +7,6 @@ export function useGetAgency(){
   const accessToken = session.data?.accessToken
 
     const {data , error , isLoading} = useGetAgencyByUserIdApi(accessToken!)
-    console.log('This is the response for getting agency: ', data);
     
      const initials = data?.agency.name
     ?.split(' ')

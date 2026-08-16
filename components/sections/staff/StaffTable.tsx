@@ -17,7 +17,8 @@ import { formatUKPhone, getEmployeeStatusLabel, getEmployeeStatusVariant, getRol
 import { TableActions } from "@/components/ui/staff/table-actions";
 import { TableBulkActions } from "@/components/ui/staff/table-bulk-actions";
 import { StaffViewDrawer } from "@/components/ui/staff/staff-view-drawer";
-import { Badge } from "@/components/ui";
+import { Badge, BadgeProps } from "@/components/ui";
+import { formatRoleName } from "@/utils/roles-formatter";
 
 export function StaffTable({ data, onEdit, onDelete, onView }: StaffTableProps) {
   const [sortField, setSortField] = useState<SortField>("name");
@@ -104,7 +105,14 @@ export function StaffTable({ data, onEdit, onDelete, onView }: StaffTableProps) 
                         {staff.phone && <span className="text-xs text-cf-ink-60 mt-0.5">{formatUKPhone(staff.phone)}</span>}
                       </div>
                     </TableCell>
-                    <TableCell><span className={`inline-flex rounded-full px-2.5 py-1 text-xs font-medium capitalize ${getRoleBadgeColor(staff.role)}`}>{staff.role}</span></TableCell>
+                    <TableCell>
+                      <Badge
+                      variant={getRoleBadgeColor(staff.role) as BadgeProps['variant']}
+                      shape={'pill'}
+                      >
+                        {formatRoleName(staff.role)}
+                      </Badge>
+                    </TableCell>
                     <TableCell>
                       <Badge
                       variant={getEmployeeStatusVariant(staff.status)}

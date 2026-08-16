@@ -1,23 +1,44 @@
 import { EmployeeStatus } from "@/types/components";
 
- export const getRoleBadgeColor = (role: string) => {
-    switch (role) {
-      case "admin":
-        return "bg-cf-error-muted text-cf-error";
-      case "manager":
-        return "bg-cf-info-muted text-cf-info";
-      case "carer":
-        return "bg-cf-success-muted text-cf-success";
-      default:
-        return "bg-cf-surface-muted text-cf-ink-60";
-    }
+export const getRoleBadgeColor = (role: string) => {
+  switch (role) {
+    case "super_admin":
+      return "pastel-danger";
+    case "agency_admin":
+      return "pastel-purple";
+    case "manager":
+      return "pastel-info";
+    case "coordinator":
+      return "pastel-warning";
+    case "carer":
+      return "pastel-success";
+    case "patient":
+      return "pastel-neutral";
+    default:
+      return "pastel-neutral";
+  }
+};
+export const getStatusBadgeColor = (status: string): string => {
+  const colors: Record<string, string> = {
+    active: 'bg-green-100 text-green-800 border-green-200',
+    inactive: 'bg-gray-100 text-gray-800 border-gray-200',
+    pending: 'bg-yellow-100 text-yellow-800 border-yellow-200',
+    suspended: 'bg-red-100 text-red-800 border-red-200',
   };
+  return colors[status?.toLowerCase()] || 'bg-gray-100 text-gray-800 border-gray-200';
+};
 
-  export const getStatusBadgeColor = (status: string) => {
-    return status === "active"
-      ? "bg-cf-success-muted text-cf-success"
-      : "bg-cf-surface-muted text-cf-ink-60";
+export const getRoleDisplayName = (role: string): string => {
+  const names: Record<string, string> = {
+    super_admin: 'Super Admin',
+    agency_admin: 'Agency Admin',
+    manager: 'Manager',
+    coordinator: 'Coordinator',
+    carer: 'Carer',
+    patient: 'Patient',
   };
+  return names[role?.toLowerCase()] || role;
+};
 
   
   export const formatUKPhone = (phone: string) => {

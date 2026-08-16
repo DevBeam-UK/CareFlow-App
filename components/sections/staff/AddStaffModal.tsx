@@ -23,6 +23,8 @@ import { useState } from "react";
 import { useAddStaffApi } from "@/lib/hooks/use-staff-api";
 import { useSession } from "next-auth/react";
 import { toast } from "sonner";
+import { mapRolesToDisplay, useGetAllRolesApi } from "@/lib/hooks/use-roles-api";
+import { Role } from "@/types/components";
 
 export function AddStaffModal() {
 
@@ -32,13 +34,17 @@ export function AddStaffModal() {
   const accessToken = session.data?.accessToken
   const agencyId = session.data?.user.agencyId
   const {mutate: addStaff , isPending } = useAddStaffApi()
+  const {data, isLoading: rolesLoading} = useGetAllRolesApi()
 
+  
+
+  const roles = data?.roles ? mapRolesToDisplay(data.roles as Role[]) : [];
 
   const [staffInfo , setStaffInfo] = useState({
     fullName : '',
     email: '',
     phone: '',
-    role : '',
+    roleId : '',
     password : ''
   })
 
@@ -51,7 +57,7 @@ export function AddStaffModal() {
     addStaff({
       email: staffInfo.email,
       fullname: staffInfo.fullName,
-      role: staffInfo.role,
+      roleId: staffInfo.roleId,
       phone: staffInfo.phone,
       password: staffInfo.password,
       accessToken: accessToken,
@@ -64,7 +70,7 @@ export function AddStaffModal() {
           fullName: '',
           password: '',
           phone: '',
-          role: ''
+          roleId: ''
         })
         setOpen(false)
       }
@@ -173,8 +179,8 @@ export function AddStaffModal() {
               Role <span className="text-cf-error">*</span>
             </Label>
             <Select
-            value={staffInfo.role}
-            onValueChange={(value) => setStaffInfo({ ...staffInfo, role: value! })}
+            value={staffInfo.roleId}
+            onValueChange={(value) => setStaffInfo({ ...staffInfo, roleId: value! })}
             >
               <SelectTrigger
                 id="role"
@@ -183,9 +189,17 @@ export function AddStaffModal() {
                 <SelectValue placeholder="Select a role" />
               </SelectTrigger>
               <SelectContent className="bg-cf-surface border-cf-border">
-                <SelectItem value="CARER">Carer</SelectItem>
-                <SelectItem value="MANAGER">Manager</SelectItem>
-                <SelectItem value="ADMIN">Admin</SelectItem>
+                {rolesLoading ? (
+                    <div className="p-2 text-sm text-cf-ink-60">Loading roles...</div>
+                  ) : roles.length === 0 ? (
+                    <div className="p-2 text-sm text-cf-ink-60">No roles available</div>
+                  ) : (
+                    roles.map((role) => (
+                      <SelectItem value={role.id} key={role.id}>
+                        {role.displayName || role.name}
+                      </SelectItem>
+                    ))
+                  )}
               </SelectContent>
             </Select>
           </div>
