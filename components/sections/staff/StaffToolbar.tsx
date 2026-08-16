@@ -4,14 +4,11 @@
 
 import { Input } from "@/components/ui/input";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { mapRolesToDisplay, useGetAllRolesApi } from "@/lib/hooks/use-roles-api";
+import { formatRoleName } from "@/utils/roles-formatter";
 import { Search } from "lucide-react";
 
-const STAFF_ROLES = [
-  { id: "all", label: "All Staff" },
-  { id: "carer", label: "Carer" },
-  { id: "manager", label: "Manager" },
-  { id: "admin", label: "Admin" },
-];
+
 
 interface StaffToolbarProps {
   activeRole: string;
@@ -26,19 +23,31 @@ export function StaffToolbar({
   searchQuery,
   onSearchChange,
 }: StaffToolbarProps) {
+
+  const {data } = useGetAllRolesApi()
+
+  const allStaffRoles = mapRolesToDisplay(data?.roles)
+
   return (
     <div className="border-b border-cf-border-light ">
       <div className="flex items-center justify-between gap-6">
 
         <Tabs value={activeRole} onValueChange={onRoleChange} className="flex-1">
           <TabsList className="bg-cf-surface-muted">
-            {STAFF_ROLES.map((role) => (
+            <TabsTrigger
+              key="all"
+              value="all"
+              className="data-[state=active]:bg-cf-surface data-[state=active]:text-cf-ink data-[state=active]:shadow-none"
+            >
+              All
+            </TabsTrigger>
+            {allStaffRoles.map((role) => (
               <TabsTrigger
                 key={role.id}
-                value={role.id}
+                value={role.name}
                 className="data-[state=active]:bg-cf-surface data-[state=active]:text-cf-ink data-[state=active]:shadow-none"
               >
-                {role.label}
+                {formatRoleName(role.name!)}
               </TabsTrigger>
             ))}
           </TabsList>

@@ -1,7 +1,6 @@
-
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import {
   Dialog,
   DialogContent,
@@ -12,15 +11,14 @@ import PermissionsHeader from './PermissionHeader';
 import { PermissionsBody } from '@/components/ui/staff/permission-body';
 import PermissionsFooter from './PermissionFooter';
 
-
 interface PermissionsModalProps {
   staff: StaffMember;
-  defaultPermissions?: Array<{ module: string; action: string }>;
+  defaultPermissions?: Array<{ module: string; action: string; source?: string }>;
   open: boolean;
   onOpenChange: (open: boolean) => void;
   onSave?: (data: { permissions: Record<string, string[]> }) => Promise<void>;
   isLoading?: boolean;
-  isSuccess: boolean
+  isSuccess: boolean;
 }
 
 export function PermissionsModal({
@@ -30,13 +28,16 @@ export function PermissionsModal({
   onSave,
   defaultPermissions = [],
   isLoading: isSaving = false,
-  isSuccess
+  isSuccess,
 }: PermissionsModalProps) {
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState(false);
   const [permissions, setPermissions] = useState<Record<string, string[]>>({});
   const [expandedModules, setExpandedModules] = useState<Set<string>>(new Set());
 
+  const memoizedDefaultPermissions = useMemo(() => defaultPermissions, [
+    JSON.stringify(defaultPermissions),
+  ]);
 
   useEffect(() => {
     if (open) {
@@ -46,13 +47,15 @@ export function PermissionsModal({
         initialPermissions[module.id] = [];
       });
 
-      if (defaultPermissions && defaultPermissions.length > 0) {
-        defaultPermissions.forEach((perm) => {
-          if (!initialPermissions[perm.module]) {
-            initialPermissions[perm.module] = [];
-          }
-          if (!initialPermissions[perm.module].includes(perm.action)) {
-            initialPermissions[perm.module].push(perm.action);
+      if (memoizedDefaultPermissions && memoizedDefaultPermissions.length > 0) {
+        memoizedDefaultPermissions.forEach((perm) => {
+          if (perm.source !== 'block') {
+            if (!initialPermissions[perm.module]) {
+              initialPermissions[perm.module] = [];
+            }
+            if (!initialPermissions[perm.module].includes(perm.action)) {
+              initialPermissions[perm.module].push(perm.action);
+            }
           }
         });
       }
@@ -60,7 +63,7 @@ export function PermissionsModal({
       setPermissions(initialPermissions);
       setExpandedModules(new Set(ALL_MODULES.map((m) => m.id)));
     }
-  }, [open, defaultPermissions]);
+  }, [open, memoizedDefaultPermissions]);
 
   const togglePermission = (moduleId: string, action: string) => {
     setPermissions((prev) => {
