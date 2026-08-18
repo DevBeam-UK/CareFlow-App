@@ -8,6 +8,7 @@ export type NavItem = {
   badge?: string;
   count?: string;
   isActive?: boolean;
+  requiredModule : string;
 };
 
 export type NavGroup = {
@@ -24,12 +25,14 @@ export const navGroups: NavGroup[] = [
         label: "Dashboard",
         isActive: true,
         icon: "dashboard",
+        requiredModule: "dashboard",
       },
       {
         href: "/live-monitoring",
         label: "Live Monitoring",
         badge: "3",
         icon: "monitoring",
+        requiredModule: "visits",
       },
     ],
   },
@@ -41,21 +44,25 @@ export const navGroups: NavGroup[] = [
         label: "Patients",
         count: "142",
         icon: "patients",
+        requiredModule: "patients",
       },
       {
         href: "/scheduling",
         label: "Scheduling",
         icon: "scheduling",
+        requiredModule: "schedule",
       },
       {
         href: "#",
         label: "Care Plans",
         icon: "care-plans",
+        requiredModule: "patients",
       },
       {
         href: "/medications",
         label: "Medications",
         icon: "medications",
+        requiredModule: "patients",
       },
     ],
   },
@@ -67,27 +74,32 @@ export const navGroups: NavGroup[] = [
         label: "Staff",
         count: "31",
         icon: "staff",
+        requiredModule: "staff",
       },
       {
         href: "/incidents",
         label: "Incidents",
         badge: "2",
         icon: "incidents",
+        requiredModule: "visits",
       },
       {
         href: "/compliance",
         label: "Compliance",
         icon: "compliance",
+        requiredModule: "reports",
       },
       {
         href: "/finance",
         label: "Finance",
         icon: "finance",
+        requiredModule: "finance",
       },
       {
         href: "/reports",
         label: "Reports",
         icon: "reports",
+        requiredModule: "reports",
       },
     ],
   },
@@ -98,11 +110,13 @@ export const navGroups: NavGroup[] = [
         href: "#",
         label: "Messages",
         icon: "messages",
+        requiredModule: "users",
       },
       {
         href: "#",
         label: "Notifications",
         icon: "notifications",
+        requiredModule: "dashboard",
       },
     ],
   },
