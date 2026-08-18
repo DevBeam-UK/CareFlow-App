@@ -1,17 +1,30 @@
-import { BrandHeader } from "ui-components"
-import { BrandHero } from "ui-components"
-import { BrandQuote } from "ui-components"
+"use client";
+
+import { motion } from "framer-motion";
+
+import { BrandHeader, BrandHero, BrandQuote } from "ui-components";
 
 const BrandSection = () => {
   return (
-    <aside className="hidden min-h-screen w-full items-center justify-center bg-primary px-6 py-8 text-white lg:flex lg:w-[45%] lg:px-8 lg:py-12">
-      <div className="flex h-full w-full max-w-[560px] flex-col justify-between gap-10 rounded-[32px] border border-white/15 bg-white/10 p-8 shadow-[0_24px_80px_rgba(2,6,23,0.28)] backdrop-blur-xl">
+    <aside className="relative hidden w-[42%] flex-col overflow-hidden bg-primary text-white lg:flex">
+      {/* Subtle gradient overlays, matching original AuthBrandPanel */}
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_left,_rgba(0,0,0,0.25)_0%,_transparent_60%)]" />
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_rgba(255,255,255,0.07)_0%,_transparent_50%)]" />
+
+      {/* Decorative circles */}
+      <div className="pointer-events-none absolute -bottom-32 -right-32 h-96 w-96 rounded-full bg-white/5" />
+      <div className="pointer-events-none absolute -bottom-16 -right-16 h-64 w-64 rounded-full bg-white/5" />
+
+      <div className="relative z-10 p-8">
         <BrandHeader />
+      </div>
+
+      <div className="relative z-10 flex flex-1 flex-col justify-center gap-6 px-10 pb-10">
         <BrandHero />
         <BrandQuote />
       </div>
     </aside>
-  )
-}
+  );
+};
 
-export default BrandSection
+export default BrandSection;
