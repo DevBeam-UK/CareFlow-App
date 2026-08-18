@@ -18,7 +18,7 @@ export function SidebarNavigationSection({
 function SidebarGroup({ group }: { group: NavGroup }): ReactElement {
   return (
     <div>
-      <div className="px-5 pb-1.5 pt-5 text-[10px] font-bold uppercase tracking-[0.1em] text-[rgba(255,255,255,0.25)]">
+      <div className="px-5 pb-1.5 pt-5 text-[10px] font-bold uppercase tracking-[0.1em] text-[#0F1117]">
         {group.label}
       </div>
       {group.items.map((item) => (
@@ -35,14 +35,14 @@ function SidebarNavItem({ item }: { item: NavItem }): ReactElement {
       className={[
         "group/item mx-2.5 my-px flex items-center gap-[11px] rounded-lg px-4 py-[9px] text-[13.5px] font-medium transition-all duration-100",
         item.isActive
-          ? "bg-[rgba(99,182,140,0.12)] font-semibold text-[#63B68C]"
-          : "text-[rgba(255,255,255,0.55)] hover:bg-[rgba(255,255,255,0.06)] hover:text-[rgba(255,255,255,0.85)]",
+          ? "bg-[rgba(99,182,140,0.12)] font-semibold text-[#43474F]"
+          : "text-[#717680] hover:bg-[rgba(255,255,255,0.06)] hover:text-[#0F1117]",
       ].join(" ")}
     >
       {renderIcon(item.icon)}
       <span>{item.label}</span>
       {item.badge ? (
-        <span className="ml-auto min-w-[18px] rounded-md bg-[#D44040] px-1.5 text-center text-[10px] font-bold leading-4 text-white">
+        <span className="ml-auto min-w-4.5 rounded-md bg-[#D44040] px-1.5 text-center text-[10px] font-bold leading-4 text-white">
           {item.badge}
         </span>
       ) : null}

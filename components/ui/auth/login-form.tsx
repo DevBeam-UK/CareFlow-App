@@ -50,6 +50,7 @@ const LoginForm = ({ className }: LoginFormProps) => {
       }
       toast.success("Logged In Successfully");
       router.push("/");
+      
     } catch {
       setError("Something went wrong");
       setLoading(false);
