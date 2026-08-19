@@ -75,7 +75,7 @@ const badgeVariants = cva(
         "pastel-neutral": "bg-gray-300/10 text-gray-600 dark:text-gray-400",
         "pastel-slate": "bg-slate-300/10 text-slate-600 dark:text-slate-400",
         "pastel-stone": "bg-stone-300/10 text-stone-600 dark:text-stone-400",
-        "pastel-zinc": "bg-zinc-300/10 text-zinc-600 dark:text-zinc-400",
+        "pastel-zinc": "bg-zinc-300/10 text-cf-ink-60 dark:text-zinc-400",
       },
       badgeSize: {
         default: "",
