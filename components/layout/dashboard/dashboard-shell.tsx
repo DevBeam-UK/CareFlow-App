@@ -12,7 +12,7 @@ import { useSession} from "next-auth/react";
 
 import DashboardShellActions from "@/components/sections/dashboard/DashboardShellActions";
 import { SidebarAgencySection } from "@/components/sections/dashboard/SideBarAgencySection";
-import { useGetAgencyByUserIdApi } from "@/lib/hooks/use-agency-api";
+
 import { SidebarAgencySectionSkeleton } from "@/components/ui/staff/sidebar-agency-skeleton";
 import { useGetAgency } from "@/hooks/use-get-agency";
 import { filterNavItemsByRole } from "@/utils/dashboard-nav-filter";
@@ -62,7 +62,7 @@ export function DashboardShell({
       </aside>
       
       <div className="w-full h-screen flex-1 overflow-y-auto">
-        <main className="h-screen p-6 flex flex-col gap-y-2">
+        <main className="h-screen p-2 flex flex-col gap-y-1">
           <div className="flex items-center justify-between">
             <PageBreadcrumb 
               icon={icon}
@@ -78,7 +78,7 @@ export function DashboardShell({
             
             />
           </div>
-
+          
           {children}
         </main>
       </div>

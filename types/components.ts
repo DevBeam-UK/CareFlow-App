@@ -85,6 +85,28 @@ export interface GroupedPermission {
   isPartiallyGranted: boolean;
 }
 
+export interface CalenderEvent {
+  id : string;
+  title : string;
+  start : Date;
+  end: Date;
+  resource? : any 
+}
+
+export interface Visit {
+  id : string;
+  patientName : string;
+  patientId : string;
+  carerName : string;
+  carerId : string;
+  startTime: string;
+  endTime: string;
+  date : string;
+  type: 'care' | 'medication' | 'check-up' | 'therapy';
+  status: 'scheduled' | 'completed' | 'cancelled';
+  address: string;
+}
+
 export type SortField = keyof StaffMember;
 export type SortDirection = "asc" | "desc";
 export type EmployeeStatus = 'ACTIVE' | 'SUSPENDED' | 'ON_LEAVE' | 'TERMINATED' 

@@ -1,4 +1,4 @@
-import { StaffMember, StatCardProps } from "@/types/components";
+import { StaffMember, StatCardProps, Visit } from "@/types/components";
 import { UserCheck, UserPlus, Users, UserX2 } from "lucide-react";
 
 export type NavItem = {
@@ -228,4 +228,72 @@ export const PERMISSIONS_TABLE_HEADER_COLUMNS = [
   { label: 'Read' },
   { label: 'Update' },
   { label: 'Delete' },
+];
+
+export const mockVisits: Visit[] = [
+  {
+    id: '1',
+    patientName: 'Dorothy Chen',
+    patientId: '1',
+    carerName: 'Sarah Johnson',
+    carerId: '1',
+    startTime: '08:30',
+    endTime: '09:30',
+    date: '2024-03-18',
+    type: 'care',
+    status: 'scheduled',
+    address: '123 Oak Street, Manchester',
+  },
+  {
+    id: '2',
+    patientName: 'James Okafor',
+    patientId: '2',
+    carerName: 'Michael Chen',
+    carerId: '2',
+    startTime: '09:00',
+    endTime: '10:00',
+    date: '2024-03-18',
+    type: 'medication',
+    status: 'scheduled',
+    address: '456 Elm Avenue, Birmingham',
+  },
+  {
+    id: '3',
+    patientName: 'Edna Morris',
+    patientId: '3',
+    carerName: 'Emma Williams',
+    carerId: '3',
+    startTime: '10:00',
+    endTime: '11:30',
+    date: '2024-03-18',
+    type: 'care',
+    status: 'scheduled',
+    address: '789 Pine Road, Leeds',
+  },
+  {
+    id: '4',
+    patientName: 'Robert Hayes',
+    patientId: '4',
+    carerName: 'David Smith',
+    carerId: '4',
+    startTime: '14:00',
+    endTime: '15:00',
+    date: '2024-03-19',
+    type: 'check-up',
+    status: 'scheduled',
+    address: '321 Birch Lane, Liverpool',
+  },
+  {
+    id: '5',
+    patientName: 'Sophie Martinez',
+    patientId: '5',
+    carerName: 'Lisa Garcia',
+    carerId: '5',
+    startTime: '13:30',
+    endTime: '14:30',
+    date: '2024-03-20',
+    type: 'therapy',
+    status: 'scheduled',
+    address: '654 Cedar Court, Bristol',
+  },
 ];
