@@ -18,7 +18,7 @@ export function SidebarNavigationSection({
 function SidebarGroup({ group }: { group: NavGroup }): ReactElement {
   return (
     <div>
-      <div className="px-5 pb-1.5 pt-5 text-[10px] font-bold uppercase tracking-[0.1em] text-[#0F1117]">
+      <div className="px-5 pb-1.5 pt-5 text-[10px] font-bold uppercase tracking-[0.1em] text-[#9AA0A6]">
         {group.label}
       </div>
       {group.items.map((item) => (
@@ -36,18 +36,18 @@ function SidebarNavItem({ item }: { item: NavItem }): ReactElement {
         "group/item mx-2.5 my-px flex items-center gap-[11px] rounded-lg px-4 py-[9px] text-[13.5px] font-medium transition-all duration-100",
         item.isActive
           ? "bg-[rgba(99,182,140,0.12)] font-semibold text-[#43474F]"
-          : "text-[#717680] hover:bg-[rgba(255,255,255,0.06)] hover:text-[#0F1117]",
+          : "text-[#5B6069] hover:bg-black/[0.035] hover:text-[#0F1117]",
       ].join(" ")}
     >
       {renderIcon(item.icon)}
       <span>{item.label}</span>
       {item.badge ? (
-        <span className="ml-auto min-w-4.5 rounded-md bg-[#D44040] px-1.5 text-center text-[10px] font-bold leading-4 text-white">
+        <span className="ml-auto min-w-4.5 rounded-full bg-[#D44040] px-1.5 text-center text-[10px] font-bold leading-4 text-white">
           {item.badge}
         </span>
       ) : null}
       {item.count ? (
-        <span className="ml-auto text-[11px] text-[rgba(255,255,255,0.55)] opacity-50">
+        <span className="ml-auto text-[11px] text-[#8A8F98]">
           {item.count}
         </span>
       ) : null}
@@ -56,7 +56,7 @@ function SidebarNavItem({ item }: { item: NavItem }): ReactElement {
 }
 
 function renderIcon(iconName: string): ReactElement {
-  const commonClassName = "h-[18px] w-[18px] shrink-0 opacity-50 group-hover/item:opacity-90";
+  const commonClassName = "h-[18px] w-[18px] shrink-0 opacity-60 group-hover/item:opacity-100";
 
   const icons: Record<string, ReactElement> = {
     dashboard: (
