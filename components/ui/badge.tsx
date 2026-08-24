@@ -79,11 +79,14 @@ const badgeVariants = cva(
       },
       badgeSize: {
         default: "",
-        lg: "rounded-lg p-3 text-[13px] ",
+        sm: 'text-[10px] px-1',
+        md: 'text-[13px] px-2  flex items-center gap-1',
+        lg: " px-4 py-2 text-[20px] ",
+        icon: 'p-2'
       },
       shape: {
-        rounded: "",
-        pill: "rounded-full p-1 px-4 text-xs",
+        rounded: "rounded-lg ",
+        pill: "rounded-full",
       },
     },
     defaultVariants: {
