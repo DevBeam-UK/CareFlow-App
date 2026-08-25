@@ -2,14 +2,17 @@
 
 import { useState } from 'react';
 import { toast } from 'sonner';
-import { CarePlanBlocksSection } from '@/components/sections/care-plans/CarePlanBlocksSection';
-import { CarePlanFilterToolbar } from '@/components/sections/care-plans/CarePlanFilterToolbar';
-import { CarePlanHeader } from '@/components/sections/care-plans/CarePlanHeaderSection';
-import CarePlanReviewQueue from '@/components/sections/care-plans/CarePlanReviewQueue';
-import { CarePlanStatSection } from '@/components/sections/care-plans/CarePlanStatsSection';
-import { CarePlanCreationModal } from '@/components/sections/care-plans/create-plan/CreateCarePlanModal';
-import { ModuleCreationData, CarePlan } from '@/types/components';
-import { mockCarePlan, mockModules } from '@/utils';
+import {
+  CarePlanBlocksSection,
+  CarePlanCreationModal,
+  CarePlanFilterToolbar,
+  CarePlanHeader,
+  CarePlanReviewQueue,
+  CarePlanStatSection,
+} from "sections";
+import type { CarePlan, ModuleCreationData } from "types";
+import { mockCarePlan, mockModules } from "utils";
+import { Separator } from "ui-components";
 
 const mockCarePlansList: CarePlan[] = [
     mockCarePlan,
@@ -103,15 +106,13 @@ function Page() {
         setIsCreationModalOpen(false);
     };
 
-    const handleCreationCancel = () => {
-        setIsCreationModalOpen(false);
-    };
 
     return (
-        <div className="h-screen w-full p-6 border rounded-2xl shadow bg-cf-surface space-y-8 overflow-y-scroll no-scrollbar">
+        <div className="h-screen w-full  space-y-8 overflow-y-scroll no-scrollbar">
             <CarePlanHeader 
                 onCreateNew={handleAddNewPlan}
             />
+            <Separator />
             <CarePlanStatSection />
             <CarePlanFilterToolbar 
                 activeTab={activeFilterTab}

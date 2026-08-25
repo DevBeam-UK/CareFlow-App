@@ -1,8 +1,8 @@
 'use client';
 
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Badge } from '@/components/ui/badge';
-import { CarePlanModule, MobilityContent } from '@/types/components';
+import { Card, CardContent, CardHeader, CardTitle } from "ui-components";
+import { Badge } from "ui-components";
+import { CarePlanModule, MobilityContent } from "types";
 
 interface MobilityModuleViewProps {
   module: CarePlanModule;

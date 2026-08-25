@@ -1,8 +1,8 @@
 'use client';
 
-import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { ModuleCreationData } from '@/types/components';
+import { Button } from "ui-components";
+import { Card, CardContent, CardHeader, CardTitle } from "ui-components";
+import { ModuleCreationData } from "types";
 import { CheckCircle, AlertCircle } from 'lucide-react';
 
 interface ModuleReviewSubmitProps {

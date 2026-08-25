@@ -1,6 +1,6 @@
 'use client';
 
-import StatCard from '@/components/shared/stat-card';
+import { StatCard } from "shared";
 import { FileText, CheckCircle, Clock, AlertCircle } from 'lucide-react';
 
 interface CarePlanStats {

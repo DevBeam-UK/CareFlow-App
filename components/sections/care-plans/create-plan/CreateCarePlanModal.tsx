@@ -7,10 +7,10 @@ import {
   DialogHeader,
   DialogTitle,
   DialogDescription,
-} from '@/components/ui/dialog';
-import { Progress } from '@/components/ui/progress';
+} from "ui-components";
+import { Progress } from "ui-components";
 import { Check } from 'lucide-react';
-import { CreationStep, ModuleCreationData } from '@/types/components';
+import { CreationStep, ModuleCreationData } from "types";
 import { ModuleTypeSelection } from './ModuleTypeSelection';
 import { ModuleDetailsForm } from './ModuleDetailForm';
 import { ModuleReviewSubmit } from './ModuleReviewSubmit';

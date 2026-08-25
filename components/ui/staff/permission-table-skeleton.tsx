@@ -1,9 +1,9 @@
 // components/sections/staff/PermissionTableSkeleton.tsx
 'use client';
 
-import { Skeleton } from '@/components/ui/skeleton';
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
-import { PERMISSION_MODULES } from '@/utils';
+import { Skeleton } from "../skeleton";
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "../table";
+import { PERMISSION_MODULES } from "utils";
 
 export const PERMISSIONS_TABLE_HEADER_COLUMNS = [
   { label: 'Module' },

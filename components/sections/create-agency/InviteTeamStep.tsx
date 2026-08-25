@@ -3,9 +3,9 @@
 "use client";
 
 import { useState } from "react";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
+import { Button } from "ui-components";
+import { Input } from "ui-components";
+import { Label } from "ui-components";
 import { X, Plus, Mail, AlertCircle } from "lucide-react";
 
 interface InviteTeamStepProps {

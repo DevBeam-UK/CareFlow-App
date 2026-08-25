@@ -1,4 +1,4 @@
-import { CarePlan, CarePlanModule, StaffMember, StatCardProps } from "@/types/components";
+import { CarePlan, CarePlanModule, StaffMember, StatCardProps } from "types";
 import { UserCheck, UserPlus, Users, UserX2 } from "lucide-react";
 
 export type NavItem = {
@@ -23,7 +23,6 @@ export const navGroups: NavGroup[] = [
       {
         href: "/",
         label: "Dashboard",
-        isActive: true,
         icon: "dashboard",
         requiredModule: "dashboard",
       },
@@ -53,7 +52,7 @@ export const navGroups: NavGroup[] = [
         requiredModule: "schedule",
       },
       {
-        href: "care-plans",
+        href: "/care-plans",
         label: "Care Plans",
         icon: "care-plans",
         requiredModule: "patients",

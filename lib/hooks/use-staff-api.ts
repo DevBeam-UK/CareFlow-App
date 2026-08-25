@@ -2,7 +2,7 @@ import { useQueryClient } from "@tanstack/react-query";
 import { useApiMutation, useApiQuery } from "./use-api";
 import { apiClient } from "../api";
 import { env } from "@/config/env";
-import { Role, StaffMember } from "@/types/components";
+import { Role, StaffMember } from "types";
 
 export interface AddStaffVariables {
     fullname : string;

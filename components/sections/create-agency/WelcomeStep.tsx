@@ -2,7 +2,7 @@
 
 "use client";
 
-import { Button } from "@/components/ui/button";
+import { Button } from "ui-components";
 import { ArrowRight, CheckCircle2, FolderKanban, Hospital, Users } from "lucide-react";
 import Image from "next/image";
 

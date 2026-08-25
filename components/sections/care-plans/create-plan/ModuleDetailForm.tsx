@@ -1,8 +1,8 @@
 'use client';
 
 import { useState } from 'react';
-import { Button } from '@/components/ui/button';
-import { CarePlanType, CarePlanModuleContent } from '@/types/components';
+import { Button } from "ui-components";
+import { CarePlanType, CarePlanModuleContent } from "types";
 import { PersonalCareForm } from './PersonalCareForm';
 import { ChevronRight } from 'lucide-react';
 

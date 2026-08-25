@@ -1,6 +1,6 @@
 'use client';
 
-import { Button } from '@/components/ui/button';
+import { Button } from "ui-components";
 import { Plus, FileText } from 'lucide-react';
 
 interface CarePlanHeaderProps {
@@ -11,9 +11,9 @@ interface CarePlanHeaderProps {
 export function CarePlanHeader({ onCreateNew, onExport }: CarePlanHeaderProps) {
   return (
     <div className="flex items-center justify-between">
-      <div>
-        <h1 className="text-2xl font-bold text-cf-ink">Care Plans</h1>
-        <p className="text-sm text-cf-ink-60 mt-1">
+      <div className='flex flex-col gap-y-1'>
+        <h1 className="text-4xl font-bold text-cf-ink">Care Plans</h1>
+        <p className="text-xs text-cf-ink-60  ">
           Create and manage patient care plans
         </p>
       </div>

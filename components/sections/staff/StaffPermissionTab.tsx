@@ -1,14 +1,14 @@
 'use client';
 
 import { Checkbox, Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui';
-import { useGetUserPermissionsApi } from '@/lib/hooks/use-permissions-api';
-import { StaffMember } from '@/types/components';
+import { useGetUserPermissionsApi } from "lib";
+import { StaffMember } from "types";
 import { PERMISSION_MODULES } from '@/utils';
 import { PermissionsModal } from './PermissionsModal';
-import { Button } from '@/components/ui/button';
+import { Button } from "ui-components";
 import { Shield, Loader2 } from 'lucide-react';
 import { useState } from 'react';
-import { PermissionTableSkeleton } from '@/components/ui/staff/permission-table-skeleton';
+import { PermissionTableSkeleton } from "ui-components";
 
 export const PERMISSIONS_TABLE_HEADER_COLUMNS = [
   { label: 'Module' },

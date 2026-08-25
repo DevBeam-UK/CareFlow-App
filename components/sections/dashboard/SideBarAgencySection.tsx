@@ -19,38 +19,36 @@ export function SidebarAgencySection({
   const [open, setOpen] = useState(false);
 
   return (
-    <div className="border-t border-cf-border-light px-4 py-3.5">
-      <Popover open={open} onOpenChange={setOpen}>
-        <PopoverTrigger >
-          <div className="flex cursor-pointer items-center gap-2.5 rounded-lg px-1 py-1 transition-colors hover:bg-cf-surface-muted">
-            <div className="flex h-[34px] w-[34px] items-center justify-center rounded-lg border border-cf-border-light bg-cf-surface text-xs font-semibold text-cf-ink">
-              {initials}
-            </div>
-            <div className="min-w-0 flex-1">
-              <div className="truncate text-sm font-medium text-cf-ink">
-                {name}
-              </div>
-            </div>
-            <MoreVertical className="h-4 w-4 text-cf-ink-40 shrink-0" />
+    <Popover open={open} onOpenChange={setOpen}>
+      <PopoverTrigger>
+        <div className="flex w-full cursor-pointer items-center gap-2.5 rounded-lg px-1 py-1 transition-colors hover:bg-sidebar-accent group-data-[collapsible=icon]:justify-center group-data-[collapsible=icon]:px-0">
+          <div className="flex h-[34px] w-[34px] shrink-0 items-center justify-center rounded-lg border border-sidebar-border bg-sidebar text-xs font-semibold text-sidebar-foreground">
+            {initials}
           </div>
-        </PopoverTrigger>
-        <PopoverContent 
-          className="w-56 p-1 bg-cf-surface border-cf-border-light" 
-          align="end"
+          <div className="min-w-0 flex-1 group-data-[collapsible=icon]:hidden">
+            <div className="truncate text-sm font-medium text-sidebar-foreground">
+              {name}
+            </div>
+          </div>
+          <MoreVertical className="h-4 w-4 shrink-0 text-muted-foreground group-data-[collapsible=icon]:hidden" />
+        </div>
+      </PopoverTrigger>
+      <PopoverContent
+        className="w-56 border-sidebar-border bg-sidebar p-1"
+        align="end"
+      >
+        <Button
+          variant="ghost"
+          className="w-full justify-start gap-2 font-normal text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground"
+          onClick={() => {
+            setOpen(false);
+            if (onProfile) onProfile();
+          }}
         >
-          <Button
-            variant="ghost"
-            className="w-full justify-start gap-2 font-normal text-cf-ink hover:bg-cf-surface-muted hover:text-cf-ink"
-            onClick={() => {
-              setOpen(false);
-              if (onProfile) onProfile();
-            }}
-          >
-            <Building2 className="h-4 w-4 text-cf-ink-60" />
-            Agency Profile
-          </Button>
-        </PopoverContent>
-      </Popover>
-    </div>
+          <Building2 className="h-4 w-4 text-muted-foreground" />
+          Agency Profile
+        </Button>
+      </PopoverContent>
+    </Popover>
   );
 }

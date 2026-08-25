@@ -1,11 +1,11 @@
 'use client';
 
-import { Card, CardContent } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
+import { Card, CardContent } from "ui-components";
+import { Button } from "ui-components";
 import { Calendar, Clock, Users, ChevronRight } from 'lucide-react';
 import { useState } from 'react';
 import { CarePlanViewerModal } from './view-plan/CarePlanViewerModal';
-import { CarePlan } from '@/types/components';
+import { CarePlan } from "types";
 
 interface CarePlanBlocksSectionProps {
   carePlans?: CarePlan[];

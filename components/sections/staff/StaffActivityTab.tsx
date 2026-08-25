@@ -1,7 +1,7 @@
 'use client';
 
-import { StaffMember } from '@/types/components';
-import { formatTime } from '@/utils/date-utils';
+import { StaffMember } from "types";
+import { formatTime } from "utils";
 
 
 interface StaffActivityTabProps {

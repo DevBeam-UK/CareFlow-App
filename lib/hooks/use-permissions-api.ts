@@ -1,4 +1,4 @@
-import { Permission } from "@/types/components";
+import { Permission } from "types";
 import { useApiMutation, useApiQuery } from "./use-api";
 import { apiClient } from "../api";
 import { env } from "@/config/env";
