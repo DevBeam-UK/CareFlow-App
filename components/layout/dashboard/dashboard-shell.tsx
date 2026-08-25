@@ -31,23 +31,16 @@ export function DashboardShell({
   const userInitials = session.data?.user.name.split(' ').map((n) => n[0]).join('') || '';
   const userFullName = session.data?.user.name || '';
   const userAvatarUrl = session.data?.user.image || '';
-  
-  if (error) {
-    console.log('error getting agency : ', error
 
-    );
-    
-  }
+  const role = session?.data?.user.role;
 
-  const role = session?.data?.user.role
-  
     const filteredNavGroups = navGroups.map((group) => ({
     ...group,
     items: filterNavItemsByRole(group.items, role!),
   }));
 
   const { currentPage, icon, previousPage } = usePageInfo();
-    
+
   return (
     <div className="flex h-screen overflow-hidden bg-[#EFEFF2]">
       <aside className="sticky top-0 hidden h-screen w-63 shrink-0 flex-col overflow-y-auto overflow-x-hidden bg-[#EFEFF2] text-black md:flex">
@@ -55,27 +48,27 @@ export function DashboardShell({
         <SidebarNavigationSection groups={filteredNavGroups} />
         {isLoading ? (
           <SidebarAgencySectionSkeleton />
-        ): (<SidebarAgencySection 
+        ):  (<SidebarAgencySection
           initials={initials}
           name={name}
         />)}
       </aside>
-      
+
       <div className="w-full h-screen flex-1 overflow-y-auto">
         <main className="h-screen p-6 flex flex-col gap-y-2">
           <div className="flex items-center justify-between">
-            <PageBreadcrumb 
+            <PageBreadcrumb
               icon={icon}
               previousPage={previousPage ? `/${previousPage}` : 'dashboard'}
               currentPage={currentPage}
             />
 
-            <DashboardShellActions 
+            <DashboardShellActions
             avatarUrl={userAvatarUrl}
             initials={userInitials}
             name={userFullName}
             role={role!}
-            
+
             />
           </div>
 
