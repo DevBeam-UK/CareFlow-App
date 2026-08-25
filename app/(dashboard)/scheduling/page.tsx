@@ -1,4 +1,4 @@
-"use client";
+import { SectionPlaceholder } from "shared";
 
 import CalendarWrapper from "@/components/sections/schedule/CalenderWrapper";
 import { mockVisits } from "@/utils";

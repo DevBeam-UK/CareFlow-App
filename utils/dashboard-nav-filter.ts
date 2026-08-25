@@ -72,3 +72,17 @@ export function filterNavItemsByRole(items: NavItem[], role: string): NavItem[] 
     return true;
   });
 }
+
+export function isNavItemActive(href: string, pathname: string): boolean {
+  if (!href || href === "#") return false;
+
+  const normalizedHref = href.startsWith("/") ? href : `/${href}`;
+
+  if (normalizedHref === "/") {
+    return pathname === "/";
+  }
+
+  return (
+    pathname === normalizedHref || pathname.startsWith(`${normalizedHref}/`)
+  );
+}

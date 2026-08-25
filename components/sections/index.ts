@@ -3,3 +3,7 @@ export { default as FormSection } from './auth/FormSection';
 export { default as RegisterFormSection } from './auth/RegisterFormSection';
 export * from './auth/VerifyEmail';
 export * from './dashboard';
+export * from './staff';
+export * from './create-agency';
+export * from './subscription';
+export * from './care-plans';

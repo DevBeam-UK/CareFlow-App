@@ -1,31 +1,45 @@
-import React from 'react'
-import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator } from '../ui'
-import { PageBreadcrumbProps } from '@/types/components'
+import React from "react";
+import { PageBreadcrumbProps } from "types";
+import {
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbList,
+  BreadcrumbPage,
+  BreadcrumbSeparator,
+} from "ui-components";
 
-
-
-function PageBreadcrumb({currentPage,previousPage, icon: Icon}: PageBreadcrumbProps) {
+function PageBreadcrumb({
+  currentPage,
+  previousPage,
+  icon: Icon,
+}: PageBreadcrumbProps) {
   return (
     <Breadcrumb>
-        <BreadcrumbList className='text-[12px]'>
-            <BreadcrumbItem>
-                <Icon className='size-3'/>
-            </BreadcrumbItem>
-            <BreadcrumbSeparator />
-            <BreadcrumbItem>
-                <BreadcrumbLink href='/'>
-                    {previousPage}
-                </BreadcrumbLink>
-            </BreadcrumbItem>
-            <BreadcrumbSeparator />
-            <BreadcrumbItem>
-                <BreadcrumbPage>
-                    {currentPage}
-                </BreadcrumbPage>
-            </BreadcrumbItem>
-        </BreadcrumbList>
+      <BreadcrumbList className="gap-1.5 text-[13px] text-cf-ink-60 sm:gap-2">
+        <BreadcrumbItem>
+          <span className="flex size-7 items-center justify-center rounded-md bg-cf-surface-muted text-cf-ink-80">
+            <Icon className="size-3.5" />
+          </span>
+        </BreadcrumbItem>
+        <BreadcrumbSeparator className="text-cf-ink-40 [&>svg]:size-3" />
+        <BreadcrumbItem>
+          <BreadcrumbLink
+            href="/"
+            className="capitalize text-cf-ink-60 hover:text-cf-ink"
+          >
+            {previousPage?.replace(/^\//, "") || "dashboard"}
+          </BreadcrumbLink>
+        </BreadcrumbItem>
+        <BreadcrumbSeparator className="text-cf-ink-40 [&>svg]:size-3" />
+        <BreadcrumbItem>
+          <BreadcrumbPage className="font-medium capitalize text-cf-ink">
+            {currentPage}
+          </BreadcrumbPage>
+        </BreadcrumbItem>
+      </BreadcrumbList>
     </Breadcrumb>
-  )
+  );
 }
 
-export default PageBreadcrumb
+export default PageBreadcrumb;

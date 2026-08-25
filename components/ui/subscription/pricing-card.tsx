@@ -2,8 +2,8 @@
 
 import { motion, AnimatePresence } from "framer-motion";
 import { Check } from "lucide-react";
-import type { PricingPlan, BillingCycle, PricingCardProps } from "@/lib/utils/components";
-import { formatPrice } from "@/utils";
+import type { PricingPlan, BillingCycle, PricingCardProps } from "lib";
+import { formatPrice } from "utils";
 import { useCreateCheckoutApi } from "@/lib";
 import { useAuthTokens } from "@/hooks";
 import { toast } from "sonner";

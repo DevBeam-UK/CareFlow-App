@@ -8,9 +8,9 @@ import { AgencyDetailsStep } from "./AgencyDetailStep";
 import { InviteTeamStep } from "./InviteTeamStep";
 import { SuccessStep } from "./SuccessStep";
 import { useRouter } from "next/navigation";
-import { ProgressBar } from "@/components/ui/create-agency/progress-bar";
-import { StepIndicator } from "@/components/ui/create-agency/step-indicator";
-import { useCreateAgency } from "@/hooks/use-create-agency";
+import { ProgressBar } from "ui-components";
+import { StepIndicator } from "ui-components";
+import { useCreateAgency } from "hooks";
 
 const STEPS = [
   { id: 1, label: "Welcome" },

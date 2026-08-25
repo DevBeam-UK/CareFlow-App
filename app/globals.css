@@ -213,19 +213,19 @@
   --chart-4: var(--cf-ink-40);
   --chart-5: var(--cf-brand-700);
   --radius: 0.5rem;
-  --sidebar: var(--cf-surface);
-  --sidebar-foreground: var(--cf-ink);
+  --sidebar: var(--cf-ink);
+  --sidebar-foreground: var(--cf-ink-20);
   --sidebar-primary: var(--cf-brand-500);
   --sidebar-primary-foreground: #ffffff;
-  --sidebar-accent: var(--cf-surface-muted);
-  --sidebar-accent-foreground: var(--cf-ink);
-  --sidebar-border: var(--cf-border);
+  --sidebar-accent: rgba(255, 255, 255, 0.06);
+  --sidebar-accent-foreground: var(--cf-ink-20);
+  --sidebar-border: rgba(255, 255, 255, 0.06);
   --sidebar-ring: var(--cf-brand-200);
 }
 
 .dark {
-  --cf-bg: #0c0d10;
-  --cf-surface: #14161c;
+  --cf-bg: #0f1117;
+  --cf-surface: #0f1117;
   --cf-surface-muted: #1a1d24;
   --cf-surface-inset: #22252e;
   --cf-border: #2a2e38;
@@ -288,13 +288,13 @@
   --chart-3: var(--cf-amber-500);
   --chart-4: var(--cf-ink-40);
   --chart-5: var(--cf-brand-200);
-  --sidebar: var(--cf-surface);
+  --sidebar: #0f1117;
   --sidebar-foreground: var(--cf-ink);
   --sidebar-primary: var(--cf-brand-400);
   --sidebar-primary-foreground: #082f1e;
-  --sidebar-accent: var(--cf-surface-muted);
+  --sidebar-accent: rgba(255, 255, 255, 0.06);
   --sidebar-accent-foreground: var(--cf-ink);
-  --sidebar-border: var(--cf-border);
+  --sidebar-border: rgba(255, 255, 255, 0.06);
   --sidebar-ring: var(--cf-brand-500);
 }
 

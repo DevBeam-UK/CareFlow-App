@@ -1,10 +1,8 @@
-import React from "react";
-import { MagicCard } from "../ui/magic-card";
-import { LucideIcon, ArrowUp, ArrowDown } from "lucide-react";
-import { StatCardProps } from "@/types/components";
-import { Badge } from "../ui";
-import { showStatTrend } from "@/utils/show-trend";
-import { getScoreRingColor } from "@/utils/stat-score-ring-check";
+import { MagicCard } from "ui-components";
+import { ArrowDown, ArrowUp } from "lucide-react";
+import { StatCardProps } from "types";
+import { Badge } from "ui-components";
+import { getScoreRingColor, showStatTrend } from "utils";
 
 function StatCard({
   description,
@@ -33,7 +31,7 @@ function StatCard({
     >
       <div className="flex flex-col gap-4 py-4 px-4">
         <div className="flex items-center justify-between">
-          <Badge variant="pastel-success" badgeSize={'lg'}>
+          <Badge variant="pastel-success" badgeSize={'icon'}>
             <Icon className="size-4" />
           </Badge>
 
@@ -68,7 +66,7 @@ function StatCard({
               <Badge 
                 variant="pastel-success" 
                 shape="pill"
-                className="flex items-center gap-1 px-2.5 py-1 text-sm font-semibold"
+                badgeSize={'md'}
               >
                 <ArrowUp className="size-3.5" />
                 {valueBadgeValue}

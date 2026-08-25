@@ -1,4 +1,4 @@
-import { useGetAgencyByUserIdApi } from "@/lib/hooks/use-agency-api";
+import { useGetAgencyByUserIdApi } from "lib";
 import { useSession } from "next-auth/react";
 
 export function useGetAgency(){
