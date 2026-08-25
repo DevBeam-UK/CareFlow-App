@@ -1,26 +1,26 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
-import { Textarea } from '@/components/ui/textarea';
+import { Input } from "ui-components";
+import { Label } from "ui-components";
+import { Textarea } from "ui-components";
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from '@/components/ui/select';
+} from "ui-components";
 import {
   Card,
   CardContent,
   CardHeader,
   CardTitle,
-} from '@/components/ui/card';
-import { Badge } from '@/components/ui/badge';
+} from "ui-components";
+import { Badge } from "ui-components";
 import { X, Plus } from 'lucide-react';
-import { Button } from '@/components/ui/button';
-import { PersonalCareCreationData } from '@/types/components';
+import { Button } from "ui-components";
+import { PersonalCareCreationData } from "types";
 
 interface PersonalCareFormProps {
   data: Partial<PersonalCareCreationData> | undefined;

@@ -1,6 +1,6 @@
 'use client';
 
-import { ALL_MODULES } from "@/utils/permission-constants";
+import { ALL_MODULES } from "utils";
 import { PermissionRow } from "./permission-row";
 
 

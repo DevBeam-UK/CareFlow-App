@@ -8,10 +8,10 @@ function StaffHeader() {
   return (
     <div className='w-full flex items-center justify-between'>
         <div className='flex flex-col gap-y-1'>
-            <h1 className='text-2xl text-cf-ink-80'>
+            <h1 className='text-4xl font-bold text-cf-ink'>
                 Agency Staff
             </h1>
-            <p className='text-xs text-cf-ink-40'>Manage and track agency staff in real-time</p>
+            <p className='text-xs text-cf-ink-60'>Manage and track agency staff in real-time</p>
         </div>
         <div className='flex items-center gap-x-2'>
             <Button 

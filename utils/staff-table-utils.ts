@@ -1,4 +1,4 @@
-import { EmployeeStatus } from "@/types/components";
+import { EmployeeStatus } from "types";
 
 export const getRoleBadgeColor = (role: string) => {
   switch (role) {

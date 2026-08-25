@@ -1,7 +1,5 @@
-import TrendDownIcon from "@/components/ui/trend-down-svg";
-import TrendNeutralIcon from "@/components/ui/trend-neutral-svg";
-import TrendUpIcon from "@/components/ui/trend-up-svg";
-import { StatCardTrend } from "@/types/components";
+import { TrendDownIcon, TrendNeutralIcon, TrendUpIcon } from "ui-components";
+import type { StatCardTrend } from "types";
 
 export const showStatTrend = (trend: StatCardTrend) => {
   switch (trend) {

@@ -7,10 +7,10 @@ import {
   DialogHeader,
   DialogTitle,
   DialogFooter,
-} from '@/components/ui/dialog';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { StaffMember } from '@/types/components';
+} from "ui-components";
+import { Button } from "ui-components";
+import { Input } from "ui-components";
+import { StaffMember } from "types";
 import { Loader2, AlertCircle } from 'lucide-react';
 
 interface EditStaffModalProps {

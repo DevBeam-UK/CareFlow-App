@@ -6,12 +6,12 @@ import {
   DialogContent,
   DialogHeader,
   DialogTitle,
-} from '@/components/ui/dialog';
-import { Badge } from '@/components/ui/badge';
-import { Button } from '@/components/ui/button';
+} from "ui-components";
+import { Badge } from "ui-components";
+import { Button } from "ui-components";
 import { Download, Edit2, Calendar, AlertCircle, Maximize2, Minimize2, X } from 'lucide-react';
-import { CarePlan, CarePlanModule } from '@/types/components';
-import { cn } from '@/lib/utils';
+import { CarePlan, CarePlanModule } from "types";
+import { cn } from "lib";
 import { PersonalCareModuleView } from './PersonalCareModuleView';
 import { MedicationModuleView } from './MedicationModuleView';
 import { DementiaModuleView } from './DementiaModuleView';

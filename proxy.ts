@@ -8,6 +8,12 @@ export const AGENCY_CREATION_ROUTE = '/create-agency'
 
 export async function proxy(request: NextRequest): Promise<NextResponse> {
   const { pathname } = request.nextUrl;
+
+  // Public static assets must bypass auth (next/image fetches these directly)
+  if (/\.(?:png|jpg|jpeg|gif|svg|webp|ico|woff2?|ttf|eot)$/i.test(pathname)) {
+    return NextResponse.next();
+  }
+
   const session = await auth();
   
   const isLoggedIn = !!session?.user;
@@ -103,6 +109,6 @@ export async function proxy(request: NextRequest): Promise<NextResponse> {
 
 export const config = {
   matcher: [
-    "/((?!_next/static|_next/image|favicon.ico|sitemap.xml|robots.txt).*)",
+    "/((?!_next/static|_next/image|favicon.ico|sitemap.xml|robots.txt|.*\\.(?:svg|png|jpg|jpeg|gif|webp|ico)$).*)",
   ],
 };

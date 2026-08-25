@@ -8,20 +8,20 @@ import {
   DrawerHeader,
   DrawerTitle,
   DrawerFooter,
-} from '@/components/ui/drawer';
-import { Button } from '@/components/ui/button';
-import { Badge } from '@/components/ui/badge';
+} from "../drawer";
+import { Button } from "../button";
+import { Badge } from "../badge";
 import { MoreVertical, FileText, Lock, Clock } from 'lucide-react';
-import { Permission, StaffMember } from '@/types/components';
-import { PermissionsModal } from '@/components/sections/staff/PermissionsModal';
-import { EditStaffModal } from '@/components/sections/staff/EditStaffModal';
-import { StaffDetailsTab } from '@/components/sections/staff/StaffDetailedTab';
-import { StaffActivityTab } from '@/components/sections/staff/StaffActivityTab';
-import { getRoleBadgeColor, getRoleDisplayName, getStatusBadgeColor } from '@/utils/staff-table-utils';
+import { Permission, StaffMember } from "types";
+import { PermissionsModal } from "sections";
+import { EditStaffModal } from "sections";
+import { StaffDetailsTab } from "sections";
+import { StaffActivityTab } from "sections";
+import { getRoleBadgeColor, getRoleDisplayName, getStatusBadgeColor } from "utils";
 import { StaffViewTabs } from './staff-view-tabs';
 import { useSession } from 'next-auth/react';
-import { useGetUserPermissionsApi, useGrantUserPermissionsApi } from '@/lib/hooks/use-permissions-api';
-import StaffPermissionTab from '@/components/sections/staff/StaffPermissionTab';
+import { useGetUserPermissionsApi, useGrantUserPermissionsApi } from "lib";
+import StaffPermissionTab from "sections";
 
 
 type TabType = 'details' | 'permissions' | 'activity';

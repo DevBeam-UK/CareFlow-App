@@ -1,6 +1,6 @@
 'use client';
 
-import { Card } from '@/components/ui/card';
+import { Card } from "ui-components";
 import { 
   User, 
   Pill, 
@@ -10,7 +10,7 @@ import {
   Heart,
   Check
 } from 'lucide-react';
-import { CarePlanType } from '@/types/components';
+import { CarePlanType } from "types";
 
 interface ModuleTypeSelectionProps {
   selectedType?: CarePlanType;

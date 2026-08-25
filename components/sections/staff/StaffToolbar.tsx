@@ -2,10 +2,10 @@
 
 "use client";
 
-import { Input } from "@/components/ui/input";
-import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { mapRolesToDisplay, useGetAllRolesApi } from "@/lib/hooks/use-roles-api";
-import { formatRoleName } from "@/utils/roles-formatter";
+import { Input } from "ui-components";
+import { Tabs, TabsList, TabsTrigger } from "ui-components";
+import { mapRolesToDisplay, useGetAllRolesApi } from "lib";
+import { formatRoleName } from "utils";
 import { Search } from "lucide-react";
 
 

@@ -1,8 +1,8 @@
 import { env } from "@/config/env";
 import { apiClient } from "../api";
 import { useApiQuery } from "./use-api";
-import { Role } from "@/types/components";
-import { formatRoleName } from "@/utils/roles-formatter";
+import { Role } from "types";
+import { formatRoleName } from "utils";
 
 export interface GetAllRolesResponse {
   success: boolean;

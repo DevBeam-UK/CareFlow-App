@@ -12,7 +12,7 @@ const nextConfig: NextConfig = {
         hostname: 'i.postimg.cc'
       }
     ]
-  }
+  },
 };
 
 export default nextConfig;

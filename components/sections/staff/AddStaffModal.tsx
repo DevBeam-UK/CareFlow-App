@@ -7,24 +7,24 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "@/components/ui/dialog";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
+} from "ui-components";
+import { Button } from "ui-components";
+import { Input } from "ui-components";
+import { Label } from "ui-components";
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select";
+} from "ui-components";
 import { Loader2, Plus } from "lucide-react";
 import { useState } from "react";
-import { useAddStaffApi } from "@/lib/hooks/use-staff-api";
+import { useAddStaffApi } from "lib";
 import { useSession } from "next-auth/react";
 import { toast } from "sonner";
-import { mapRolesToDisplay, useGetAllRolesApi } from "@/lib/hooks/use-roles-api";
-import { Role } from "@/types/components";
+import { mapRolesToDisplay, useGetAllRolesApi } from "lib";
+import { Role } from "types";
 
 export function AddStaffModal() {
 

@@ -1,8 +1,8 @@
 'use client';
 
 import { FileText, Mail, Phone, Calendar, Shield, CheckCircle2, XCircle } from 'lucide-react';
-import { StaffMember } from '@/types/components';
-import { formatDate, formatTime } from '@/utils/date-utils';
+import { StaffMember } from "types";
+import { formatDate, formatTime } from "utils";
 
 
 interface StaffDetailsTabProps {

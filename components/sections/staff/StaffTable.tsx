@@ -8,17 +8,17 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "@/components/ui/table";
-import { Checkbox } from "@/components/ui/checkbox";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+} from "ui-components";
+import { Checkbox } from "ui-components";
+import { Avatar, AvatarFallback, AvatarImage } from "ui-components";
 import { ArrowUpDown } from "lucide-react";
-import { SortDirection, SortField, StaffTableProps } from "@/types/components";
-import { formatUKPhone, getEmployeeStatusLabel, getEmployeeStatusVariant, getRoleBadgeColor, getStatusBadgeColor } from "@/utils/staff-table-utils";
-import { TableActions } from "@/components/ui/staff/table-actions";
-import { TableBulkActions } from "@/components/ui/staff/table-bulk-actions";
-import { StaffViewDrawer } from "@/components/ui/staff/staff-view-drawer";
+import { SortDirection, SortField, StaffTableProps } from "types";
+import { formatUKPhone, getEmployeeStatusLabel, getEmployeeStatusVariant, getRoleBadgeColor, getStatusBadgeColor } from "utils";
+import { TableActions } from "ui-components";
+import { TableBulkActions } from "ui-components";
+import { StaffViewDrawer } from "ui-components";
 import { Badge, BadgeProps } from "@/components/ui";
-import { formatRoleName } from "@/utils/roles-formatter";
+import { formatRoleName } from "utils";
 
 export function StaffTable({ data, onEdit, onDelete, onView }: StaffTableProps) {
   const [sortField, setSortField] = useState<SortField>("name");
