@@ -233,6 +233,58 @@ export function CommunicationStep({ formData, setFormData }: CommunicationStepPr
           </div>
         </div>
       </div>
+
+      <div className="space-y-2">
+        <h4 className="text-sm font-medium text-cf-ink">Consent Records</h4>
+        <p className="text-xs text-cf-ink-60">
+          What the patient has consented to sharing, and with whom
+        </p>
+        <div className="space-y-2">
+          <div className="flex items-center gap-2">
+            <Checkbox
+              id="consentDataSharing"
+              checked={formData.consentDataSharing || false}
+              onCheckedChange={(checked) => handleCheckboxChange('consentDataSharing', checked as boolean)}
+            />
+            <Label htmlFor="consentDataSharing" className="text-sm font-normal cursor-pointer">
+              Consents to data being shared with GP, district nurse, and other care professionals
+            </Label>
+          </div>
+          <div className="flex items-center gap-2">
+            <Checkbox
+              id="consentFamilySharing"
+              checked={formData.consentFamilySharing || false}
+              onCheckedChange={(checked) => handleCheckboxChange('consentFamilySharing', checked as boolean)}
+            />
+            <Label htmlFor="consentFamilySharing" className="text-sm font-normal cursor-pointer">
+              Consents to care information being shared with family via the Family Portal
+            </Label>
+          </div>
+          <div className="flex items-center gap-2">
+            <Checkbox
+              id="consentPhotoEvidence"
+              checked={formData.consentPhotoEvidence || false}
+              onCheckedChange={(checked) => handleCheckboxChange('consentPhotoEvidence', checked as boolean)}
+            />
+            <Label htmlFor="consentPhotoEvidence" className="text-sm font-normal cursor-pointer">
+              Consents to photo evidence being taken (e.g. wound progression, home hazards)
+            </Label>
+          </div>
+        </div>
+        <div className="space-y-1 pt-1">
+          <Label htmlFor="consentNotes" className="text-xs font-medium">
+            Consent Notes
+          </Label>
+          <Textarea
+            id="consentNotes"
+            name="consentNotes"
+            placeholder="Any limitations or specific conditions on consent..."
+            value={formData.consentNotes || ''}
+            onChange={handleInputChange}
+            className="border-cf-border min-h-[60px]"
+          />
+        </div>
+      </div>
     </div>
   );
 }

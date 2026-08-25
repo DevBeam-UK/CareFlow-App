@@ -70,7 +70,13 @@ export interface PatientFormData {
   poaName: string;
   poaRelationship: string;
   poaPhone: string;
-  
+
+  // Consent Records
+  consentDataSharing: boolean;
+  consentFamilySharing: boolean;
+  consentPhotoEvidence: boolean;
+  consentNotes: string;
+
   // Preferences
   wakeTime: string;
   bedTime: string;
@@ -117,11 +123,17 @@ export interface PatientFormData {
     frequency: string;
     timing: string;
     indication: string;
+    route: string;
+    prescriber: string;
+    startDate: string;
+    medicationType: 'regular' | 'prn' | 'controlled' | 'short-course' | 'variable-dose';
+    instructions: string;
   }>;
   attachments: Array<{
     id: string;
     name: string;
     size: number;
+    docType?: string;
     file: File;
   }>;
 }
@@ -182,6 +194,10 @@ export function CreatePatientModal({
     poaName: '',
     poaRelationship: '',
     poaPhone: '',
+    consentDataSharing: false,
+    consentFamilySharing: false,
+    consentPhotoEvidence: false,
+    consentNotes: '',
     wakeTime: '',
     bedTime: '',
     breakfastTime: '',
@@ -279,6 +295,10 @@ export function CreatePatientModal({
         poaName: formData.poaName,
         poaRelationship: formData.poaRelationship,
         poaPhone: formData.poaPhone,
+        consentDataSharing: formData.consentDataSharing,
+        consentFamilySharing: formData.consentFamilySharing,
+        consentPhotoEvidence: formData.consentPhotoEvidence,
+        consentNotes: formData.consentNotes,
         wakeTime: formData.wakeTime,
         bedTime: formData.bedTime,
         breakfastTime: formData.breakfastTime,
@@ -342,6 +362,10 @@ export function CreatePatientModal({
         poaName: '',
         poaRelationship: '',
         poaPhone: '',
+        consentDataSharing: false,
+        consentFamilySharing: false,
+        consentPhotoEvidence: false,
+        consentNotes: '',
         wakeTime: '',
         bedTime: '',
         breakfastTime: '',

@@ -73,6 +73,10 @@ interface Patient {
   poaName?: string;
   poaRelationship?: string;
   poaPhone?: string;
+  consentDataSharing?: boolean;
+  consentFamilySharing?: boolean;
+  consentPhotoEvidence?: boolean;
+  consentNotes?: string;
   wakeTime?: string;
   bedTime?: string;
   breakfastTime?: string;

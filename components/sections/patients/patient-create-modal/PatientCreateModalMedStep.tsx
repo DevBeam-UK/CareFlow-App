@@ -6,9 +6,36 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
+import { Badge } from '@/components/ui/badge';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select';
 import { X } from 'lucide-react';
 import { PatientFormData } from './PatientCreateModal';
 
+const MEDICATION_TYPES = [
+  { value: 'regular', label: 'Regular' },
+  { value: 'prn', label: 'PRN (As Needed)' },
+  { value: 'controlled', label: 'Controlled Drug' },
+  { value: 'short-course', label: 'Short Course' },
+  { value: 'variable-dose', label: 'Variable Dose' },
+] as const;
+
+const ROUTES = ['Oral', 'Topical', 'Inhaled', 'Subcutaneous', 'Intramuscular', 'Patch', 'PEG'];
+
+const medicationTypeLabel = (value: string) =>
+  MEDICATION_TYPES.find((t) => t.value === value)?.label || 'Regular';
+
+const medicationTypeBadgeVariant = (value: string) => {
+  if (value === 'controlled') return 'pastel-danger';
+  if (value === 'prn') return 'pastel-warning';
+  if (value === 'variable-dose') return 'pastel-info';
+  return 'pastel-success';
+};
 
 interface MedicationsStepProps {
   formData: PatientFormData;
@@ -25,6 +52,11 @@ export function MedicationsStep({
     frequency: '',
     timing: '',
     indication: '',
+    route: 'Oral',
+    prescriber: '',
+    startDate: '',
+    medicationType: 'regular' as const,
+    instructions: '',
   });
 
   const handleAddMedication = () => {
@@ -50,6 +82,11 @@ export function MedicationsStep({
         frequency: '',
         timing: '',
         indication: '',
+        route: 'Oral',
+        prescriber: '',
+        startDate: '',
+        medicationType: 'regular',
+        instructions: '',
       });
     }
   };
@@ -141,6 +178,86 @@ export function MedicationsStep({
               className="border-cf-border h-8 text-sm"
             />
           </div>
+
+          <div className="space-y-1">
+            <Label htmlFor="med-route" className="text-xs font-medium">
+              Route
+            </Label>
+            <Select
+              value={newMedication.route}
+              onValueChange={(val) => setNewMedication((prev) => ({ ...prev, route: val! }))}
+            >
+              <SelectTrigger id="med-route" className="border-cf-border h-8 text-sm">
+                <SelectValue />
+              </SelectTrigger>
+              <SelectContent>
+                {ROUTES.map((r) => (
+                  <SelectItem key={r} value={r}>
+                    {r}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          </div>
+
+          <div className="space-y-1">
+            <Label htmlFor="med-type" className="text-xs font-medium">
+              Medication Type
+            </Label>
+            <Select
+              value={newMedication.medicationType}
+              onValueChange={(val) =>
+                setNewMedication((prev) => ({ ...prev, medicationType: val as any }))
+              }
+            >
+              <SelectTrigger id="med-type" className="border-cf-border h-8 text-sm">
+                <SelectValue />
+              </SelectTrigger>
+              <SelectContent>
+                {MEDICATION_TYPES.map((t) => (
+                  <SelectItem key={t.value} value={t.value}>
+                    {t.label}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          </div>
+
+          <div className="space-y-1">
+            <Label htmlFor="med-prescriber" className="text-xs font-medium">
+              Prescriber
+            </Label>
+            <Input
+              id="med-prescriber"
+              placeholder="Dr. Sarah Ahmed"
+              value={newMedication.prescriber}
+              onChange={(e) =>
+                setNewMedication((prev) => ({
+                  ...prev,
+                  prescriber: e.target.value,
+                }))
+              }
+              className="border-cf-border h-8 text-sm"
+            />
+          </div>
+
+          <div className="space-y-1">
+            <Label htmlFor="med-start-date" className="text-xs font-medium">
+              Start Date
+            </Label>
+            <Input
+              id="med-start-date"
+              type="date"
+              value={newMedication.startDate}
+              onChange={(e) =>
+                setNewMedication((prev) => ({
+                  ...prev,
+                  startDate: e.target.value,
+                }))
+              }
+              className="border-cf-border h-8 text-sm"
+            />
+          </div>
         </div>
 
         <div className="space-y-1">
@@ -155,6 +272,24 @@ export function MedicationsStep({
               setNewMedication((prev) => ({
                 ...prev,
                 indication: e.target.value,
+              }))
+            }
+            className="border-cf-border h-8 text-sm"
+          />
+        </div>
+
+        <div className="space-y-1">
+          <Label htmlFor="med-instructions" className="text-xs font-medium">
+            Special Instructions (optional)
+          </Label>
+          <Input
+            id="med-instructions"
+            placeholder="Take with food, avoid grapefruit..."
+            value={newMedication.instructions}
+            onChange={(e) =>
+              setNewMedication((prev) => ({
+                ...prev,
+                instructions: e.target.value,
               }))
             }
             className="border-cf-border h-8 text-sm"
@@ -180,16 +315,44 @@ export function MedicationsStep({
             <Card key={med.id} className="border-cf-border p-3">
               <CardContent className="p-0 flex items-start justify-between gap-2">
                 <div className="flex-1">
-                  <p className="text-sm font-medium text-cf-ink">
-                    {med.name}
-                  </p>
-                  <div className="flex items-center gap-2 text-xs text-cf-ink-60 mt-1">
+                  <div className="flex items-center gap-2 flex-wrap">
+                    <p className="text-sm font-medium text-cf-ink">
+                      {med.name}
+                    </p>
+                    {med.medicationType && (
+                      <Badge
+                        variant={medicationTypeBadgeVariant(med.medicationType)}
+                        className="text-[10px]"
+                        shape="pill"
+                      >
+                        {medicationTypeLabel(med.medicationType)}
+                      </Badge>
+                    )}
+                  </div>
+                  <div className="flex items-center gap-2 text-xs text-cf-ink-60 mt-1 flex-wrap">
                     <span>{med.dosage}</span>
                     <span>•</span>
                     <span>{med.frequency}</span>
                     <span>•</span>
                     <span>{med.timing}</span>
+                    {med.route && (
+                      <>
+                        <span>•</span>
+                        <span>{med.route}</span>
+                      </>
+                    )}
                   </div>
+                  {(med.prescriber || med.startDate) && (
+                    <div className="flex items-center gap-2 text-[10px] text-cf-ink-40 mt-1">
+                      {med.prescriber && <span>Prescribed by {med.prescriber}</span>}
+                      {med.startDate && (
+                        <>
+                          {med.prescriber && <span>•</span>}
+                          <span>Since {new Date(med.startDate).toLocaleDateString('en-GB')}</span>
+                        </>
+                      )}
+                    </div>
+                  )}
                 </div>
                 <button
                   onClick={() => handleRemoveMedication(med.id)}

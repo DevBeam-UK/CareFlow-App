@@ -13,7 +13,35 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Card, CardContent } from '@/components/ui/card';
+import { Badge } from '@/components/ui/badge';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select';
 import { X, Plus, Loader2 } from 'lucide-react';
+
+const MEDICATION_TYPES = [
+  { value: 'regular', label: 'Regular' },
+  { value: 'prn', label: 'PRN (As Needed)' },
+  { value: 'controlled', label: 'Controlled Drug' },
+  { value: 'short-course', label: 'Short Course' },
+  { value: 'variable-dose', label: 'Variable Dose' },
+] as const;
+
+const ROUTES = ['Oral', 'Topical', 'Inhaled', 'Subcutaneous', 'Intramuscular', 'Patch', 'PEG'];
+
+const medicationTypeLabel = (value: string) =>
+  MEDICATION_TYPES.find((t) => t.value === value)?.label || 'Regular';
+
+const medicationTypeBadgeVariant = (value: string) => {
+  if (value === 'controlled') return 'pastel-danger';
+  if (value === 'prn') return 'pastel-warning';
+  if (value === 'variable-dose') return 'pastel-info';
+  return 'pastel-success';
+};
 
 export interface Medication {
   id: string;
@@ -22,6 +50,11 @@ export interface Medication {
   frequency: string;
   timing: string;
   indication: string;
+  route?: string;
+  prescriber?: string;
+  startDate?: string;
+  medicationType?: 'regular' | 'prn' | 'controlled' | 'short-course' | 'variable-dose';
+  instructions?: string;
 }
 
 interface EditMedicationModalProps {
@@ -32,6 +65,19 @@ interface EditMedicationModalProps {
   patientName?: string;
 }
 
+const emptyMedication = {
+  name: '',
+  dosage: '',
+  frequency: '',
+  timing: '',
+  indication: '',
+  route: 'Oral',
+  prescriber: '',
+  startDate: '',
+  medicationType: 'regular' as const,
+  instructions: '',
+};
+
 export function EditMedicationModal({
   open,
   onOpenChange,
@@ -40,14 +86,7 @@ export function EditMedicationModal({
   patientName,
 }: EditMedicationModalProps) {
   const [meds, setMeds] = useState<Medication[]>([]);
-  const [newMedication, setNewMedication] = useState({
-    name: '',
-    dosage: '',
-    frequency: '',
-    timing: '',
-    indication: '',
-  });
-  const [editingId, setEditingId] = useState<string | null>(null);
+  const [newMedication, setNewMedication] = useState(emptyMedication);
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
@@ -70,13 +109,7 @@ export function EditMedicationModal({
           ...newMedication,
         },
       ]);
-      setNewMedication({
-        name: '',
-        dosage: '',
-        frequency: '',
-        timing: '',
-        indication: '',
-      });
+      setNewMedication(emptyMedication);
     }
   };
 
@@ -186,6 +219,86 @@ export function EditMedicationModal({
                   className="border-cf-border h-8 text-sm"
                 />
               </div>
+
+              <div className="space-y-1">
+                <Label htmlFor="med-route" className="text-xs font-medium">
+                  Route
+                </Label>
+                <Select
+                  value={newMedication.route}
+                  onValueChange={(val) => setNewMedication((prev) => ({ ...prev, route: val! }))}
+                >
+                  <SelectTrigger id="med-route" className="border-cf-border h-8 text-sm">
+                    <SelectValue />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {ROUTES.map((r) => (
+                      <SelectItem key={r} value={r}>
+                        {r}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              </div>
+
+              <div className="space-y-1">
+                <Label htmlFor="med-type" className="text-xs font-medium">
+                  Medication Type
+                </Label>
+                <Select
+                  value={newMedication.medicationType}
+                  onValueChange={(val) =>
+                    setNewMedication((prev) => ({ ...prev, medicationType: val as any }))
+                  }
+                >
+                  <SelectTrigger id="med-type" className="border-cf-border h-8 text-sm">
+                    <SelectValue />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {MEDICATION_TYPES.map((t) => (
+                      <SelectItem key={t.value} value={t.value}>
+                        {t.label}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              </div>
+
+              <div className="space-y-1">
+                <Label htmlFor="med-prescriber" className="text-xs font-medium">
+                  Prescriber
+                </Label>
+                <Input
+                  id="med-prescriber"
+                  placeholder="Dr. Sarah Ahmed"
+                  value={newMedication.prescriber}
+                  onChange={(e) =>
+                    setNewMedication((prev) => ({
+                      ...prev,
+                      prescriber: e.target.value,
+                    }))
+                  }
+                  className="border-cf-border h-8 text-sm"
+                />
+              </div>
+
+              <div className="space-y-1">
+                <Label htmlFor="med-start-date" className="text-xs font-medium">
+                  Start Date
+                </Label>
+                <Input
+                  id="med-start-date"
+                  type="date"
+                  value={newMedication.startDate}
+                  onChange={(e) =>
+                    setNewMedication((prev) => ({
+                      ...prev,
+                      startDate: e.target.value,
+                    }))
+                  }
+                  className="border-cf-border h-8 text-sm"
+                />
+              </div>
             </div>
 
             <div className="space-y-1">
@@ -200,6 +313,24 @@ export function EditMedicationModal({
                   setNewMedication((prev) => ({
                     ...prev,
                     indication: e.target.value,
+                  }))
+                }
+                className="border-cf-border h-8 text-sm"
+              />
+            </div>
+
+            <div className="space-y-1">
+              <Label htmlFor="med-instructions" className="text-xs font-medium">
+                Special Instructions (optional)
+              </Label>
+              <Input
+                id="med-instructions"
+                placeholder="Take with food, avoid grapefruit..."
+                value={newMedication.instructions}
+                onChange={(e) =>
+                  setNewMedication((prev) => ({
+                    ...prev,
+                    instructions: e.target.value,
                   }))
                 }
                 className="border-cf-border h-8 text-sm"
@@ -243,6 +374,15 @@ export function EditMedicationModal({
                             className="border-cf-border h-7 text-sm w-20"
                             placeholder="Dosage"
                           />
+                          {med.medicationType && (
+                            <Badge
+                              variant={medicationTypeBadgeVariant(med.medicationType)}
+                              className="text-[10px] shrink-0"
+                              shape="pill"
+                            >
+                              {medicationTypeLabel(med.medicationType)}
+                            </Badge>
+                          )}
                         </div>
                         <div className="flex items-center gap-2">
                           <Input
@@ -261,6 +401,32 @@ export function EditMedicationModal({
                             className="border-cf-border h-7 text-sm flex-1"
                             placeholder="Timing"
                           />
+                          <Input
+                            value={med.route || ''}
+                            onChange={(e) =>
+                              handleUpdateMedication(med.id, 'route', e.target.value)
+                            }
+                            className="border-cf-border h-7 text-sm flex-1"
+                            placeholder="Route"
+                          />
+                        </div>
+                        <div className="flex items-center gap-2">
+                          <Input
+                            value={med.prescriber || ''}
+                            onChange={(e) =>
+                              handleUpdateMedication(med.id, 'prescriber', e.target.value)
+                            }
+                            className="border-cf-border h-7 text-sm flex-1"
+                            placeholder="Prescriber"
+                          />
+                          <Input
+                            type="date"
+                            value={med.startDate || ''}
+                            onChange={(e) =>
+                              handleUpdateMedication(med.id, 'startDate', e.target.value)
+                            }
+                            className="border-cf-border h-7 text-sm flex-1"
+                          />
                         </div>
                         <Input
                           value={med.indication || ''}
@@ -269,6 +435,14 @@ export function EditMedicationModal({
                           }
                           className="border-cf-border h-7 text-sm"
                           placeholder="Indication (optional)"
+                        />
+                        <Input
+                          value={med.instructions || ''}
+                          onChange={(e) =>
+                            handleUpdateMedication(med.id, 'instructions', e.target.value)
+                          }
+                          className="border-cf-border h-7 text-sm"
+                          placeholder="Special instructions (optional)"
                         />
                       </div>
                       <button

@@ -3,6 +3,7 @@
 
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
+import { ShieldCheck, ShieldQuestion } from 'lucide-react';
 
 interface PatientInfoTabProps {
   patient: {
@@ -27,7 +28,27 @@ interface PatientInfoTabProps {
     emergencyPhone?: string;
     emergencyRelationship?: string;
     risk: 'low' | 'medium' | 'high';
+    consentDataSharing?: boolean;
+    consentFamilySharing?: boolean;
+    consentPhotoEvidence?: boolean;
+    consentNotes?: string;
   };
+}
+
+// Compact per-domain risk strip. Mirrors the domains covered in the full
+// Risk Assessments tab (falls, pressure ulcer, nutrition, medication,
+// safeguarding) so the profile gives an at-a-glance summary without
+// duplicating the full assessment detail.
+const RISK_DOMAIN_LABELS: Record<string, string> = {
+  falls: 'Falls',
+  'pressure-ulcer': 'Skin Integrity',
+  nutrition: 'Nutrition',
+  medication: 'Medication',
+  safeguarding: 'Safeguarding',
+};
+
+function riskDomainVariant(level: 'high' | 'medium' | 'low') {
+  return level === 'high' ? 'pastel-danger' : level === 'medium' ? 'pastel-warning' : 'pastel-success';
 }
 
 export function PatientInfoTab({ patient }: PatientInfoTabProps) {
@@ -202,6 +223,84 @@ export function PatientInfoTab({ patient }: PatientInfoTabProps) {
             <span className="text-cf-ink-60">Next Visit</span>
             <span className="text-cf-ink font-medium">{patient.nextVisit}</span>
           </div>
+        </CardContent>
+      </Card>
+
+      <Card className="border-cf-border">
+        <CardHeader className="pb-3">
+          <CardTitle className="text-sm font-semibold">Risk Profile</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <div className="flex flex-wrap gap-2">
+            {Object.entries(RISK_DOMAIN_LABELS).map(([key, label]) => (
+              <Badge
+                key={key}
+                variant={riskDomainVariant(patient.risk)}
+                className="text-xs"
+                shape="pill"
+              >
+                {label}
+              </Badge>
+            ))}
+          </div>
+          <p className="text-xs text-cf-ink-40 mt-2">
+            See the Risk tab for full scoring, tools used, and interventions per domain.
+          </p>
+        </CardContent>
+      </Card>
+
+      <Card className="border-cf-border">
+        <CardHeader className="pb-3">
+          <CardTitle className="text-sm font-semibold">Consent Records</CardTitle>
+        </CardHeader>
+        <CardContent className="space-y-3">
+          <div className="flex justify-between items-center text-sm">
+            <span className="text-cf-ink-60">Share data with care professionals</span>
+            {patient.consentDataSharing ? (
+              <Badge variant="pastel-success" className="text-xs gap-1" shape="pill">
+                <ShieldCheck className="w-3 h-3" />
+                Consented
+              </Badge>
+            ) : (
+              <Badge variant="pastel-warning" className="text-xs gap-1" shape="pill">
+                <ShieldQuestion className="w-3 h-3" />
+                Not on file
+              </Badge>
+            )}
+          </div>
+          <div className="flex justify-between items-center text-sm">
+            <span className="text-cf-ink-60">Share updates with family</span>
+            {patient.consentFamilySharing ? (
+              <Badge variant="pastel-success" className="text-xs gap-1" shape="pill">
+                <ShieldCheck className="w-3 h-3" />
+                Consented
+              </Badge>
+            ) : (
+              <Badge variant="pastel-warning" className="text-xs gap-1" shape="pill">
+                <ShieldQuestion className="w-3 h-3" />
+                Not on file
+              </Badge>
+            )}
+          </div>
+          <div className="flex justify-between items-center text-sm">
+            <span className="text-cf-ink-60">Photo evidence</span>
+            {patient.consentPhotoEvidence ? (
+              <Badge variant="pastel-success" className="text-xs gap-1" shape="pill">
+                <ShieldCheck className="w-3 h-3" />
+                Consented
+              </Badge>
+            ) : (
+              <Badge variant="pastel-warning" className="text-xs gap-1" shape="pill">
+                <ShieldQuestion className="w-3 h-3" />
+                Not on file
+              </Badge>
+            )}
+          </div>
+          {patient.consentNotes && (
+            <div className="pt-2 border-t border-cf-border">
+              <p className="text-xs text-cf-ink-60">{patient.consentNotes}</p>
+            </div>
+          )}
         </CardContent>
       </Card>
     </div>
