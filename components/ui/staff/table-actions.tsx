@@ -1,15 +1,15 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
+import { Button } from "../button";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
+} from "../dropdown-menu";
 import { MoreHorizontal, Eye, Edit2, Mail, MessageSquare, Trash2 } from "lucide-react";
-import { StaffMember } from "@/types/components";
+import { StaffMember } from "types";
 
 interface TableActionsProps {
   staff: StaffMember;

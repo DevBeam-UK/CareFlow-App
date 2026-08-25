@@ -1,7 +1,7 @@
 'use client';
 
-import { cn } from '@/lib/utils';
-import { ACTION_DISPLAY_NAMES, SORTED_ACTIONS } from '@/utils/permission-constants';
+import { cn } from "lib";
+import { ACTION_DISPLAY_NAMES, SORTED_ACTIONS } from "utils";
 
 interface PermissionActionsProps {
   module: { id: string; label: string; actions: string[] };

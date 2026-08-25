@@ -7,14 +7,11 @@ import {
   DialogHeader,
   DialogTitle,
   DialogFooter,
-} from '@/components/ui/dialog';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
-import { Badge } from '@/components/ui/badge';
-import { StaffMember } from '@/types/components';
-import { Loader2, AlertCircle, CheckCircle2, User, Mail, Phone } from 'lucide-react';
-import { getRoleBadgeColor, getRoleDisplayName, getStatusBadgeColor } from '@/utils/staff-table-utils';
+} from "ui-components";
+import { Button } from "ui-components";
+import { Input } from "ui-components";
+import { StaffMember } from "types";
+import { Loader2, AlertCircle } from 'lucide-react';
 
 interface EditStaffModalProps {
   staff: StaffMember;

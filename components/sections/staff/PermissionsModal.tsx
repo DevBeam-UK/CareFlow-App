@@ -4,11 +4,11 @@ import { useState, useEffect, useMemo } from 'react';
 import {
   Dialog,
   DialogContent,
-} from '@/components/ui/dialog';
-import { StaffMember } from '@/types/components';
-import { ALL_MODULES } from '@/utils/permission-constants';
+} from "ui-components";
+import { StaffMember } from "types";
+import { ALL_MODULES } from "utils";
 import PermissionsHeader from './PermissionHeader';
-import { PermissionsBody } from '@/components/ui/staff/permission-body';
+import { PermissionsBody } from "ui-components";
 import PermissionsFooter from './PermissionFooter';
 
 interface PermissionsModalProps {
