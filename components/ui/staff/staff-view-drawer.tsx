@@ -8,9 +8,9 @@ import {
   DrawerHeader,
   DrawerTitle,
   DrawerFooter,
-} from '@/components/ui/drawer';
-import { Button } from '@/components/ui/button';
-import { Badge } from '@/components/ui/badge';
+  Button,
+  Badge,
+} from 'ui-components';
 import {
   Mail,
   MessageSquare,
@@ -19,20 +19,22 @@ import {
   Clock,
   UserX,
 } from 'lucide-react';
-import { StaffMember } from '@/types/components';
-import { EditStaffModal } from '@/components/sections/staff/EditStaffModal';
-import { StaffDetailsTab } from '@/components/sections/staff/StaffDetailedTab';
-import { StaffActivityTab } from '@/components/sections/staff/StaffActivityTab';
+import type { StaffMember } from 'types';
+import {
+  EditStaffModal,
+  StaffDetailedTab,
+  StaffActivityTab,
+  StaffPermissionTab,
+} from 'sections';
 import {
   getRoleBadgeColor,
   getRoleDisplayName,
   getStatusBadgeColor,
-} from '@/utils/staff-table-utils';
+  formatTime,
+} from 'utils';
 import { StaffViewTabs } from './staff-view-tabs';
 import { useSession } from 'next-auth/react';
-import { useGrantUserPermissionsApi } from '@/lib/hooks/use-permissions-api';
-import StaffPermissionTab from '@/components/sections/staff/StaffPermissionTab';
-import { formatTime } from '@/utils/date-utils';
+import { useGrantUserPermissionsApi } from 'lib';
 
 type TabType = 'details' | 'permissions' | 'activity';
 
@@ -104,7 +106,7 @@ export function StaffViewDrawer({ staff, open, onOpenChange }: StaffViewDrawerPr
   const renderTabContent = () => {
     switch (activeTab) {
       case 'details':
-        return <StaffDetailsTab staff={staff} />;
+        return <StaffDetailedTab staff={staff} />;
       case 'permissions':
         return (
           <StaffPermissionTab

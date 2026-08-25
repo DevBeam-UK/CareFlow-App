@@ -1,9 +1,22 @@
-import { ComplianceStatus } from "@/lib/mock/staff-compliance-mock";
+import type { ComplianceStatus } from "lib";
+import { Badge, type BadgeProps } from "ui-components";
 
-const STATUS_CONFIG: Record<ComplianceStatus, { label: string; dot: string; text: string; bg: string }> = {
-  clear: { label: "All clear", dot: "bg-green-500", text: "text-green-700", bg: "bg-green-50 border-green-200" },
-  expiring: { label: "Expiring soon", dot: "bg-amber-500", text: "text-amber-700", bg: "bg-amber-50 border-amber-200" },
-  expired: { label: "Expired", dot: "bg-red-500", text: "text-red-700", bg: "bg-red-50 border-red-200" },
+const STATUS_CONFIG: Record<ComplianceStatus, { label: string; variant: string; dot: string }> = {
+  clear: { 
+    label: "All clear", 
+    variant: "pastel-success",
+    dot: "bg-green-500" 
+  },
+  expiring: { 
+    label: "Expiring soon", 
+    variant: "pastel-warning",
+    dot: "bg-amber-500" 
+  },
+  expired: { 
+    label: "Expired", 
+    variant: "pastel-danger",
+    dot: "bg-red-500" 
+  },
 };
 
 export function ComplianceIndicator({
@@ -14,12 +27,15 @@ export function ComplianceIndicator({
   showLabel?: boolean;
 }) {
   const cfg = STATUS_CONFIG[status];
+  
   return (
-    <span
-      className={`inline-flex items-center gap-1.5 text-xs font-medium px-2 py-1 rounded-full border ${cfg.bg} ${cfg.text}`}
+    <Badge 
+      variant={cfg.variant as BadgeProps['variant']}
+      shape={'pill'}
+      badgeSize={'md'}
     >
       <span className={`w-1.5 h-1.5 rounded-full ${cfg.dot}`} />
       {showLabel ? cfg.label : null}
-    </span>
+    </Badge>
   );
 }

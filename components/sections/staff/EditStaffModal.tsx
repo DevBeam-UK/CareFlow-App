@@ -7,11 +7,15 @@ import {
   DialogHeader,
   DialogTitle,
   DialogFooter,
+  Label,
+  Badge,
+  BadgeProps,
 } from "ui-components";
 import { Button } from "ui-components";
 import { Input } from "ui-components";
 import { StaffMember } from "types";
-import { Loader2, AlertCircle } from 'lucide-react';
+import { Loader2, AlertCircle, CheckCircle2, User, Mail, Phone } from 'lucide-react';
+import { getRoleBadgeColor, getRoleDisplayName, getStatusBadgeColor } from 'utils';
 
 interface EditStaffModalProps {
   staff: StaffMember;
@@ -185,10 +189,10 @@ export function EditStaffModal({
 
             {/* Role & status — read-only chips instead of grey text */}
             <div className="flex items-center gap-2 p-3 bg-cf-surface-muted rounded-lg">
-              <Badge variant="outline" className={`capitalize ${getRoleBadgeColor(staff.role)}`}>
+              <Badge variant={getRoleBadgeColor(staff.role) as BadgeProps['variant']} >
                 {getRoleDisplayName(staff.role)}
               </Badge>
-              <Badge variant="outline" className={`capitalize ${getStatusBadgeColor(staff.status)}`}>
+              <Badge variant={getStatusBadgeColor(staff.status) as BadgeProps['variant']} >
                 {staff.status}
               </Badge>
               <span className="text-xs text-cf-ink-40 ml-auto">

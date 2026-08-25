@@ -9,3 +9,7 @@ export { default as PermissionHeader } from "./PermissionHeader";
 export { default as PermissionFooter } from "./PermissionFooter";
 export { EditStaffModal } from "./EditStaffModal";
 export { AddStaffModal } from "./AddStaffModal";
+export { TrainingMatrixTab } from "./TrainingMatrixTab";
+export { AvailabilityTab } from "./AvailabilityTab";
+export { PerformanceTab } from "./PerformanceTab";
+export { ComplianceIndicator } from "./ComplianceIndicator";

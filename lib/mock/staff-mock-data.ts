@@ -2,7 +2,7 @@
 // TEMP: mock data to unblock frontend work while backend auth/schema issue is resolved.
 // Remove this file (and its usage in page.tsx) once the real API is wired back up.
 
-import { StaffMember, EmployeeStatus } from "@/types/components";
+import type { StaffMember, EmployeeStatus } from "types";
 
 const ROLES = ["manager", "coordinator", "carer", "admin"] as const;
 const STATUSES: EmployeeStatus[] = ["ACTIVE", "SUSPENDED", "ON_LEAVE", "TERMINATED"];
