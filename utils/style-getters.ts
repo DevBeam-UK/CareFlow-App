@@ -48,9 +48,6 @@ export const dayStyleGetter = (date: Date) => {
   if (isToday) {
     return {
       className: 'rbc-today',
-      style: {
-        backgroundColor: '#f0f9ff',
-      },
     };
   }
 

@@ -10,19 +10,19 @@ const urgencyConfig: Record<
 > = {
   overdue: {
     label: "Overdue",
-    dot: "bg-red-500",
-    badge: "bg-red-100 text-red-700",
+    dot: "bg-cf-red-500",
+    badge: "bg-error-muted text-error",
     pulse: true,
   },
   urgent: {
     label: "Today",
-    dot: "bg-orange-500",
-    badge: "bg-orange-100 text-orange-700",
+    dot: "bg-cf-amber-500",
+    badge: "bg-warning-muted text-warning",
   },
   soon: {
     label: "Tomorrow",
-    dot: "bg-amber-400",
-    badge: "bg-amber-100 text-amber-700",
+    dot: "bg-cf-amber-500",
+    badge: "bg-cf-amber-50 text-cf-amber-500",
   },
   upcoming: {
     label: "This week",
@@ -71,12 +71,12 @@ export function UnassignedScheduleBlock({
   return (
     <motion.div
       draggable={draggable}
-      onDragStart={onDragStart}
-      onDragEnd={onDragEnd}
+      onDragStart={onDragStart as any}
+      onDragEnd={onDragEnd as any}
       whileHover={{ y: -2, boxShadow: "0 8px 20px -8px rgba(15, 23, 42, 0.18)" }}
       whileTap={draggable ? { scale: 0.98, cursor: "grabbing" } : undefined}
       transition={{ type: "spring", stiffness: 400, damping: 25 }}
-      className={`group relative flex flex-col gap-y-1 py-4 pl-4 pr-3 border rounded-xl border-l-4 border-l-cf-red-500 bg-white ${
+      className={`group relative flex flex-col gap-y-1 py-4 pl-4 pr-3 border border-cf-border rounded-xl border-l-4 border-l-cf-red-500 bg-cf-surface-muted ${
         draggable ? "cursor-grab active:cursor-grabbing" : ""
       }`}
     >
@@ -124,7 +124,7 @@ export function UnassignedScheduleBlock({
       </div>
 
       {urgency === "overdue" && (
-        <div className="flex items-center gap-x-1 text-xs font-medium text-red-600 mt-0.5">
+        <div className="flex items-center gap-x-1 text-xs font-medium text-error mt-0.5">
           <AlertTriangle className="h-3 w-3" />
           <span>Needs a carer urgently</span>
         </div>

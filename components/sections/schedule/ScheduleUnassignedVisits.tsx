@@ -3,16 +3,9 @@
 
 import { useMemo, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Badge, Button, Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui';
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from 'ui-components';
+import { Badge, Button, Card, CardContent, CardFooter, CardHeader, CardTitle, Select, SelectContent, SelectItem, SelectTrigger, SelectValue, UnassignedScheduleBlock } from 'ui-components';
+import type { VisitUrgency } from 'ui-components';
 import { ChevronDown, ChevronUp, Sparkles, Loader2 } from 'lucide-react';
-import { UnassignedScheduleBlock, VisitUrgency } from 'ui-components';
 
 interface UnassignedVisit {
   id: string;
@@ -206,7 +199,7 @@ function UnassignedVisits({ onAssignVisit, onAiScheduled }: UnassignedVisitsProp
                 size="sm"
                 onClick={handleAiSchedule}
                 disabled={isOptimising}
-                className="w-full gap-1.5 border-cf-brand-200 text-cf-brand-700 hover:bg-cf-brand-50"
+                className="w-full"
               >
                 {isOptimising ? (
                   <>
@@ -285,7 +278,7 @@ function UnassignedVisits({ onAssignVisit, onAiScheduled }: UnassignedVisitsProp
           </motion.div>
         </CardContent>
 
-        <CardFooter className="flex items-center justify-center mt-4 bg-white">
+        <CardFooter className="flex items-center justify-center mt-4 bg-cf-surface">
           {hasMore ? (
             <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
               <Button variant="ghost" onClick={toggleShowAll} className="gap-1">
@@ -293,9 +286,9 @@ function UnassignedVisits({ onAssignVisit, onAiScheduled }: UnassignedVisitsProp
                   animate={{ rotate: showAll ? 180 : 0 }}
                   transition={{ duration: 0.3 }}
                 >
-                  {showAll ? <ChevronUp className="h-4 w-4" /> : <ChevronDown className="h-4 w-4" />}
+                  
                 </motion.span>
-                {showAll ? 'Show Less' : 'View More'}
+                {showAll ? 'View Less' : 'View More'}
               </Button>
             </motion.div>
           ) : (
