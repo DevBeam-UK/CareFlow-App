@@ -8,10 +8,10 @@ import {
   DialogHeader,
   DialogTitle,
   DialogFooter,
-} from '@/components/ui/dialog';
-import { Button } from '@/components/ui/button';
-import { Badge } from '@/components/ui/badge';
-import { Card, CardContent } from '@/components/ui/card';
+} from 'ui-components';
+import { Button } from 'ui-components';
+import { Badge } from 'ui-components';
+import { Card, CardContent } from 'ui-components';
 
 interface EventDetailsModalProps {
   open: boolean;

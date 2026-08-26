@@ -1,7 +1,7 @@
 'use client';
 
-import { StaffMember } from '@/types/components';
-import { buildPerformanceForStaff } from '@/lib/mock/staff-compliance-mock';
+import { StaffMember } from 'types';
+import { buildPerformanceForStaff } from 'lib';
 import { Star } from 'lucide-react';
 
 interface PerformanceTabProps {

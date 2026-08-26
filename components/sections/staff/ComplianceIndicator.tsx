@@ -1,4 +1,4 @@
-import { ComplianceStatus } from "@/lib/mock/staff-compliance-mock";
+import { ComplianceStatus } from "lib";
 
 const STATUS_CONFIG: Record<ComplianceStatus, { label: string; dot: string; text: string; bg: string }> = {
   clear: { label: "All clear", dot: "bg-green-500", text: "text-green-700", bg: "bg-green-50 border-green-200" },

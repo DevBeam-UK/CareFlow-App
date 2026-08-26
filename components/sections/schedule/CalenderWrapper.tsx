@@ -5,21 +5,21 @@ import { Calendar, dayjsLocalizer, NavigateAction, View } from 'react-big-calend
 import withDragAndDrop from 'react-big-calendar/lib/addons/dragAndDrop';
 import dayjs from 'dayjs';
 import { motion, AnimatePresence } from 'framer-motion';
-import { dayStyleGetter, eventStyleGetter } from '@/utils/style-getters';
+import { dayStyleGetter, eventStyleGetter } from 'utils';
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from '@/components/ui/select';
-import { Button } from '@/components/ui/button';
+} from 'ui-components';
+import { Button } from 'ui-components';
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu';
+} from 'ui-components';
 import { AlertTriangle, ChevronLeft, ChevronRight, Layers, Sparkles } from 'lucide-react';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
 import 'react-big-calendar/lib/addons/dragAndDrop/styles.css';

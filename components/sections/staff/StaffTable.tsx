@@ -18,9 +18,9 @@ import { TableActions } from "ui-components";
 import { TableBulkActions } from "ui-components";
 import { StaffViewDrawer } from "ui-components";
 import { Badge, BadgeProps } from "@/components/ui";
-import { formatRoleName } from "@/utils/roles-formatter";
-import { buildComplianceForStaff, overallComplianceStatus } from "@/lib/mock/staff-compliance-mock";
-import { ComplianceIndicator } from "@/components/sections/staff/ComplianceIndicator";
+import { formatRoleName } from "utils";
+import { buildComplianceForStaff, overallComplianceStatus } from "lib";
+import { ComplianceIndicator } from "sections";
 
 export function StaffTable({ data, onEdit, onDelete, onView }: StaffTableProps) {
   const [sortField, setSortField] = useState<SortField>("name");

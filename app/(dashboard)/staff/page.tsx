@@ -1,8 +1,8 @@
 'use client'
 
-import { StaffHeader, StaffTable, StaffToolbar } from "sections";
+import { StaffHeader, StaffTable, StaffToolbar, TrainingMatrixTab, AvailabilityTab, PerformanceTab } from "sections";
 import { StatCard } from "shared";
-import { Separator, StaffTableSkeleton } from "ui-components";
+import { Separator, StaffTableSkeleton, Tabs, TabsList, TabsTrigger, TabsContent } from "ui-components";
 import { mapToStaffMemberArray, useGetAllAgencyStaffApi } from "lib";
 import type { StaffMember } from "types";
 import { staffStatsData } from "utils";
@@ -21,10 +21,6 @@ import {
   YAxis,
   CartesianGrid,
 } from "recharts";
-import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
-import { TrainingMatrixTab } from "@/components/sections/staff/TrainingMatrixTab";
-import { AvailabilityTab } from "@/components/sections/staff/AvailabilityTab";
-import { PerformanceTab } from "@/components/sections/staff/PerformanceTab";
 
 // TEMP: using mock data while backend auth is being fixed
 // const { data, error, isLoading } = useGetAllAgencyStaffApi(

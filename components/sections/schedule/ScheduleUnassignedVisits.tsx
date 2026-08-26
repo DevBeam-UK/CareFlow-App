@@ -10,9 +10,9 @@ import {
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from '@/components/ui/select';
+} from 'ui-components';
 import { ChevronDown, ChevronUp, Sparkles, Loader2 } from 'lucide-react';
-import { UnassignedScheduleBlock, VisitUrgency } from '@/components/ui/schedule/unassigned-schedule-block';
+import { UnassignedScheduleBlock, VisitUrgency } from 'ui-components';
 
 interface UnassignedVisit {
   id: string;

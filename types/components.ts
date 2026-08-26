@@ -85,26 +85,31 @@ export interface GroupedPermission {
   isPartiallyGranted: boolean;
 }
 
-export interface CalenderEvent {
-  id : string;
-  title : string;
-  start : Date;
-  end: Date;
-  resource? : any 
-}
-
-export interface Visit {
-  id : string;
-  patientName : string;
-  patientId : string;
-  carerName : string;
-  carerId : string;
-  startTime: string;
-  endTime: string;
-  date : string;
-  type: 'care' | 'medication' | 'check-up' | 'therapy';
-  status: 'scheduled' | 'completed' | 'cancelled';
+export interface Patient {
+  id: string;
+  name: string;
+  preferredName?: string;
+  dateOfBirth?: string;
+  nhsNumber?: string;
   address: string;
+  email: string;
+  phone: string;
+  carer: string;
+  status: 'active' | 'on-hold' | 'new';
+  nextVisit: string;
+  gpName?: string;
+  gpPhone?: string;
+  gpAddress?: string;
+  nextOfKinName?: string;
+  nextOfKinPhone?: string;
+  nextOfKinRelationship?: string;
+  emergencyContact?: string;
+  emergencyPhone?: string;
+  emergencyRelationship?: string;
+  risk: 'low' | 'medium' | 'high';
+  initials: string;
+  avatar?: string;
+  age: number;
 }
 
 export type SortField = keyof StaffMember;

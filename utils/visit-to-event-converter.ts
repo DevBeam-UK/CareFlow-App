@@ -1,4 +1,4 @@
-import { Visit } from "@/types/components";
+import { Visit } from "types";
 
 export function convertVisitToEvent(visits: Visit[]){
     return visits.map((visit) => {

@@ -1,19 +1,20 @@
 import { SectionPlaceholder } from "shared";
 
-import CalendarWrapper from "@/components/sections/schedule/CalenderWrapper";
-import { mockVisits } from "@/utils";
-import { convertVisitToEvent } from "@/utils/visit-to-event-converter";
+import {
+  CalendarWrapper,
+  ScheduleStatSection,
+  ScheduleHeaderSection,
+  AddVisitModal,
+  UnassignedVisits,
+  EventDetailsModal,
+  EditVisitModal,
+  ScheduleCarerVisitSwaps,
+  CapacityPlanningSection,
+} from "sections";
+import { mockVisits, convertVisitToEvent } from "utils";
 import { useState } from "react";
 import "@/components/styles/calendar.css";
-import ScheduleStatSection from "@/components/sections/schedule/ScheduleStatCardsSection";
-import { ScheduleHeaderSection } from "@/components/sections/schedule/ScheduleHeaderSection";
-import { AddVisitModal } from "@/components/sections/schedule/add-visit-modal/ScheduleAddVisitModal";
-import { Visit } from "@/types/components";
-import UnassignedVisits from "@/components/sections/schedule/ScheduleUnassignedVisits";
-import { EventDetailsModal } from "@/components/sections/schedule/ScheduleEventDetailModal";
-import { EditVisitModal } from "@/components/sections/schedule/ScheduleEditVisitModal";
-import ScheduleCarerVisitSwaps from "@/components/sections/schedule/ScheduleCarerVisitSwaps";
-import { CapacityPlanningSection } from "@/components/sections/schedule/ScheduleHoursAvailabilitySection";
+import { Visit } from "types";
 
 
 const mockPatients = [

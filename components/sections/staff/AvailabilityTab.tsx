@@ -1,7 +1,7 @@
 'use client';
 
-import { StaffMember } from '@/types/components';
-import { buildAvailabilityForStaff } from '@/lib/mock/staff-compliance-mock';
+import { StaffMember } from 'types';
+import { buildAvailabilityForStaff } from 'lib';
 
 interface AvailabilityTabProps {
   staffMembers: StaffMember[];

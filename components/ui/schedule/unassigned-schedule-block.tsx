@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { AlertTriangle, GripVertical } from "lucide-react";
-import { borderColorMap, reasonColorMap, typeColorMap } from "@/utils/type-color-map";
+import { borderColorMap, reasonColorMap, typeColorMap } from "utils";
 
 export type VisitUrgency = "overdue" | "urgent" | "soon" | "upcoming";
 

@@ -1,6 +1,6 @@
 
 import React from "react";
-import StatCard from "@/components/shared/stat-card";
+import { StatCard } from "shared";
 import { Calendar, Clock, CheckCircle, XCircle, Users, AlertCircle } from "lucide-react";
 
 function ScheduleStatSection() {

@@ -9,16 +9,16 @@ import {
   DialogTitle,
   DialogFooter,
   DialogDescription,
-} from '@/components/ui/dialog';
-import { Button } from '@/components/ui/button';
-import { Label } from '@/components/ui/label';
+} from 'ui-components';
+import { Button } from 'ui-components';
+import { Label } from 'ui-components';
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from '@/components/ui/select';
+} from 'ui-components';
 import { AlertTriangle, Loader2, Repeat } from 'lucide-react';
 import { VisitForm } from './ScheduleAddVisitModalForm';
 import {
