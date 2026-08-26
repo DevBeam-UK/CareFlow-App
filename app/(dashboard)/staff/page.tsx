@@ -3,7 +3,7 @@
 import { StaffHeader, StaffTable, StaffToolbar, TrainingMatrixTab, AvailabilityTab, PerformanceTab } from "sections";
 import { StatCard } from "shared";
 import { Separator, StaffTableSkeleton, Tabs, TabsList, TabsTrigger, TabsContent } from "ui-components";
-import { mapToStaffMemberArray, useGetAllAgencyStaffApi } from "lib";
+import { mapToStaffMemberArray, mockStaffMembers, useGetAllAgencyStaffApi } from "lib";
 import type { StaffMember } from "types";
 import { staffStatsData } from "utils";
 import { useSession } from "next-auth/react";
@@ -102,7 +102,7 @@ export default function StaffPage() {
 
   if (isSessionLoading) {
     return (
-      <div className="h-screen w-full p-6 border rounded-2xl shadow bg-cf-surface space-y-8 overflow-y-auto">
+      <div className="h-screen w-full  space-y-8 overflow-y-auto">
         <StaffHeader />
         
         <div className="w-full bg-cf-surface p-4 flex flex-col gap-y-2 rounded-xl border">
@@ -119,7 +119,7 @@ export default function StaffPage() {
   }
 
   return (
-    <div className="h-screen w-full  space-y-8 overflow-y-scroll no-scrollbar">
+    <div className="h-screen w-full space-y-8 overflow-y-scroll no-scrollbar">
       <StaffHeader />
       <Separator />
       <div className="w-full gap-x-4 flex items-center">
@@ -136,9 +136,9 @@ export default function StaffPage() {
             cqcScore={23}
           />
         ))}
-      </motion.div>
+      </div>
 
-      {/* Charts row */}
+    
       <motion.div variants={item} className="w-full grid grid-cols-1 lg:grid-cols-5 gap-4">
         <div className="lg:col-span-2 bg-cf-surface p-5 rounded-xl border border-cf-border">
           <p className="text-sm font-semibold text-cf-ink mb-1">Staff by role</p>
@@ -206,7 +206,7 @@ export default function StaffPage() {
         </div>
       </motion.div>
 
-      {/* Blueprint 5.4 — Staff Management tabs: Directory / Training Matrix / Availability / Performance */}
+
       <motion.div variants={item} className="w-full">
         <Tabs value={activeView} onValueChange={setActiveView}>
           <TabsList className="bg-cf-surface-muted mb-4">
@@ -253,6 +253,6 @@ export default function StaffPage() {
           </TabsContent>
         </Tabs>
       </motion.div>
-    </motion.div>
+    </div> 
   );
 }

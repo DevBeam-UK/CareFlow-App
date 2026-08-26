@@ -2,12 +2,12 @@
 
 import type { ReactElement } from 'react';
 
-import { StaffMember } from 'types';
+import type { StaffMember } from 'types';
 import {
   TRAINING_MODULES,
-  TrainingResult,
   buildComplianceForStaff,
 } from 'lib';
+import type { TrainingResult } from 'lib';
 import { Check, X, AlertTriangle, Minus } from 'lucide-react';
 
 const RESULT_ICON: Record<TrainingResult, ReactElement> = {

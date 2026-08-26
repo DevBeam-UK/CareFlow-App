@@ -17,10 +17,10 @@ import { formatUKPhone, getEmployeeStatusLabel, getEmployeeStatusVariant, getRol
 import { TableActions } from "ui-components";
 import { TableBulkActions } from "ui-components";
 import { StaffViewDrawer } from "ui-components";
-import { Badge, BadgeProps } from "@/components/ui";
+import { Badge, type BadgeProps } from "ui-components";
 import { formatRoleName } from "utils";
 import { buildComplianceForStaff, overallComplianceStatus } from "lib";
-import { ComplianceIndicator } from "sections";
+import { ComplianceIndicator } from "./ComplianceIndicator";
 
 export function StaffTable({ data, onEdit, onDelete, onView }: StaffTableProps) {
   const [sortField, setSortField] = useState<SortField>("name");
@@ -141,7 +141,7 @@ export function StaffTable({ data, onEdit, onDelete, onView }: StaffTableProps) 
                       <TableCell>
                         <Badge
                         variant={getRoleBadgeColor(staff.role) as BadgeProps['variant']}
-                        shape={'pill'}
+                        shape={'pill'} badgeSize={'md'}
                         >
                           {formatRoleName(staff.role)}
                         </Badge>
@@ -150,7 +150,7 @@ export function StaffTable({ data, onEdit, onDelete, onView }: StaffTableProps) 
                         {compliance.employmentType === "employed" ? (
                           <span className="text-xs text-cf-ink-60 capitalize">Employed</span>
                         ) : (
-                          <Badge variant="outline" className="capitalize bg-purple-50 text-purple-700 border-purple-200 text-xs">
+                          <Badge variant="pastel-indigo" shape={'pill'} badgeSize={'md'} >
                             {compliance.employmentType}
                           </Badge>
                         )}
@@ -161,7 +161,7 @@ export function StaffTable({ data, onEdit, onDelete, onView }: StaffTableProps) 
                       <TableCell>
                         <Badge
                         variant={getEmployeeStatusVariant(staff.status)}
-                        shape={'pill'}
+                        shape={'pill'} badgeSize={'md'}
                         >
                         {getEmployeeStatusLabel(staff.status)}
                         </Badge>

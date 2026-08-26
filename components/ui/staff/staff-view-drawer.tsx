@@ -8,9 +8,9 @@ import {
   DrawerHeader,
   DrawerTitle,
   DrawerFooter,
+  Button,
+  Badge,
 } from 'ui-components';
-import { Button } from 'ui-components';
-import { Badge } from 'ui-components';
 import {
   Mail,
   MessageSquare,
@@ -19,10 +19,10 @@ import {
   Clock,
   UserX,
 } from 'lucide-react';
-import { StaffMember } from 'types';
+import type { StaffMember } from 'types';
 import {
   EditStaffModal,
-  StaffDetailsTab,
+  StaffDetailedTab,
   StaffActivityTab,
   StaffPermissionTab,
 } from 'sections';
@@ -106,7 +106,7 @@ export function StaffViewDrawer({ staff, open, onOpenChange }: StaffViewDrawerPr
   const renderTabContent = () => {
     switch (activeTab) {
       case 'details':
-        return <StaffDetailsTab staff={staff} />;
+        return <StaffDetailedTab staff={staff} />;
       case 'permissions':
         return (
           <StaffPermissionTab
