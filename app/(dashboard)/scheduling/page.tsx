@@ -1,4 +1,4 @@
-import { SectionPlaceholder } from "shared";
+'use client'
 
 import {
   CalendarWrapper,
