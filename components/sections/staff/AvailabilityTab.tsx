@@ -1,6 +1,6 @@
 'use client';
 
-import type { StaffMember } from 'types';
+import { StaffMember } from 'types';
 import { buildAvailabilityForStaff } from 'lib';
 
 interface AvailabilityTabProps {

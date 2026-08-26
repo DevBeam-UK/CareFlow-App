@@ -3,7 +3,11 @@
 import * as React from "react"
 import { ScrollArea as ScrollAreaPrimitive } from "@base-ui/react/scroll-area"
 
+<<<<<<< HEAD
 import { cn } from "lib"
+=======
+import { cn } from "lib"
+>>>>>>> feat/patients-page
 
 function ScrollArea({
   className,

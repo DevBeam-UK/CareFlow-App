@@ -1,12 +1,29 @@
+import {
+  DashboardAttentionBoard,
+  DashboardComplianceDue,
+  DashboardCQCBreakdown,
+  DashboardOnShiftSection,
+  DashboardStatSection,
+  DashboardVisitSection,
+  DashboardWeeklyActivity,
+} from "sections";
+
 export default function DashboardHomePage() {
   return (
-    <div className="rounded-xl border border-[#E4E5EA] bg-white p-8 shadow-[0_1px_2px_rgba(0,0,0,0.04)]">
-      <h1 className="font-heading text-2xl font-extrabold tracking-[-0.02em] text-[#111318]">
-        Dashboard Body
-      </h1>
-      <p className="mt-2 text-sm text-[#5C5F6A]">
-        Main content area is ready.
-      </p>
+    <div className="h-screen w-full p-6 border rounded-2xl shadow bg-cf-surface space-y-4 overflow-scroll no-scrollbar">
+      <DashboardStatSection />
+      <div className="flex justify-between gap-x-4">
+        <DashboardVisitSection />
+        <div className="flex flex-col w-full max-w-sm gap-y-4">
+        <DashboardAttentionBoard />
+        <DashboardOnShiftSection />
+        </div>
+      </div>
+      <div className="flex w-full gap-x-4">
+        <DashboardWeeklyActivity />
+        <DashboardCQCBreakdown />
+        <DashboardComplianceDue />
+      </div>
     </div>
   );
 }

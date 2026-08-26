@@ -7,3 +7,8 @@ export * from './dashboard-nav-filter';
 export * from './staff-table-utils';
 export * from './stat-score-ring-check';
 export * from './show-trend';
+export * from './risk-badge';
+export * from './attention-helpers';
+export * from './visit-to-event-converter';
+export * from './style-getters';
+export * from './type-color-map';

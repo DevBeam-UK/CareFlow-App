@@ -2,7 +2,7 @@ export { default as StaffHeader } from "./StaffHeader";
 export { StaffTable } from "./StaffTable";
 export { StaffToolbar } from "./StaffToolbar";
 export { default as StaffPermissionTab } from "./StaffPermissionTab";
-export { StaffDetailsTab as StaffDetailedTab } from "./StaffDetailedTab";
+export { StaffDetailsTab, StaffDetailsTab as StaffDetailedTab } from "./StaffDetailedTab";
 export { StaffActivityTab } from "./StaffActivityTab";
 export { PermissionsModal } from "./PermissionsModal";
 export { default as PermissionHeader } from "./PermissionHeader";

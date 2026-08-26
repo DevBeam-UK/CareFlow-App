@@ -362,3 +362,5 @@
 @utility cf-prose {
   @apply max-w-[75ch] text-sm leading-normal md:text-base md:leading-relaxed;
 }
+
+

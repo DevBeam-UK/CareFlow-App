@@ -7,3 +7,5 @@ export * from './staff';
 export * from './create-agency';
 export * from './subscription';
 export * from './care-plans';
+export * from './patients';
+export * from './schedule';
