@@ -71,4 +71,6 @@ export { default as TrendNeutralIcon } from "./trend-neutral-svg"
 export * from "./subscription/billing-toggle"
 export * from "./subscription/pricing-card"
 export * from "./magic-card"
+export * from "./chart"
+export * from "./schedule/unassigned-schedule-block"
 

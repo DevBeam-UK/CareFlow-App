@@ -5,7 +5,7 @@ export function getScoreRingColor(score: number, maxScore: number = 100): string
     case percentage >= 80:
       return "ring-green-500 text-green-600";
     case percentage >= 60:
-      return "ring-blue-500 text-blue-600";
+      return "ring-blue-500 text-blue-500";
     case percentage >= 40:
       return "ring-yellow-500 text-yellow-600";
     case percentage >= 20:

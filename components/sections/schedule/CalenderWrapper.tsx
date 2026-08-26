@@ -12,9 +12,7 @@ import {
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from 'ui-components';
-import { Button } from 'ui-components';
-import {
+  Button,
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
@@ -23,6 +21,7 @@ import {
 import { AlertTriangle, ChevronLeft, ChevronRight, Layers, Sparkles } from 'lucide-react';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
 import 'react-big-calendar/lib/addons/dragAndDrop/styles.css';
+import '@/components/styles/calendar.css';
 
 const localizer = dayjsLocalizer(dayjs);
 // react-big-calendar's DnD addon types `start`/`end` as `stringOrDate` and infers a bare
@@ -103,7 +102,7 @@ function CustomToolbar({
   ];
 
   return (
-    <div className="flex items-center justify-between px-4 py-3 border-b border-cf-border bg-white">
+    <div className="flex items-center justify-between px-4 py-3 border-b border-cf-border bg-cf-surface">
       <div className="flex items-center gap-1.5">
         <Button variant="outline" size="sm" onClick={() => onNavigate('TODAY')}>
           Today
@@ -275,7 +274,7 @@ function CalendarWrapper({
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.9 }}
-                className="flex items-center gap-1 rounded-full bg-red-50 text-red-700 text-xs font-medium px-2.5 py-1"
+                className="flex items-center gap-1 rounded-full bg-error-muted text-error text-xs font-medium px-2.5 py-1"
               >
                 <AlertTriangle className="h-3.5 w-3.5" />
                 {conflictCount} conflict{conflictCount > 1 ? 's' : ''} to review
@@ -286,7 +285,7 @@ function CalendarWrapper({
 
         <div className="flex items-center gap-2">
           <DropdownMenu>
-            <DropdownMenuTrigger className="inline-flex h-8 items-center gap-1.5 rounded-md border border-cf-border bg-white px-3 text-xs font-medium text-cf-ink hover:bg-cf-surface-muted transition-colors">
+            <DropdownMenuTrigger className="inline-flex h-8 items-center gap-1.5 rounded-md border border-cf-border bg-cf-surface px-3 text-xs font-medium text-cf-ink hover:bg-cf-surface-muted transition-colors">
               <Layers className="h-3.5 w-3.5" />
               Bulk actions
             </DropdownMenuTrigger>
@@ -308,7 +307,7 @@ function CalendarWrapper({
               size="sm"
               onClick={onAiSchedule}
               disabled={isAiScheduling}
-              className="gap-1.5 bg-cf-brand-600 hover:bg-cf-brand-700"
+             
             >
               <Sparkles className="h-3.5 w-3.5" />
               {isAiScheduling ? 'Optimising…' : 'AI Scheduler'}
@@ -321,7 +320,7 @@ function CalendarWrapper({
         initial={{ opacity: 0, y: 8 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.25 }}
-        className="w-full rounded-xl border border-cf-border overflow-hidden"
+        className="w-full rounded-xl border border-cf-border overflow-hidden bg-cf-surface flex flex-col"
         style={{ height: '600px' }}
       >
         <DragAndDropCalendar
@@ -361,7 +360,7 @@ function CalendarWrapper({
             };
           }}
           dayPropGetter={(date: Date) => dayStyleGetter(date)}
-          className="rbc-calendar-custom"
+          className="rbc-calendar rbc-calendar-custom h-full min-h-0"
           components={{ toolbar: CustomToolbar }}
           // Enables dropping an UnassignedScheduleBlock card straight onto a slot to assign it.
           onDropFromOutside={({ start, end }: { start: Date; end: Date }) => {

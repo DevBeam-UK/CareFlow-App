@@ -13,20 +13,22 @@ import {
 } from "sections";
 import { mockVisits, convertVisitToEvent } from "utils";
 import { useState } from "react";
-import "@/components/styles/calendar.css";
-import { Visit } from "types";
-
+import type { Visit } from "types";
+import { toast } from "sonner";
 
 const mockPatients = [
-  { id: '1', name: 'Dorothy Chen' },
-  { id: '2', name: 'James Okafor' },
-  { id: '3', name: 'Edna Morris' },
+  { id: 'P-12345', name: 'Dorothy Chen' },
+  { id: 'P-12346', name: 'James Okafor' },
+  { id: 'P-12347', name: 'Edna Morris' },
+  { id: 'P-12348', name: 'Robert Hayes' },
+  { id: 'P-12349', name: 'Sophie Martinez' },
+  { id: 'P-12350', name: 'Margaret Johnson' },
 ];
 
 const mockCarers = [
-  { id: '1', name: 'Sarah Johnson' },
-  { id: '2', name: 'Michael Chen' },
-  { id: '3', name: 'Emma Williams' },
+  { id: 'carer-1', name: 'Sarah Johnson' },
+  { id: 'carer-2', name: 'Michael Chen' },
+  { id: 'carer-3', name: 'Emma Williams' },
 ];
 
 
@@ -116,8 +118,156 @@ export default function Page() {
 
  
 
+ 
+  const handleEventDrop = (args: { event: any; start: Date; end: Date }) => {
+    const { event, start, end } = args;
+    
+ 
+    const visitId = event?.resource?.id || event?.id;
+    const existingVisit = visits.find(v => v.id === visitId);
+    
+    if (!existingVisit) {
+      toast.error('Visit not found');
+      return;
+    }
+
+ 
+    const newStartTime = start.toTimeString().slice(0, 5);
+    const newEndTime = end.toTimeString().slice(0, 5);
+    const newDate = start.toISOString().split('T')[0];
+
+
+    const hasConflict = visits.some(v => {
+      if (v.id === visitId) return false;
+      if (v.carerId !== existingVisit.carerId) return false;
+      if (v.date !== newDate) return false;
+      
+
+      const vStart = v.startTime;
+      const vEnd = v.endTime;
+      return (newStartTime < vEnd && newEndTime > vStart);
+    });
+
+    if (hasConflict) {
+      toast.warning('Time conflict with another visit for this carer', {
+        description: 'Please choose a different time slot',
+        duration: 5000,
+      });
+      return;
+    }
+
+
+    const updatedVisit = {
+      ...existingVisit,
+      date: newDate,
+      startTime: newStartTime,
+      endTime: newEndTime,
+    };
+
+ 
+    setVisits((prev) =>
+      prev.map((v) =>
+        v.id === visitId ? updatedVisit : v
+      )
+    );
+
+ 
+    toast.success(`Visit rescheduled to ${newDate} ${newStartTime} - ${newEndTime}`, {
+      description: `${existingVisit.patientName} - ${existingVisit.carerName}`,
+    });
+
+
+    setEventModalOpen(false);
+    setSelectedEvent(null);
+  };
+
+ 
+  const handleEventResize = (args: { event: any; start: Date; end: Date }) => {
+    const { event, start, end } = args;
+    
+    const visitId = event?.resource?.id || event?.id;
+    const existingVisit = visits.find(v => v.id === visitId);
+    
+    if (!existingVisit) {
+      toast.error('Visit not found');
+      return;
+    }
+
+    const newStartTime = start.toTimeString().slice(0, 5);
+    const newEndTime = end.toTimeString().slice(0, 5);
+    const newDate = start.toISOString().split('T')[0];
+
+
+    const hasConflict = visits.some(v => {
+      if (v.id === visitId) return false;
+      if (v.carerId !== existingVisit.carerId) return false;
+      if (v.date !== newDate) return false;
+      
+      const vStart = v.startTime;
+      const vEnd = v.endTime;
+      return (newStartTime < vEnd && newEndTime > vStart);
+    });
+
+    if (hasConflict) {
+      toast.warning('Cannot resize: time conflict with another visit');
+      return;
+    }
+
+
+    const updatedVisit = {
+      ...existingVisit,
+      date: newDate,
+      startTime: newStartTime,
+      endTime: newEndTime,
+    };
+
+    setVisits((prev) =>
+      prev.map((v) =>
+        v.id === visitId ? updatedVisit : v
+      )
+    );
+
+    toast.success(`Visit duration updated`);
+  };
+
+
+  const handleDropFromOutside = (visitId: string, slotInfo: { start: Date; end: Date }) => {
+    const { start, end } = slotInfo;
+    
+    const visit = visits.find(v => v.id === visitId);
+    if (!visit) {
+      toast.error('Visit not found');
+      return;
+    }
+
+    const newStartTime = start.toTimeString().slice(0, 5);
+    const newEndTime = end.toTimeString().slice(0, 5);
+    const newDate = start.toISOString().split('T')[0];
+
+
+    const updatedVisit = {
+      ...visit,
+      date: newDate,
+      startTime: newStartTime,
+      endTime: newEndTime,
+      status: 'scheduled' as const,
+    };
+
+    setVisits((prev) =>
+      prev.map((v) =>
+        v.id === visitId ? updatedVisit : v
+      )
+    );
+
+    toast.success(`Visit assigned to ${newDate} ${newStartTime} - ${newEndTime}`, {
+      description: `${visit.patientName}`,
+    });
+  };
+
+
+
   return (
-    <div className="h-screen w-full p-6 bg-cf-surface rounded-2xl border shadow space-y-4 overflow-y-scroll overflow-x-hidden min-w-0 no-scrollbar">
+    <div className="h-screen w-full space-y-4 overflow-y-scroll overflow-x-hidden min-w-0 no-scrollbar">
       <ScheduleHeaderSection onAddVisit={handleAddVisit} />
       <ScheduleStatSection />
       
@@ -131,16 +281,17 @@ export default function Page() {
             onDateChange={setCurrentDate}
             onSelectEvent={handleSelectEvent}
             onSelectSlot={handleSelectSlot}
+            onEventDrop={handleEventDrop}
+            onEventResize={handleEventResize}
+            onDropFromOutside={handleDropFromOutside}
+            
           />
           <CapacityPlanningSection />
         </div>
         <div className="flex flex-col gap-y-4 w-full max-w-sm h-full">
           <UnassignedVisits />
-          <ScheduleCarerVisitSwaps 
-          
-          />
+          <ScheduleCarerVisitSwaps />
         </div>
-        
       </div>
 
       <EventDetailsModal

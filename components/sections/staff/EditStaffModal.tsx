@@ -189,7 +189,7 @@ export function EditStaffModal({
 
             {/* Role & status — read-only chips instead of grey text */}
             <div className="flex items-center gap-2 p-3 bg-cf-surface-muted rounded-lg">
-              <Badge variant={getRoleBadgeColor(staff.role) as BadgeProps['variant']} >
+              <Badge variant={getRoleBadgeColor(staff.role)} >
                 {getRoleDisplayName(staff.role)}
               </Badge>
               <Badge variant={getStatusBadgeColor(staff.status) as BadgeProps['variant']} >

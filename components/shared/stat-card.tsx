@@ -45,7 +45,7 @@ function StatCard({
                   flex items-center justify-center
                   text-xs font-bold
                   rounded-full ring-[6px] ${getScoreRingColor(score)}
-                  bg-white
+                  
                 `}
               >
                 {score}
