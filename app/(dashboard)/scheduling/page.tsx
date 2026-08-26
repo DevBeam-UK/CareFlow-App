@@ -29,6 +29,7 @@ const mockCarers = [
   { id: '3', name: 'Emma Williams' },
 ];
 
+
 export default function Page() {
   const [currentDate, setCurrentDate] = useState(new Date("2024-03-18"));
   const [view, setView] = useState("week");
