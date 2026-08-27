@@ -34,16 +34,18 @@ function DashboardShellActions() {
     <div className="flex items-center gap-1.5">
       <ThemeToggle />
       <Popover>
-        <PopoverTrigger>
-          <Button
-            variant="ghost"
-            size="icon"
-            className="relative size-8 rounded-lg border border-cf-border text-cf-ink-60 hover:bg-cf-surface-muted hover:text-cf-ink"
-          >
-            <Bell className="size-4" />
-            <span className="sr-only">Notifications</span>
-          </Button>
-        </PopoverTrigger>
+        <PopoverTrigger
+          render={
+            <Button
+              variant="ghost"
+              size="icon"
+              className="relative size-8 rounded-lg border border-cf-border text-cf-ink-60 hover:bg-cf-surface-muted hover:text-cf-ink"
+            >
+              <Bell className="size-4" />
+              <span className="sr-only">Notifications</span>
+            </Button>
+          }
+        />
         <PopoverContent
           className="w-80 border-cf-border bg-cf-surface p-0"
           align="end"

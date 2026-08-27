@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { AnimatePresence, motion, type Variants } from 'framer-motion';
 import {
   Drawer,
   DrawerClose,
@@ -10,6 +11,14 @@ import {
   DrawerFooter,
   Button,
   Badge,
+  Tooltip,
+  TooltipTrigger,
+  TooltipContent,
+  TooltipProvider,
+  DropdownMenu,
+  DropdownMenuTrigger,
+  DropdownMenuContent,
+  DropdownMenuItem,
 } from 'ui-components';
 import {
   Mail,
@@ -18,6 +27,10 @@ import {
   Lock,
   Clock,
   UserX,
+  X,
+  MoreHorizontal,
+  KeyRound,
+  Send,
 } from 'lucide-react';
 import type { StaffMember } from 'types';
 import {
@@ -44,27 +57,10 @@ interface StaffViewDrawerProps {
   onOpenChange: (open: boolean) => void;
 }
 
-// Role-tinted ring color for the avatar — echoes the status-pill language
-// used across the rest of the dashboard (active/pending/suspended pulses).
-function getAvatarRingClass(status: string) {
-  switch (status?.toUpperCase()) {
-    case 'ACTIVE':
-      return 'ring-2 ring-cf-primary/40 ring-offset-2 ring-offset-cf-surface';
-    case 'PENDING':
-    case 'INVITED':
-      return 'ring-2 ring-amber-400/50 ring-offset-2 ring-offset-cf-surface';
-    case 'SUSPENDED':
-    case 'INACTIVE':
-      return 'ring-2 ring-cf-ink-20 ring-offset-2 ring-offset-cf-surface';
-    default:
-      return 'ring-2 ring-cf-border ring-offset-2 ring-offset-cf-surface';
-  }
-}
-
 function getStatusDotClass(status: string) {
   switch (status?.toUpperCase()) {
     case 'ACTIVE':
-      return 'bg-cf-primary';
+      return 'bg-emerald-500';
     case 'PENDING':
     case 'INVITED':
       return 'bg-amber-400';
@@ -75,6 +71,12 @@ function getStatusDotClass(status: string) {
       return 'bg-cf-ink-20';
   }
 }
+
+const tabContentVariants: Variants = {
+  initial: { opacity: 0, y: 10 },
+  animate: { opacity: 1, y: 0 },
+  exit: { opacity: 0, y: -10 },
+};
 
 export function StaffViewDrawer({ staff, open, onOpenChange }: StaffViewDrawerProps) {
   const [activeTab, setActiveTab] = useState<TabType>('details');
@@ -126,39 +128,38 @@ export function StaffViewDrawer({ staff, open, onOpenChange }: StaffViewDrawerPr
   };
 
   return (
-    <>
+    <TooltipProvider>
       <Drawer open={open} onOpenChange={onOpenChange} swipeDirection="right">
         <DrawerContent className="h-screen max-w-2xl flex flex-col">
           {/* Header */}
-          <DrawerHeader className="border-b border-cf-border px-6 py-5">
-            <div className="flex items-start justify-between gap-4">
+          <DrawerHeader className="shrink-0 border-b border-cf-border px-6 pb-5 pt-6">
+            <motion.div
+              initial={{ opacity: 0, y: -8 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+              className="flex items-start justify-between gap-4"
+            >
               <div className="flex items-start gap-4 min-w-0">
                 <div className="relative flex-shrink-0">
                   {staff.profilePicture ? (
                     <img
                       src={staff.profilePicture}
                       alt={staff.name}
-                      className={`w-14 h-14 rounded-full object-cover ${getAvatarRingClass(
-                        staff.status,
-                      )}`}
+                      className="h-14 w-14 rounded-xl border border-cf-border object-cover"
                     />
                   ) : (
-                    <div
-                      className={`w-14 h-14 rounded-full bg-cf-surface-muted flex items-center justify-center text-lg font-semibold text-cf-ink ${getAvatarRingClass(
-                        staff.status,
-                      )}`}
-                    >
+                    <div className="flex h-14 w-14 items-center justify-center rounded-xl border border-cf-border bg-cf-surface-muted text-lg font-semibold text-cf-ink">
                       {staff.name.charAt(0).toUpperCase()}
                     </div>
                   )}
                   <span
-                    className={`absolute bottom-0 right-0 w-3.5 h-3.5 rounded-full border-2 border-cf-surface ${getStatusDotClass(
+                    className={`absolute -bottom-0.5 -right-0.5 h-3 w-3 rounded-full border-2 border-cf-surface ${getStatusDotClass(
                       staff.status,
                     )}`}
                   />
                 </div>
 
-                <div className="min-w-0">
+                <div className="min-w-0 pt-0.5">
                   <DrawerTitle className="text-xl font-bold text-cf-ink leading-tight truncate">
                     {staff.name}
                   </DrawerTitle>
@@ -195,51 +196,108 @@ export function StaffViewDrawer({ staff, open, onOpenChange }: StaffViewDrawerPr
                 </div>
               </div>
 
-              {/* Quick actions — surfaced instead of buried in a dropdown */}
+              {/* Quick actions */}
               <div className="flex items-center gap-1 flex-shrink-0">
-                <button
-                  onClick={() => staff.email && (window.location.href = `mailto:${staff.email}`)}
-                  className="p-2 hover:bg-cf-surface-muted rounded-lg transition-colors group"
-                  title="Send email"
-                >
-                  <Mail className="w-4 h-4 text-cf-ink-60 group-hover:text-cf-ink" />
-                </button>
-                <button
-                  className="p-2 hover:bg-cf-surface-muted rounded-lg transition-colors group"
-                  title="Send SMS"
-                >
-                  <MessageSquare className="w-4 h-4 text-cf-ink-60 group-hover:text-cf-ink" />
-                </button>
+                <Tooltip>
+                  <TooltipTrigger
+                    onClick={() => staff.email && (window.location.href = `mailto:${staff.email}`)}
+                    className="rounded-lg p-2 text-cf-ink-60 transition-all duration-200 hover:scale-110 hover:bg-cf-surface-muted hover:text-cf-ink active:scale-95"
+                  >
+                    <Mail className="w-4 h-4" />
+                  </TooltipTrigger>
+                  <TooltipContent>Send email</TooltipContent>
+                </Tooltip>
+                <Tooltip>
+                  <TooltipTrigger className="rounded-lg p-2 text-cf-ink-60 transition-all duration-200 hover:scale-110 hover:bg-cf-surface-muted hover:text-cf-ink active:scale-95">
+                    <MessageSquare className="w-4 h-4" />
+                  </TooltipTrigger>
+                  <TooltipContent>Send SMS</TooltipContent>
+                </Tooltip>
+                <DrawerClose
+                  render={
+                    <button
+                      type="button"
+                      className="rounded-lg p-2 text-cf-ink-60 transition-all duration-200 hover:scale-110 hover:bg-cf-surface-muted hover:text-cf-ink active:scale-95"
+                      aria-label="Close"
+                    >
+                      <X className="w-4 h-4" />
+                    </button>
+                  }
+                />
               </div>
-            </div>
+            </motion.div>
           </DrawerHeader>
 
           <StaffViewTabs tabs={tabs} activeTab={activeTab} onTabChange={setActiveTab as any} />
 
-          <div className="flex-1 overflow-y-auto px-6 py-6">{renderTabContent()}</div>
+          <div className="min-h-0 flex-1 overflow-y-auto px-6 py-6">
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={activeTab}
+                variants={tabContentVariants}
+                initial="initial"
+                animate="animate"
+                exit="exit"
+                transition={{ duration: 0.2, ease: [0.22, 1, 0.36, 1] }}
+              >
+                {renderTabContent()}
+              </motion.div>
+            </AnimatePresence>
+          </div>
 
-          <DrawerFooter className="border-t border-cf-border px-6 py-4 flex items-center gap-3">
-            <Button onClick={() => setEditModalOpen(true)} className="flex-1">
-              <FileText className="w-4 h-4 mr-2" />
+          <DrawerFooter className="flex flex-row items-center gap-2 border-t border-cf-border px-6 py-4">
+            <Button
+              size="sm"
+              onClick={() => setEditModalOpen(true)}
+              className="transition-transform duration-200 hover:-translate-y-0.5 active:translate-y-0"
+            >
+              <FileText className="mr-1.5 h-3.5 w-3.5" />
               Edit details
             </Button>
+
             <Button
               variant="outline"
-              className="border-cf-border text-cf-error hover:bg-red-50 hover:border-red-200"
+              size="sm"
+              className="border-cf-border text-cf-ink-60 transition-all duration-200 hover:-translate-y-0.5 hover:bg-cf-surface-muted hover:text-cf-ink active:translate-y-0"
             >
-              <UserX className="w-4 h-4 mr-2" />
-              Deactivate
+              <KeyRound className="mr-1.5 h-3.5 w-3.5" />
+              Reset password
             </Button>
-            <DrawerClose>
-              <Button variant="outline" className="border-cf-border hover:bg-cf-surface-muted">
-                Close
-              </Button>
-            </DrawerClose>
+
+            <Button
+              variant="outline"
+              size="sm"
+              className="border-cf-border text-cf-ink-60 transition-all duration-200 hover:-translate-y-0.5 hover:bg-cf-surface-muted hover:text-cf-ink active:translate-y-0"
+            >
+              <Send className="mr-1.5 h-3.5 w-3.5" />
+              Resend invitation
+            </Button>
+
+            <DropdownMenu>
+              <DropdownMenuTrigger
+                render={
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    className="ml-auto border-cf-border text-cf-ink-60 transition-all duration-200 hover:-translate-y-0.5 hover:bg-cf-surface-muted hover:text-cf-ink active:translate-y-0"
+                  >
+                    <MoreHorizontal className="h-3.5 w-3.5" />
+                    <span className="sr-only">More actions</span>
+                  </Button>
+                }
+              />
+              <DropdownMenuContent align="end" className="w-52">
+                <DropdownMenuItem className="text-cf-error">
+                  <UserX className="mr-2 h-4 w-4" />
+                  Deactivate account
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
           </DrawerFooter>
         </DrawerContent>
       </Drawer>
 
       <EditStaffModal staff={staff} open={editModalOpen} onOpenChange={setEditModalOpen} />
-    </>
+    </TooltipProvider>
   );
 }
