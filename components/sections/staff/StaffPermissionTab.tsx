@@ -1,12 +1,12 @@
 'use client';
 
-import { Checkbox, Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui';
+import { Checkbox, Table, TableBody, TableCell, TableHead, TableHeader, TableRow, Badge } from '@/components/ui';
 import { useGetUserPermissionsApi } from "lib";
 import { StaffMember } from "types";
 import { PERMISSION_MODULES } from '@/utils';
 import { PermissionsModal } from './PermissionsModal';
 import { Button } from "ui-components";
-import { Shield, Loader2 } from 'lucide-react';
+import { Shield, ShieldAlert } from 'lucide-react';
 import { useState } from 'react';
 import { PermissionTableSkeleton } from "ui-components";
 
@@ -72,15 +72,31 @@ const StaffPermissionTab = ({
 
 
   if (error) {
-    return <div className="text-cf-ink-60 py-4">Permissions not found for this user</div>;
+    return (
+      <div className="flex flex-col items-center justify-center gap-2 rounded-lg border border-dashed border-cf-border py-12 text-center">
+        <ShieldAlert className="h-8 w-8 text-cf-ink-40" />
+        <p className="text-sm text-cf-ink-60">Permissions not found for this user</p>
+      </div>
+    );
   }
+
+  const configuredModuleCount = PERMISSION_MODULES.filter((module) =>
+    module.actions.some((action) => hasPermission(module.id, action)),
+  ).length;
 
   return (
     <div className="space-y-4">
 
-      <div className="flex justify-end">
+      <div className="flex items-center justify-between">
+        <div className="flex items-center gap-2 text-sm text-cf-ink-60">
+          <Shield className="h-4 w-4" />
+          <span>
+            {configuredModuleCount} of {PERMISSION_MODULES.length} modules have access configured
+          </span>
+        </div>
         <Button
           onClick={() => setIsModalOpen(true)}
+          className="transition-transform duration-200 hover:-translate-y-0.5 active:translate-y-0"
         >
           <Shield className="w-4 h-4 mr-2" />
           Manage Permissions
@@ -88,59 +104,96 @@ const StaffPermissionTab = ({
       </div>
 
       {/* Table */}
-      <div className="border rounded-lg overflow-hidden">
+      <div className="overflow-hidden rounded-lg">
         <Table>
           <TableHeader>
             <TableRow>
               {PERMISSIONS_TABLE_HEADER_COLUMNS.map((header) => (
-                <TableHead key={header.label}>{header.label}</TableHead>
+                <TableHead
+                  key={header.label}
+                  className={header.label !== 'Module' ? 'text-center' : undefined}
+                >
+                  {header.label}
+                </TableHead>
               ))}
             </TableRow>
           </TableHeader>
           <TableBody>
-            {PERMISSION_MODULES.map((module) => {
+            {PERMISSION_MODULES.map((module, index) => {
               const hasRead = hasPermission(module.id, 'read');
               const hasCreate = hasPermission(module.id, 'create');
               const hasUpdate = hasPermission(module.id, 'update');
               const hasDelete = hasPermission(module.id, 'delete');
               const hasAll = hasPermission(module.id, 'all');
+              const grantedCount = [hasRead, hasCreate, hasUpdate, hasDelete].filter(Boolean).length;
 
               return (
-                <TableRow key={module.id}>
-                  <TableCell>{module.label}</TableCell>
-                  <TableCell>
+                <TableRow
+                  key={module.id}
+                  className="animate-in fade-in-0 slide-in-from-bottom-1 duration-300"
+                  style={{ animationDelay: `${index * 35}ms`, animationFillMode: 'backwards' }}
+                >
+                  <TableCell className="font-medium text-cf-ink">
+                    <div className="flex items-center gap-2">
+                      {module.label}
+                      {grantedCount === 0 && !hasAll && (
+                        <Badge
+                          variant="outline"
+                          className="border-cf-border text-[10px] font-normal text-cf-ink-40"
+                        >
+                          No access
+                        </Badge>
+                      )}
+                    </div>
+                  </TableCell>
+                  <TableCell className="text-center">
                     {module.actions.includes('read') ? (
-                      <Checkbox checked={hasRead} />
+                      <Checkbox
+                        checked={hasRead}
+                        className="mx-auto transition-transform duration-150 data-checked:scale-110"
+                      />
                     ) : (
-                      <Checkbox className="bg-muted-foreground" disabled />
+                      <Checkbox className="mx-auto" disabled />
                     )}
                   </TableCell>
-                  <TableCell>
+                  <TableCell className="text-center">
                     {module.actions.includes('create') ? (
-                      <Checkbox checked={hasCreate} />
+                      <Checkbox
+                        checked={hasCreate}
+                        className="mx-auto transition-transform duration-150 data-checked:scale-110"
+                      />
                     ) : (
-                      <Checkbox disabled />
+                      <Checkbox className="mx-auto" disabled />
                     )}
                   </TableCell>
-                  <TableCell>
+                  <TableCell className="text-center">
                     {module.actions.includes('update') ? (
-                      <Checkbox checked={hasUpdate} />
+                      <Checkbox
+                        checked={hasUpdate}
+                        className="mx-auto transition-transform duration-150 data-checked:scale-110"
+                      />
                     ) : (
-                      <Checkbox disabled />
+                      <Checkbox className="mx-auto" disabled />
                     )}
                   </TableCell>
-                  <TableCell>
+                  <TableCell className="text-center">
                     {module.actions.includes('delete') ? (
-                      <Checkbox checked={hasDelete} />
+                      <Checkbox
+                        checked={hasDelete}
+                        className="mx-auto transition-transform duration-150 data-checked:scale-110"
+                      />
                     ) : (
-                      <Checkbox disabled />
+                      <Checkbox className="mx-auto" disabled />
                     )}
                   </TableCell>
-                  <TableCell>
+                  <TableCell className="text-center">
                     {module.actions.includes('all') ? (
-                      <Checkbox checked={hasAll} />
+                      <Checkbox
+                        checked={hasAll}
+                        className="mx-auto transition-transform duration-150 data-checked:scale-110 data-checked:border-cf-primary data-checked:bg-cf-primary"
+                      />
                     ) : (
-                      <Checkbox disabled />
+                      <Checkbox className="mx-auto" disabled />
                     )}
                   </TableCell>
                 </TableRow>

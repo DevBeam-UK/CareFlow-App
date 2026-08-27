@@ -84,12 +84,14 @@ export function AddStaffModal() {
   return (
 
     <Dialog open={open} onOpenChange={setOpen}>
-      <DialogTrigger >
-        <Button >
-          <Plus className="h-4 w-4" />
-          Add Staff Member
-        </Button>
-      </DialogTrigger>
+      <DialogTrigger
+        render={
+          <Button>
+            <Plus className="h-4 w-4" />
+            Add Staff Member
+          </Button>
+        }
+      />
 
       <DialogContent className="max-w-lg border-cf-border bg-cf-surface">
         <DialogHeader>
