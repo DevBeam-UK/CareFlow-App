@@ -19,6 +19,7 @@ import {
   DropdownMenuTrigger,
   DropdownMenuContent,
   DropdownMenuItem,
+  BadgeProps,
 } from 'ui-components';
 import {
   Mail,
@@ -38,6 +39,7 @@ import {
   StaffDetailedTab,
   StaffActivityTab,
   StaffPermissionTab,
+
 } from 'sections';
 import {
   getRoleBadgeColor,
@@ -48,8 +50,9 @@ import {
 import { StaffViewTabs } from './staff-view-tabs';
 import { useSession } from 'next-auth/react';
 import { useGrantUserPermissionsApi } from 'lib';
+import { StaffDocumentsTab } from 'sections';
 
-type TabType = 'details' | 'permissions' | 'activity';
+type TabType = 'details' | 'permissions' | 'activity' | 'documents';
 
 interface StaffViewDrawerProps {
   staff: StaffMember | null;
@@ -103,6 +106,7 @@ export function StaffViewDrawer({ staff, open, onOpenChange }: StaffViewDrawerPr
     { id: 'details' as const, label: 'Details', icon: FileText },
     { id: 'permissions' as const, label: 'Permissions', icon: Lock },
     { id: 'activity' as const, label: 'Activity', icon: Clock },
+    { id: 'documents' as const, label: 'Documents', icon: FileText },
   ];
 
   const renderTabContent = () => {
@@ -122,6 +126,8 @@ export function StaffViewDrawer({ staff, open, onOpenChange }: StaffViewDrawerPr
         );
       case 'activity':
         return <StaffActivityTab staff={staff} />;
+      case 'documents':
+        return <StaffDocumentsTab staff={staff} />;
       default:
         return null;
     }
@@ -131,7 +137,7 @@ export function StaffViewDrawer({ staff, open, onOpenChange }: StaffViewDrawerPr
     <TooltipProvider>
       <Drawer open={open} onOpenChange={onOpenChange} swipeDirection="right">
         <DrawerContent className="h-screen max-w-2xl flex flex-col">
-          {/* Header */}
+          
           <DrawerHeader className="shrink-0 border-b border-cf-border px-6 pb-5 pt-6">
             <motion.div
               initial={{ opacity: 0, y: -8 }}
@@ -167,21 +173,26 @@ export function StaffViewDrawer({ staff, open, onOpenChange }: StaffViewDrawerPr
 
                   <div className="flex items-center gap-2 flex-wrap mt-2.5">
                     <Badge
-                      variant="outline"
-                      className={`capitalize ${getRoleBadgeColor(staff.role)}`}
+                      variant={getRoleBadgeColor(staff.role)}
+                      shape={'pill'}
+                      badgeSize={'md'}
+                      
                     >
                       {getRoleDisplayName(staff.role)}
                     </Badge>
                     <Badge
-                      variant="outline"
-                      className={`capitalize ${getStatusBadgeColor(staff.status)}`}
+                      variant={getStatusBadgeColor(staff.status) as BadgeProps['variant']}
+                      shape={'pill'}
+                      badgeSize={'md'}
                     >
                       {staff.status}
                     </Badge>
                     {!staff.emailVerified && (
                       <Badge
-                        variant="outline"
-                        className="bg-orange-50 text-orange-700 border-orange-200"
+                        variant="pastel-orange"
+                        badgeSize={'md'}
+                        shape={'rounded'}
+                        
                       >
                         Email not verified
                       </Badge>

@@ -1,4 +1,4 @@
-import { CarePlan, CarePlanModule, StatCardProps, Visit } from "types";
+import { CarePlan, CarePlanModule, Incident, StatCardProps, Visit } from "types";
 import { UserCheck, UserPlus, Users, UserX2 } from "lucide-react";
 
 export type NavItem = {
@@ -899,3 +899,140 @@ export const mockModules = {
   mobility: mockMobilityModule,
   mentalHealth: mockMentalHealthModule
 };
+
+export const mockIncidents: Incident[] = [
+  {
+    id: 'incident-1',
+    patientName: 'Dorothy Chen',
+    patientId: 'patient-1',
+    type: 'fall',
+    severity: 'high',
+    title: 'Fall in bathroom',
+    description: 'Patient slipped on wet floor while using toilet. No immediate injuries but some bruising on left arm.',
+    dateTime: new Date('2024-06-15 14:30'),
+    reportedBy: 'Sarah Johnson (Carer)',
+    assignedTo: 'John Manager',
+    status: 'investigating',
+    location: '123 Oak Street, Bathroom',
+    witnesses: ['None'],
+    evidence: [],
+    investigationNotes: [
+      {
+        note: 'Incident reported by carer Sarah. Patient conscious and responsive. No visible fractures.',
+        author: 'John Manager',
+        timestamp: new Date('2024-06-15 15:00'),
+      },
+      {
+        note: 'Discussed with patient - she felt dizzy before the fall. May need balance assessment.',
+        author: 'John Manager',
+        timestamp: new Date('2024-06-15 16:30'),
+      },
+    ],
+    nextReviewDate: new Date('2024-06-22'),
+    createdAt: new Date('2024-06-15 14:30'),
+    updatedAt: new Date('2024-06-15 16:30'),
+  },
+  {
+    id: 'incident-2',
+    patientName: 'James Okafor',
+    patientId: 'patient-2',
+    type: 'medication-error',
+    severity: 'critical',
+    title: 'Missed medication dose - Lisinopril',
+    description: 'Carer forgot to administer 10mg Lisinopril at scheduled time (09:00). Dose given 2 hours late at 11:00.',
+    dateTime: new Date('2024-06-14 09:00'),
+    reportedBy: 'Michael Chen (Carer)',
+    assignedTo: 'John Manager',
+    status: 'resolved',
+    location: '456 Maple Ave, Patient Home',
+    witnesses: [],
+    evidence: [],
+    investigationNotes: [
+      {
+        note: 'Carer reported missed dose. Patient took medication at 11:00 instead. No adverse effects observed.',
+        author: 'John Manager',
+        timestamp: new Date('2024-06-14 11:30'),
+      },
+      {
+        note: 'Root cause: Carer distracted by kitchen emergency (boiling pot). Recommendation: implement alarm reminder system.',
+        author: 'John Manager',
+        timestamp: new Date('2024-06-14 15:00'),
+      },
+      {
+        note: 'Action taken: All carers now using medication reminder app with phone alarm. Michael retrained on medication safety.',
+        author: 'John Manager',
+        timestamp: new Date('2024-06-15 10:00'),
+      },
+    ],
+    nextReviewDate: new Date('2024-07-14'),
+    createdAt: new Date('2024-06-14 09:00'),
+    updatedAt: new Date('2024-06-15 10:00'),
+  },
+  {
+    id: 'incident-3',
+    patientName: 'Edna Morris',
+    patientId: 'patient-3',
+    type: 'safeguarding',
+    severity: 'critical',
+    title: 'Potential financial abuse concern',
+    description: 'Patient mentioned that family member asked for access to bank account "temporarily". Patient unsure if this is appropriate.',
+    dateTime: new Date('2024-06-16 10:15'),
+    reportedBy: 'Emma Williams (Carer)',
+    assignedTo: 'John Manager',
+    status: 'investigating',
+    location: '789 Cedar Lane, Patient Home',
+    witnesses: ['Patient (Edna Morris)'],
+    evidence: [],
+    investigationNotes: [
+      {
+        note: 'CRITICAL: Carer flagged potential financial abuse. Immediate escalation to safeguarding team.',
+        author: 'John Manager',
+        timestamp: new Date('2024-06-16 11:00'),
+      },
+      {
+        note: 'Called local safeguarding board. Case number: SAF-2024-1847. Awaiting investigation response.',
+        author: 'John Manager',
+        timestamp: new Date('2024-06-16 14:00'),
+      },
+    ],
+    nextReviewDate: new Date('2024-06-23'),
+    createdAt: new Date('2024-06-16 10:15'),
+    updatedAt: new Date('2024-06-16 14:00'),
+  },
+  {
+    id: 'incident-4',
+    patientName: 'Robert Hayes',
+    patientId: 'patient-4',
+    type: 'missed-visit',
+    severity: 'high',
+    title: 'Missed afternoon visit - no check-in',
+    description: 'Carer (David Smith) scheduled for 2:00 PM visit never checked in. No contact with patient until evening.',
+    dateTime: new Date('2024-06-13 14:00'),
+    reportedBy: 'Manager System (Auto-alert)',
+    assignedTo: 'John Manager',
+    status: 'resolved',
+    location: '321 Oak Road, Patient Home',
+    witnesses: [],
+    evidence: [],
+    investigationNotes: [
+      {
+        note: 'Auto-alert: No check-in by 14:30. Manager notified. Called carer David Smith.',
+        author: 'System',
+        timestamp: new Date('2024-06-13 14:30'),
+      },
+      {
+        note: 'David reported car breakdown en route. Did not have phone signal to notify manager. Visit rescheduled for 6:00 PM same day.',
+        author: 'John Manager',
+        timestamp: new Date('2024-06-13 15:00'),
+      },
+      {
+        note: 'Patient was safe. Rescheduled visit completed. Action: Upgrade carer comms - backup phone or radio.',
+        author: 'John Manager',
+        timestamp: new Date('2024-06-13 19:00'),
+      },
+    ],
+    nextReviewDate: undefined,
+    createdAt: new Date('2024-06-13 14:00'),
+    updatedAt: new Date('2024-06-13 19:00'),
+  },
+];

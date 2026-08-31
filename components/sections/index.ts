@@ -9,3 +9,7 @@ export * from './subscription';
 export * from './care-plans';
 export * from './patients';
 export * from './schedule';
+export * from './incidents/IncidentHeaderSection';
+export * from './incidents/IncidentStatsSection';
+export * from './incidents/IncidentDetailDrawer';
+export * from './incidents/ReportIncidentModal';

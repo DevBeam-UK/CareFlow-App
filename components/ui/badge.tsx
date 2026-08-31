@@ -81,11 +81,11 @@ const badgeVariants = cva(
         default: "",
         sm: 'text-[10px] px-1',
         md: 'text-[13px] px-2  flex items-center gap-1',
-        lg: " px-4 py-2 text-[20px] ",
+        lg: " px-4 py-1 text-[15px] ",
         icon: 'p-2'
       },
       shape: {
-        rounded: "rounded-lg ",
+        rounded: "rounded ",
         pill: "rounded-full",
       },
     },

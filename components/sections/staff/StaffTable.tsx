@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import {
+  Button,
   Table,
   TableBody,
   TableCell,
@@ -11,7 +12,7 @@ import {
 } from "ui-components";
 import { Checkbox } from "ui-components";
 import { Avatar, AvatarFallback, AvatarImage } from "ui-components";
-import { ArrowUpDown } from "lucide-react";
+import { ArrowUpDown, ChevronRight } from "lucide-react";
 import { SortDirection, SortField, StaffTableProps } from "types";
 import { formatUKPhone, getEmployeeStatusLabel, getEmployeeStatusVariant, getRoleBadgeColor, getStatusBadgeColor } from "utils";
 import { TableActions } from "ui-components";
@@ -168,7 +169,12 @@ export function StaffTable({ data, onEdit, onDelete, onView }: StaffTableProps) 
                       </TableCell>
                       <TableCell className="text-cf-ink-60 whitespace-nowrap">{new Date(staff.joinDate).toLocaleDateString("en-GB")}</TableCell>
                       <TableCell>
-                        <TableActions staff={staff} onView={handleView} onEdit={onEdit} onDelete={onDelete} />
+                        <Button 
+                        variant="ghost"
+                        onClick={() => handleView(staff)}
+                        >
+                          <ChevronRight />
+                        </Button>
                       </TableCell>
                     </TableRow>
                   );

@@ -357,7 +357,42 @@ export interface MedicationCreationData {
   notes: string;
 }
 
+export type IncidentType = 
+  | 'fall' 
+  | 'medication-error' 
+  | 'bruise' 
+  | 'abuse-allegation' 
+  | 'safeguarding' 
+  | 'missed-visit' 
+  | 'other';
 
+export type IncidentSeverity = 'low' | 'medium' | 'high' | 'critical';
+export type IncidentStatus = 'reported' | 'investigating' | 'resolved' | 'closed';
+
+export interface Incident {
+  id: string;
+  patientName: string;
+  patientId: string;
+  type: IncidentType;
+  severity: IncidentSeverity;
+  title: string;
+  description: string;
+  dateTime: Date;
+  reportedBy: string;
+  assignedTo: string;
+  status: IncidentStatus;
+  location?: string;
+  witnesses?: string[];
+  evidence?: string[]; 
+  investigationNotes: {
+    note: string;
+    author: string;
+    timestamp: Date;
+  }[];
+  nextReviewDate?: Date;
+  createdAt: Date;
+  updatedAt: Date;
+}
 
 
 export type CarePlanModuleContent =
