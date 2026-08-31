@@ -1,3 +1,4 @@
+import { BadgeProps } from "@/components/ui";
 import { EmployeeStatus } from "types";
 
 export const getRoleBadgeColor = (role: string) => {
@@ -18,14 +19,19 @@ export const getRoleBadgeColor = (role: string) => {
       return "pastel-neutral";
   }
 };
-export const getStatusBadgeColor = (status: string): string => {
-  const colors: Record<string, string> = {
-    active: 'bg-green-100 text-green-800 border-green-200',
-    inactive: 'bg-gray-100 text-gray-800 border-gray-200',
-    pending: 'bg-yellow-100 text-yellow-800 border-yellow-200',
-    suspended: 'bg-red-100 text-red-800 border-red-200',
-  };
-  return colors[status?.toLowerCase()] || 'bg-gray-100 text-gray-800 border-gray-200';
+export const getStatusBadgeColor = (status: string): BadgeProps['variant'] => {
+  switch (status?.toLowerCase()) {
+    case 'active':
+      return 'pastel-success';
+    case 'inactive':
+      return 'pastel-neutral';
+    case 'pending':
+      return 'pastel-warning';
+    case 'suspended':
+      return 'pastel-danger';
+    default:
+      return 'pastel-neutral';
+  }
 };
 
 export const getRoleDisplayName = (role: string): string => {

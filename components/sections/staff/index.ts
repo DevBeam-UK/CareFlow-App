@@ -13,3 +13,4 @@ export { TrainingMatrixTab } from "./TrainingMatrixTab";
 export { AvailabilityTab } from "./AvailabilityTab";
 export { PerformanceTab } from "./PerformanceTab";
 export { ComplianceIndicator } from "./ComplianceIndicator";
+export { StaffDocumentsTab } from "./StaffDocumentsTab";

@@ -74,3 +74,7 @@ export * from "./magic-card"
 export * from "./chart"
 export * from "./schedule/unassigned-schedule-block"
 
+export * from "./incidents/incident-tabs"
+export * from "./incidents/incident-info-tab"
+export * from "./incidents/incident-logs-tab"
+export * from "./incidents/incident-evidence-tab"
