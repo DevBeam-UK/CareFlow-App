@@ -151,12 +151,12 @@ export function StaffDocumentsTab({ staff }: StaffDocumentsTabProps) {
   };
 
   const handleDownload = (doc: Document) => {
-    // Mock download
+    
     console.log(`Downloading ${doc.name}`);
   };
 
   const handleDelete = (doc: Document) => {
-    // Mock delete
+    
     console.log(`Deleting ${doc.name}`);
   };
 
@@ -165,7 +165,7 @@ export function StaffDocumentsTab({ staff }: StaffDocumentsTabProps) {
 
   return (
     <div className="space-y-6">
-      {/* Summary Cards */}
+     
       <div className="grid grid-cols-3 gap-3">
         <motion.div
           initial={{ opacity: 0, y: 10 }}
@@ -200,7 +200,7 @@ export function StaffDocumentsTab({ staff }: StaffDocumentsTabProps) {
         </motion.div>
       </div>
 
-      {/* Upload Section */}
+      
       <motion.div
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
@@ -229,14 +229,14 @@ export function StaffDocumentsTab({ staff }: StaffDocumentsTabProps) {
           >
             <div className="flex items-start justify-between gap-4">
               <div className="flex items-start gap-3 flex-1 min-w-0">
-                {/* Document Icon */}
+           
                 <div className="flex-shrink-0 mt-1">
                   <div className="rounded-lg bg-cf-surface p-2.5 dark:bg-cf-surface-muted">
                     <FileText className="h-5 w-5 text-cf-ink-60 dark:text-cf-ink-40" />
                   </div>
                 </div>
 
-                {/* Document Info */}
+              
                 <div className="min-w-0 flex-1">
                   <div className="flex items-center gap-2 flex-wrap mb-2">
                     <p className="font-medium text-cf-ink dark:text-cf-surface truncate">{doc.name}</p>
@@ -281,7 +281,7 @@ export function StaffDocumentsTab({ staff }: StaffDocumentsTabProps) {
                 </div>
               </div>
 
-              {/* Actions */}
+              
               <div className="flex items-center gap-2 flex-shrink-0">
                 <Button
                   size="sm"
@@ -316,7 +316,6 @@ export function StaffDocumentsTab({ staff }: StaffDocumentsTabProps) {
         ))}
       </div>
 
-      {/* Document Preview Dialog */}
       <Dialog open={isPreviewOpen} onOpenChange={setIsPreviewOpen}>
         <DialogContent className="max-w-2xl">
           <DialogHeader>

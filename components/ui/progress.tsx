@@ -6,6 +6,7 @@ import * as React from "react"
 import { cn } from "lib"
 
 type TrackSize = "sm" | "default" | "lg"
+type BarColor = string
 
 const ProgressTrackSizeContext = React.createContext<TrackSize>("default")
 
