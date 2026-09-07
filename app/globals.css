@@ -363,4 +363,57 @@
   @apply max-w-[75ch] text-sm leading-normal md:text-base md:leading-relaxed;
 }
 
+:root {
+  --cf-dashboard-bg-image: linear-gradient(180deg, var(--cf-brand-50) 0%, var(--cf-bg) 45%);
+
+  --glass-bg-rgb: 255 255 255;  
+  --glass-bg-opacity: 0.94;      
+  --glass-border-opacity: 0.5;   
+  --glass-blur: 6px;            
+  --glass-shadow: var(--shadow-cf-md);
+
+  --sidebar-glass-opacity: 0.94;  
+  --sidebar-glass-blur: 6px;    
+}
+
+.dark {
+  --glass-bg-rgb: 15 17 23;
+  --glass-bg-opacity: 0.45;
+  --glass-border-opacity: 0.12;
+  --sidebar-glass-opacity: 0.5;
+}
+
+@utility cf-glass {
+  background-color: rgb(var(--glass-bg-rgb) / var(--glass-bg-opacity));
+  backdrop-filter: blur(var(--glass-blur));
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  border: 1px solid rgb(var(--glass-bg-rgb) / var(--glass-border-opacity));
+  box-shadow: var(--glass-shadow);
+}
+.cf-dashboard-bg [data-slot="card"],
+.cf-dashboard-bg .cf-glass-panel {
+  background-color: rgb(var(--glass-bg-rgb) / var(--glass-bg-opacity)) !important;
+  background-image: none !important;
+  backdrop-filter: blur(var(--glass-blur)) !important;
+  -webkit-backdrop-filter: blur(var(--glass-blur)) !important;
+  border: none !important;
+  box-shadow: var(--shadow-cf-lg) !important;
+}
+
+.cf-dashboard-bg .cf-glass-panel > .absolute.inset-px.z-20 {
+  background-color: transparent !important;
+}
+
+.cf-dashboard-bg {
+  --sidebar: rgb(var(--glass-bg-rgb) / var(--sidebar-glass-opacity));
+  --sidebar-foreground: var(--cf-ink-80);
+  --sidebar-accent: rgb(var(--glass-bg-rgb) / 0.5);
+  --sidebar-accent-foreground: var(--cf-ink);
+  --sidebar-border: rgb(var(--glass-bg-rgb) / var(--glass-border-opacity));
+}
+
+.cf-dashboard-bg [data-slot="sidebar-inner"] {
+  backdrop-filter: blur(var(--sidebar-glass-blur));
+  -webkit-backdrop-filter: blur(var(--sidebar-glass-blur));
+}
 

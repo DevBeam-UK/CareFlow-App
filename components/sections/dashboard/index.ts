@@ -10,3 +10,7 @@ export { default as DashboardOnShiftSection } from "./DashboardOnShiftSection";
 export { default as DashboardStatSection } from "./DashboardStatSection";
 export { default as DashboardVisitSection } from "./DashboardVisitSection";
 export { DashboardWeeklyActivity } from "./DashboardWeeklyActivitySection";
+export * from './DashboardCQCGaugeSection';
+export * from './DashboardStaffSnapshotSection';
+export * from './DashboardVisitStatusSection';
+export * from './DashboardRevenueSnapshotSection';

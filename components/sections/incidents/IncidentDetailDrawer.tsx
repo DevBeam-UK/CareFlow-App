@@ -20,9 +20,10 @@ import {
   DialogDescription,
   DialogFooter,
   Input,
-  Label,
-  IncidentTabs,
+  Label
 } from 'ui-components';
+
+import {IncidentTabs} from "@/components/ui"
 import {
   FileText,
   Download,

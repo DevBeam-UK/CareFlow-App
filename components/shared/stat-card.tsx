@@ -17,21 +17,22 @@ function StatCard({
   hasCqcScore,
   hasValueBadge,
   valueBadgeValue,
+  badgeVariant = "softSuccess",
   children
 }: StatCardProps) {
   return (
     <MagicCard
       mode="gradient"
-      gradientColor="#1a7f56"
+      gradientColor="var(--cf-brand-500)"
       gradientOpacity={0.12}
       gradientSize={200}
-      gradientFrom="#1a7f56"
-      gradientTo="#49b375"
-      className="w-full rounded-xl" 
+      gradientFrom="var(--cf-brand-500)"
+      gradientTo="var(--cf-brand-400)"
+      className="w-full rounded-xl cf-glass-panel"
     >
       <div className="flex flex-col gap-4 py-4 px-4">
         <div className="flex items-center justify-between">
-          <Badge variant="pastel-success" badgeSize={'icon'}>
+          <Badge variant={badgeVariant} badgeSize={'icon'}>
             <Icon className="size-4" />
           </Badge>
 
@@ -64,7 +65,7 @@ function StatCard({
           <div className="flex items-end gap-2">
             {hasValueBadge && (
               <Badge 
-                variant="pastel-success" 
+                variant="softSuccess" 
                 shape="pill"
                 badgeSize={'md'}
               >

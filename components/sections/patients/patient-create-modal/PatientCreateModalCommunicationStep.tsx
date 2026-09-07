@@ -1,4 +1,3 @@
-// components/sections/patients/CreatePatientModal/steps/CommunicationStep.tsx
 'use client';
 
 import { Input } from 'ui-components';

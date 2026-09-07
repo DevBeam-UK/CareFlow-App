@@ -8,7 +8,7 @@ import {
   INCLUDED_IN_ALL,
   SINGLE_AGENCY_NOTE,
 } from "lib";
-import { BillingToggle, PricingCard } from "ui-components";
+import { BillingToggle, PricingCard } from "@/components/ui";
 import { mapSubscriptionPlansToPricingPlans, useGetAllSubscriptionPlansApi } from "lib";
 import { Loader } from "lucide-react";
 

@@ -1,4 +1,3 @@
-// components/sections/patients/CreatePatientModal/CreatePatientModal.tsx
 'use client';
 
 import { useState } from 'react';

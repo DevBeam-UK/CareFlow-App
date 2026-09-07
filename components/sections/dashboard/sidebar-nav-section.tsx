@@ -46,7 +46,7 @@ function SidebarNavItem({ item }: { item: NavItem }): ReactElement {
         render={<Link href={item.href} />}
         isActive={item.isActive}
         tooltip={item.label}
-        className="text-cf-ink-60 hover:bg-brand-300 hover:text-cf-ink-80 data-active:bg-brand-300 data-active:font-semibold data-active:text-cf-ink-80 data-active:hover:bg-brand-300 data-active:hover:text-cf-ink-80"
+        className="text-cf-ink-60 hover:bg-brand-50 hover:text-cf-ink-80 data-active:bg-brand-100 data-active:font-semibold data-active:text-brand-700 data-active:hover:bg-brand-100 data-active:hover:text-brand-700"
       >
         {renderIcon(item.icon)}
         <span>{item.label}</span>

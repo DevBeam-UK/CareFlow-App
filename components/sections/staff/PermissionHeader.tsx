@@ -1,4 +1,4 @@
-import { DialogHeader, DialogTitle } from "@/components/ui";
+import { DialogHeader, DialogTitle } from "ui-components";
 import { StaffMember } from "types";
 import { ALL_MODULES } from "utils";
 import { Shield } from "lucide-react";

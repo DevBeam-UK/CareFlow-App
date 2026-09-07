@@ -1,7 +1,7 @@
 'use client';
 
-import { Badge, Card, CardContent, CardHeader, CardTitle } from '@/components/ui';
-import { ReviewQueueBlock } from "ui-components";
+import { Badge, Card, CardContent, CardHeader, CardTitle } from 'ui-components';
+import { ReviewQueueBlock } from  "@/components/ui"
 import { CheckCircle } from 'lucide-react';
 
 interface ReviewItem {
