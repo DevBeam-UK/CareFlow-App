@@ -8,8 +8,7 @@ import { AgencyDetailsStep } from "./AgencyDetailStep";
 import { InviteTeamStep } from "./InviteTeamStep";
 import { SuccessStep } from "./SuccessStep";
 import { useRouter } from "next/navigation";
-import { ProgressBar } from "ui-components";
-import { StepIndicator } from "ui-components";
+import { StepIndicator, ProgressBar } from "@/components/ui";
 import { useCreateAgency } from "hooks";
 
 const STEPS = [

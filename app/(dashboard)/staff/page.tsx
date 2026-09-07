@@ -2,8 +2,9 @@
 
 import { StaffHeader, StaffTable, StaffToolbar, TrainingMatrixTab, AvailabilityTab, PerformanceTab } from "sections";
 import { StatCard } from "shared";
-import { Separator, StaffTableSkeleton, Tabs, TabsList, TabsTrigger, TabsContent } from "ui-components";
-import { mapToStaffMemberArray, mockStaffMembers, useGetAllAgencyStaffApi } from "lib";
+import { Separator, Tabs, TabsList, TabsTrigger, TabsContent } from "ui-components";
+import {StaffTableSkeleton} from "@/components/ui"
+import {  mockStaffMembers } from "lib";
 import type { StaffMember } from "types";
 import { staffStatsData } from "utils";
 import { useSession } from "next-auth/react";

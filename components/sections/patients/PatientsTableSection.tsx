@@ -14,7 +14,7 @@ import {
 import { Avatar, AvatarFallback, AvatarImage } from 'ui-components';
 import { Checkbox } from 'ui-components';
 import React from 'react';
-import { Button } from '@/components/ui';
+import { Button } from 'ui-components';
 import { getRiskBadgeVariant, getRiskDotColor } from 'utils';
 
 interface Patient {

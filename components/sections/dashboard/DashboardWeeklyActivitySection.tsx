@@ -1,24 +1,20 @@
 'use client';
 
-import { TrendingUp } from 'lucide-react';
-import { Bar, BarChart, CartesianGrid, XAxis, Tooltip } from 'recharts';
+import { Line, LineChart, CartesianGrid, XAxis, YAxis } from 'recharts';
+import { motion } from 'framer-motion';
 import {
   Card,
   CardContent,
   CardDescription,
-  CardFooter,
   CardHeader,
   CardTitle,
 } from 'ui-components';
 import {
   ChartContainer,
-  ChartLegend,
-  ChartLegendContent,
   ChartTooltip,
   ChartTooltipContent,
   type ChartConfig,
 } from 'ui-components';
-
 
 const weeklyActivityData = [
   { day: 'Mon', done: 45, active: 23, missed: 5 },
@@ -46,76 +42,105 @@ const chartConfig = {
 } satisfies ChartConfig;
 
 export function DashboardWeeklyActivity() {
-  const totalDone = weeklyActivityData.reduce((acc, item) => acc + item.done, 0);
-  const totalMissed = weeklyActivityData.reduce((acc, item) => acc + item.missed, 0);
-
   return (
-    <Card className="border-cf-border w-full">
-      <CardHeader className="flex flex-row items-center justify-between pb-3 pt-4 px-4">
-        <div>
-          <CardTitle className="text-sm font-semibold text-cf-ink">
-            Weekly Activity
-          </CardTitle>
-          <CardDescription className="text-xs mt-1">
-            Visits overview
-          </CardDescription>
-        </div>
+    <motion.div
+      className="h-full flex-1 min-w-0"
+      initial={{ opacity: 0, y: 12 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+    >
+      <Card className="border-cf-border-light shadow-cf-sm rounded-2xl w-full h-full flex flex-col">
+        <CardHeader className="flex flex-row items-center justify-between pb-3 pt-4 px-4">
+          <div>
+            <CardTitle className="text-sm font-semibold text-cf-ink">
+              Weekly Activity
+            </CardTitle>
+            <CardDescription className="text-xs mt-1">
+              Visits overview
+            </CardDescription>
+          </div>
 
-        <div className="flex items-center gap-3">
-          <div className="flex items-center gap-1.5">
-            <div className="w-2.5 h-2.5 rounded-sm bg-[var(--chart-1)]" />
-            <span className="text-xs text-cf-ink-60">Done</span>
+          <div className="flex items-center gap-3">
+            <div className="flex items-center gap-1.5">
+              <span className="w-2 h-2 rounded-full bg-[var(--chart-1)]" />
+              <span className="text-xs text-cf-ink-60">Done</span>
+            </div>
+            <div className="flex items-center gap-1.5">
+              <span className="w-2 h-2 rounded-full bg-[var(--chart-2)]" />
+              <span className="text-xs text-cf-ink-60">Active</span>
+            </div>
+            <div className="flex items-center gap-1.5">
+              <span className="w-2 h-2 rounded-full bg-[var(--chart-3)]" />
+              <span className="text-xs text-cf-ink-60">Missed</span>
+            </div>
           </div>
-          <div className="flex items-center gap-1.5">
-            <div className="w-2.5 h-2.5 rounded-sm bg-[var(--chart-2)]" />
-            <span className="text-xs text-cf-ink-60">Active</span>
-          </div>
-          <div className="flex items-center gap-1.5">
-            <div className="w-2.5 h-2.5 rounded-sm bg-[var(--chart-3)]" />
-            <span className="text-xs text-cf-ink-60">Missed</span>
-          </div>
-        </div>
-      </CardHeader>
+        </CardHeader>
 
-      <CardContent className="px-4 pb-4">
-        <ChartContainer config={chartConfig}>
-          <BarChart
-            accessibilityLayer
-            data={weeklyActivityData}
-            margin={{ left: 0, right: 0, top: 10, bottom: 0 }}
-          >
-            <CartesianGrid vertical={false} strokeDasharray="3 3" />
-            <XAxis
-              dataKey="day"
-              tickLine={false}
-              tickMargin={10}
-              axisLine={false}
-              tick={{ fontSize: 12 }}
-            />
-            <ChartTooltip content={<ChartTooltipContent hideLabel />} />
-            <Bar
-              dataKey="done"
-              stackId="a"
-              fill="var(--color-done)"
-              radius={[0, 0, 4, 4]}
-              isAnimationActive={true}
-            />
-            <Bar
-              dataKey="active"
-              stackId="a"
-              fill="var(--color-active)"
-              isAnimationActive={true}
-            />
-            <Bar
-              dataKey="missed"
-              stackId="a"
-              fill="var(--color-missed)"
-              radius={[4, 4, 0, 0]}
-              isAnimationActive={true}
-            />
-          </BarChart>
-        </ChartContainer>
-      </CardContent>
-    </Card>
+        <CardContent className="px-4 pb-4 flex-1 flex flex-col">
+          <ChartContainer config={chartConfig} className="flex-1 w-full">
+            <LineChart
+              accessibilityLayer
+              data={weeklyActivityData}
+              margin={{ left: 0, right: 12, top: 10, bottom: 0 }}
+            >
+              <CartesianGrid
+                vertical={false}
+                strokeDasharray="3 3"
+                stroke="var(--cf-border-light)"
+              />
+              <XAxis
+                dataKey="day"
+                tickLine={false}
+                tickMargin={10}
+                axisLine={false}
+                tick={{ fontSize: 12, fill: 'var(--cf-ink-40)' }}
+              />
+              <YAxis
+                tickLine={false}
+                axisLine={false}
+                tickMargin={8}
+                tick={{ fontSize: 12, fill: 'var(--cf-ink-40)' }}
+                width={28}
+              />
+              <ChartTooltip
+                cursor={{ stroke: 'var(--cf-ink-20)', strokeDasharray: '4 4' }}
+                content={<ChartTooltipContent indicator="dot" />}
+              />
+              {/* Primary series — bold solid line with visible dots, the visual anchor */}
+              <Line
+                type="monotone"
+                dataKey="done"
+                stroke="var(--color-done)"
+                strokeWidth={3}
+                dot={{ r: 3.5, fill: 'var(--color-done)', strokeWidth: 0 }}
+                activeDot={{ r: 6, strokeWidth: 0 }}
+                isAnimationActive={true}
+              />
+              {/* Secondary series — thinner, dashed, no dots: recedes behind the primary line */}
+              <Line
+                type="monotone"
+                dataKey="active"
+                stroke="var(--color-active)"
+                strokeWidth={1.75}
+                strokeDasharray="5 4"
+                dot={false}
+                activeDot={{ r: 4, strokeWidth: 0 }}
+                isAnimationActive={true}
+              />
+              <Line
+                type="monotone"
+                dataKey="missed"
+                stroke="var(--color-missed)"
+                strokeWidth={1.75}
+                strokeDasharray="5 4"
+                dot={false}
+                activeDot={{ r: 4, strokeWidth: 0 }}
+                isAnimationActive={true}
+              />
+            </LineChart>
+          </ChartContainer>
+        </CardContent>
+      </Card>
+    </motion.div>
   );
 }

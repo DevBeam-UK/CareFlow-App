@@ -134,7 +134,7 @@ export function formatNameWithInitial(fullName: string): string {
 
 function DashboardVisitSection() {
   return (
-    <div className="bg-cf-surface w-full rounded-xl border border-cf-border overflow-hidden">
+    <div className="cf-glass-panel w-full rounded-xl overflow-hidden">
       {/* Header */}
       <div className="flex items-center justify-between p-4 border-b border-cf-border">
         <h3 className="text-lg font-semibold text-cf-ink">Today's Visits</h3>

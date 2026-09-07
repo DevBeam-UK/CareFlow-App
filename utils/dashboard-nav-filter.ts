@@ -61,16 +61,13 @@ export function canAccessModule(role: string, moduleId: string): boolean {
 }
 
 export function filterNavItemsByRole(items: NavItem[], role: string): NavItem[] {
-  if (!role) return [];
+  const normalizedRole = (role || "").toLowerCase().trim();
+  const accessibleModules = ROLE_NAV_ACCESS[normalizedRole] || [];
 
-  const accessibleModules = ROLE_NAV_ACCESS[role] || [];
+  // Unknown/unmatched role → show everything rather than hide everything.
+  if (accessibleModules.length === 0) return items;
 
-  return items.filter((item) => {
-    if (!accessibleModules.includes(item.requiredModule)) {
-      return false;
-    }
-    return true;
-  });
+  return items.filter((item) => accessibleModules.includes(item.requiredModule));
 }
 
 export function isNavItemActive(href: string, pathname: string): boolean {

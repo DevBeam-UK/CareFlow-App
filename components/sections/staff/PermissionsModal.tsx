@@ -8,7 +8,7 @@ import {
 import { StaffMember } from "types";
 import { ALL_MODULES } from "utils";
 import PermissionsHeader from './PermissionHeader';
-import { PermissionsBody } from "ui-components";
+import { PermissionsBody } from "@/components/ui";
 import PermissionsFooter from './PermissionFooter';
 
 interface PermissionsModalProps {
