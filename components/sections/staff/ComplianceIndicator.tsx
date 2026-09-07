@@ -4,18 +4,18 @@ import { Badge, type BadgeProps } from "ui-components";
 const STATUS_CONFIG: Record<ComplianceStatus, { label: string; variant: string; dot: string }> = {
   clear: { 
     label: "All clear", 
-    variant: "pastel-success",
-    dot: "bg-green-500" 
+    variant: "softSuccess",
+    dot: "bg-[var(--cf-success)]" 
   },
   expiring: { 
     label: "Expiring soon", 
-    variant: "pastel-warning",
-    dot: "bg-amber-500" 
+    variant: "softWarning",
+    dot: "bg-[var(--cf-warning)]" 
   },
   expired: { 
     label: "Expired", 
-    variant: "pastel-danger",
-    dot: "bg-red-500" 
+    variant: "softDanger",
+    dot: "bg-[var(--cf-error)]" 
   },
 };
 

@@ -21,7 +21,7 @@ function StatCard({
   children
 }: StatCardProps) {
   return (
-    <MagicCard
+      <MagicCard
       mode="gradient"
       gradientColor="var(--cf-brand-500)"
       gradientOpacity={0.12}

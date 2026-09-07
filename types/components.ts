@@ -1,6 +1,8 @@
 import { LucideIcon } from "lucide-react";
 import { ReactNode } from "react";
 
+import type { BadgeProps } from "ui-components";
+
 export interface StatCardProps {
     label : string;
     Icon : LucideIcon;
@@ -14,7 +16,8 @@ export interface StatCardProps {
     cqcScore?: number;
     hasValueBadge?: boolean;
     valueBadgeValue?: string;
-    children?: React.ReactNode     
+    children?: React.ReactNode    
+    badgeVariant?: BadgeProps["variant"]; 
 }
 
 export type StatCardTrend = 'up' | 'down' | 'neutral'
