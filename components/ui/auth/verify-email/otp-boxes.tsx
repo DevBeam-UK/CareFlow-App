@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 
 
-import { InputOTP, InputOTPGroup, InputOTPSlot } from "../../shadcn/input-otp";
+import { InputOTP, InputOTPGroup, InputOTPSlot } from "../../input-otp";
 
 export interface OtpBoxesProps {
   value: string;
