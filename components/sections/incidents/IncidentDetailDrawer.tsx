@@ -21,7 +21,7 @@ import {
   DialogFooter,
   Input,
   Label
-} from 'ui-components';
+} from '@/components/ui';
 
 import {IncidentTabs} from "@/components/ui"
 import {

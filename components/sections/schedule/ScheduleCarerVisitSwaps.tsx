@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { Avatar, AvatarFallback, AvatarImage, Button, Card, CardContent, CardHeader, CardTitle, Badge, BadgeProps } from 'ui-components';
+import { Avatar, AvatarFallback, AvatarImage, Button, Card, CardContent, CardHeader, CardTitle, Badge, BadgeProps } from '@/components/ui';
 import { Check, X, Clock } from 'lucide-react';
 
 interface SwapRequest {

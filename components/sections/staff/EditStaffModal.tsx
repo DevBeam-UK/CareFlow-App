@@ -10,9 +10,9 @@ import {
   Label,
   Badge,
   BadgeProps,
-} from "ui-components";
-import { Button } from "ui-components";
-import { Input } from "ui-components";
+} from "@/components/ui";
+import { Button } from "@/components/ui";
+import { Input } from "@/components/ui";
 import { StaffMember } from "types";
 import { Loader2, AlertCircle, CheckCircle2, User, Mail, Phone } from 'lucide-react';
 import { getRoleBadgeColor, getRoleDisplayName, getStatusBadgeColor } from 'utils';

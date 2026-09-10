@@ -2,7 +2,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Card, CardContent } from 'ui-components';
+import { Card, CardContent } from '@/components/ui';
 import { CheckCircle2, Clock, PlayCircle, AlertTriangle, XCircle } from 'lucide-react';
 
 interface VisitStatusItem {

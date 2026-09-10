@@ -1,6 +1,6 @@
 'use client';
 
-import { Tabs, TabsContent, TabsList, TabsTrigger } from 'ui-components';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui';
 import { FileText, Paperclip, Info } from 'lucide-react';
 import { Incident } from '@/types';
 import { IncidentInfoTab } from './incident-info-tab';

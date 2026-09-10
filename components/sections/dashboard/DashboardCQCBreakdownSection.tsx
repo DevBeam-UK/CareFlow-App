@@ -1,7 +1,7 @@
 // components/sections/dashboard/DashboardCQCBreakdown.tsx
 'use client';
 
-import { Card, CardContent, CardHeader, CardTitle } from 'ui-components';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui';
 import { Info } from 'lucide-react';
 import { motion } from 'framer-motion';
 

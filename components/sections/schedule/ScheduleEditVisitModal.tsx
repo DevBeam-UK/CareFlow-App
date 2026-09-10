@@ -8,20 +8,20 @@ import {
   DialogTitle,
   DialogFooter,
   DialogDescription,
-} from 'ui-components';
-import { Button } from 'ui-components';
-import { Input } from 'ui-components';
-import { Label } from 'ui-components';
+} from '@/components/ui';
+import { Button } from '@/components/ui';
+import { Input } from '@/components/ui';
+import { Label } from '@/components/ui';
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from 'ui-components';
-import { Textarea } from 'ui-components';
-import { Calendar } from 'ui-components';
-import { Popover, PopoverContent, PopoverTrigger } from 'ui-components';
+} from '@/components/ui';
+import { Textarea } from '@/components/ui';
+import { Calendar } from '@/components/ui';
+import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui';
 import { cn } from 'lib';
 import { format } from 'date-fns';
 import { CalendarIcon, Loader2 } from 'lucide-react';

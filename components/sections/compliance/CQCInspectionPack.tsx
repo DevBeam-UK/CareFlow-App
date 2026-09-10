@@ -1,7 +1,7 @@
 
 'use client';
 
-import { Card, CardContent, CardHeader, CardTitle, Badge, Button } from 'ui-components';
+import { Card, CardContent, CardHeader, CardTitle, Badge, Button } from '@/components/ui';
 import {
   FileText,
   Download,

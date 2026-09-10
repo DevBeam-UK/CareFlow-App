@@ -4,7 +4,7 @@ import { useState, useEffect, useMemo } from 'react';
 import {
   Dialog,
   DialogContent,
-} from "ui-components";
+} from "@/components/ui";
 import { StaffMember } from "types";
 import { ALL_MODULES } from "utils";
 import PermissionsHeader from './PermissionHeader';

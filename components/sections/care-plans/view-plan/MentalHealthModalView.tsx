@@ -1,7 +1,7 @@
 'use client';
 
-import { Card, CardContent, CardHeader, CardTitle } from "ui-components";
-import { Badge } from "ui-components";
+import { Card, CardContent, CardHeader, CardTitle } from @/components/ui;
+import { Badge } from @/components/ui;
 import { CarePlanModule, MentalHealthContent } from "types";
 
 interface MentalHealthModuleViewProps {

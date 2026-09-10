@@ -7,8 +7,8 @@ import {
   DialogHeader,
   DialogTitle,
   DialogDescription,
-} from "ui-components";
-import { Progress } from "ui-components";
+} from @/components/ui;
+import { Progress } from @/components/ui;
 import { Check } from 'lucide-react';
 import { CreationStep, ModuleCreationData } from "types";
 import { ModuleTypeSelection } from './ModuleTypeSelection';

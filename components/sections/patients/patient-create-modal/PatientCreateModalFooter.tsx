@@ -1,6 +1,6 @@
 'use client';
 
-import { Button } from 'ui-components';
+import { Button } from "@/components/ui";
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 
 interface CreatePatientModalFooterProps {

@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { Card, Badge, Button, Tabs, TabsContent, TabsList, TabsTrigger } from 'ui-components';
+import { Card, Badge, Button, Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui';
 import { Incident } from '@/types';
 import { mockIncidents } from 'utils';
 import { ReportIncidentModal, IncidentDetailDrawer, IncidentStatsSection, IncidentHeaderSection } from 'sections';

@@ -1,7 +1,7 @@
 'use client';
 
-import { Button } from "ui-components";
-import { Card, CardContent, CardHeader, CardTitle } from "ui-components";
+import { Button } from @/components/ui;
+import { Card, CardContent, CardHeader, CardTitle } from @/components/ui;
 import { ModuleCreationData } from "types";
 import { CheckCircle, AlertCircle } from 'lucide-react';
 

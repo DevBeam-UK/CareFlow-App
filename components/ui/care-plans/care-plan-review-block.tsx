@@ -1,6 +1,6 @@
 'use client';
 
-import { Avatar, AvatarFallback, AvatarImage, Badge } from 'ui-components';
+import { Avatar, AvatarFallback, AvatarImage, Badge } from '@/components/ui';
 import { Clock, AlertCircle, FileText, CheckCircle } from 'lucide-react';
 
 interface ReviewQueueBlockProps {

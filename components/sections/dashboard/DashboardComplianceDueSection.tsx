@@ -1,8 +1,8 @@
 // components/sections/dashboard/DashboardComplianceDue.tsx
 'use client';
 
-import { Card, CardContent, CardHeader, CardTitle } from 'ui-components';
-import { Badge } from 'ui-components';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui';
+import { Badge } from '@/components/ui';
 import { Calendar, AlertCircle } from 'lucide-react';
 import { motion } from 'framer-motion';
 

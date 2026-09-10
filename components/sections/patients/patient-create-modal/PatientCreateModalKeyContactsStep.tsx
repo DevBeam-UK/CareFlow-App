@@ -1,19 +1,19 @@
-// components/sections/patients/CreatePatientModal/steps/KeyContactsStep.tsx
 'use client';
 
 import { useState } from 'react';
-import { Input } from 'ui-components';
-import { Label } from 'ui-components';
-import { Button } from 'ui-components';
-import { Card, CardContent } from 'ui-components';
 import {
+  Input,
+  Label,
+  Button,
+  Card,
+  CardContent,
+  Checkbox,
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from 'ui-components';
-import { Checkbox } from 'ui-components';
+} from "@/components/ui"
 import { X, Plus, User, Phone, Mail, AlertCircle } from 'lucide-react';
 import { PatientFormData } from './PatientCreateModal';
 

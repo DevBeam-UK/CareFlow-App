@@ -10,8 +10,8 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from "ui-components";
-import { Badge } from "ui-components";
+} from @/components/ui;
+import { Badge } from @/components/ui;
 import {
   ChartConfig,
   ChartContainer,
@@ -19,7 +19,7 @@ import {
   ChartLegendContent,
   ChartTooltip,
   ChartTooltipContent,
-} from "ui-components";
+} from @/components/ui;
 
 const chartData = [
   { day: "Monday", needed: 28, available: 40 },

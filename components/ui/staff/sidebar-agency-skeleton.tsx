@@ -1,4 +1,4 @@
-import { Skeleton } from "ui-components";
+import { Skeleton } from @/components/ui;
 
 export function SidebarAgencySectionSkeleton() {
   return (

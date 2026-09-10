@@ -2,24 +2,22 @@
 'use client';
 
 import { useState } from 'react';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui";
+import { Badge } from "@/components/ui";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui";
+import { ScrollArea } from "@/components/ui";
 import {
   Drawer,
   DrawerContent,
   DrawerFooter,
   DrawerHeader,
   DrawerTitle,
-} from 'ui-components';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from 'ui-components';
-import { Badge } from 'ui-components';
-import { Avatar, AvatarFallback, AvatarImage } from 'ui-components';
-import { ScrollArea } from 'ui-components';
-import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from 'ui-components';
-import { Button } from 'ui-components';
+} from "@/components/ui";
+import { Button } from "@/components/ui";
 import { ChevronDown } from 'lucide-react';
 import { PatientDrawerFooter } from '../PatientDrawerFooter';
 import { PatientDischargeModal, type DischargePayload } from './PatientDischargeModal';

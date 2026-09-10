@@ -1,13 +1,13 @@
 "use client";
 
-import { Button } from "ui-components";
+import { Button } from @/components/ui;
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "ui-components";
+} from @/components/ui;
 import { MoreHorizontal, Eye, Edit2, Mail, MessageSquare, Trash2 } from "lucide-react";
 import { StaffMember } from "types";
 

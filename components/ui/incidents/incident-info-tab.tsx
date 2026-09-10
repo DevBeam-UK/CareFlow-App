@@ -1,6 +1,6 @@
 'use client';
 
-import { Card, Badge, BadgeProps, ScrollArea } from 'ui-components';
+import { Card, Badge, BadgeProps, ScrollArea } from '@/components/ui';
 import {
   User,
   Calendar,

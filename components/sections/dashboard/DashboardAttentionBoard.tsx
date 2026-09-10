@@ -1,8 +1,6 @@
 // components/sections/dashboard/DashboardAttentionBoard.tsx
 import React from "react";
-import { Badge, BadgeProps } from "ui-components";
-import { Button } from "ui-components";
-import { Card, CardContent, CardHeader, CardTitle } from "ui-components";
+import { Badge, BadgeProps, Button, Card, CardContent, CardHeader, CardTitle } from "@/components/ui";
 import {
   AlertCircle,
   ChevronRight,

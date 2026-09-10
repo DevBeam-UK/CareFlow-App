@@ -3,7 +3,7 @@
 
 import { useMemo, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Badge, Button, Card, CardContent, CardFooter, CardHeader, CardTitle, Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from 'ui-components';
+import { Badge, Button, Card, CardContent, CardFooter, CardHeader, CardTitle, Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui';
 import type { VisitUrgency } from '@/components/ui';
 import {UnassignedScheduleBlock} from "@/components/ui"
 import { ChevronDown, ChevronUp, Sparkles, Loader2 } from 'lucide-react';

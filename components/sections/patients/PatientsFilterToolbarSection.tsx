@@ -1,10 +1,10 @@
 // components/sections/patients/PatientsFilterToolbarSection.tsx
 'use client';
 
-import { Button } from 'ui-components';
+import { Button } from "@/components/ui";
 import { Download, Search } from 'lucide-react';
-import { Tabs, TabsList, TabsTrigger } from 'ui-components';
-import { Input } from 'ui-components';
+import { Tabs, TabsList, TabsTrigger } from "@/components/ui";
+import { Input } from "@/components/ui";
 
 type PatientTab = 'active' | 'on-hold' | 'high-risk' | 'review-date' | 'new' | 'all';
 

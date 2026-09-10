@@ -1,7 +1,7 @@
 // components/sections/compliance/ComplianceAlerts.tsx
 'use client';
 
-import { Card, CardContent, CardHeader, CardTitle, Badge, BadgeProps, ScrollArea } from 'ui-components';
+import { Card, CardContent, CardHeader, CardTitle, Badge, BadgeProps, ScrollArea } from '@/components/ui';
 import {
   Bell,
   AlertCircle,

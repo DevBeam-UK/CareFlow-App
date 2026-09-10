@@ -1,11 +1,11 @@
 'use client';
 
-import { Checkbox, Table, TableBody, TableCell, TableHead, TableHeader, TableRow, Badge } from 'ui-components';
+import { Checkbox, Table, TableBody, TableCell, TableHead, TableHeader, TableRow, Badge } from "@/components/ui"
 import { useGetUserPermissionsApi } from "lib";
 import { StaffMember } from "types";
 import { PERMISSION_MODULES } from '@/utils';
 import { PermissionsModal } from './PermissionsModal';
-import { Button } from "ui-components";
+import { Button } from "@/components/ui"
 import { Shield, ShieldAlert } from 'lucide-react';
 import { useState } from 'react';
 import { PermissionTableSkeleton } from "@/components/ui";

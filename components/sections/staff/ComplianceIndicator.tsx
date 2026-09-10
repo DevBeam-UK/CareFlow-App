@@ -1,5 +1,5 @@
 import type { ComplianceStatus } from "lib";
-import { Badge, type BadgeProps } from "ui-components";
+import { Badge, type BadgeProps } from "@/components/ui";
 
 const STATUS_CONFIG: Record<ComplianceStatus, { label: string; variant: string; dot: string }> = {
   clear: { 

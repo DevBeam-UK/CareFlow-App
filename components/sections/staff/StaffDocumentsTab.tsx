@@ -9,7 +9,7 @@ import {
   DialogContent,
   DialogHeader,
   DialogTitle,
-} from 'ui-components';
+} from "@/components/ui";
 import {
   FileText,
   Download,

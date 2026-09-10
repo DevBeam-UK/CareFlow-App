@@ -1,19 +1,18 @@
-// components/sections/patients/CreatePatientModal/steps/MedicalHistoryStep.tsx
 'use client';
 
 import { useState } from 'react';
-import { Input } from 'ui-components';
-import { Label } from 'ui-components';
-import { Button } from 'ui-components';
-import { Card, CardContent } from 'ui-components';
 import {
+  Input,
+  Label,
+  Button,
+  Card, 
+  CardContent,
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
-  SelectValue,
-} from 'ui-components';
-import { Textarea } from 'ui-components';
+  SelectValue
+} from "@/components/ui";
 import { X, Plus } from 'lucide-react';
 import { PatientFormData } from './PatientCreateModal';
 

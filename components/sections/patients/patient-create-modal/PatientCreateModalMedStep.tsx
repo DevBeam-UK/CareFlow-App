@@ -2,18 +2,19 @@
 'use client';
 
 import { useState } from 'react';
-import { Input } from 'ui-components';
-import { Label } from 'ui-components';
-import { Button } from 'ui-components';
-import { Card, CardContent } from 'ui-components';
-import { Badge } from 'ui-components';
 import {
+  Input,
+  Label,
+  Button,
+  Card, 
+  CardContent,
+  Badge,
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from 'ui-components';
+} from "@/components/ui";
 import { X } from 'lucide-react';
 import { PatientFormData } from './PatientCreateModal';
 

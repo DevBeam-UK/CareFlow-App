@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { Card, Button, Textarea, ScrollArea } from 'ui-components';
+import { Card, Button, Textarea, ScrollArea } from '@/components/ui';
 import { User } from 'lucide-react';
 import { Incident } from '@/types';
 

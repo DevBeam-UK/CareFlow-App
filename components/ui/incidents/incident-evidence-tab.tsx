@@ -1,6 +1,6 @@
 'use client';
 
-import { Card, Button, ScrollArea } from 'ui-components';
+import { Card, Button, ScrollArea } from '@/components/ui';
 import { Download, Paperclip, Image, File, FileText } from 'lucide-react';
 import { formatFileSize } from 'utils';
 

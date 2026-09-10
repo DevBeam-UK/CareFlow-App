@@ -2,7 +2,7 @@
 
 import type { ReactNode } from 'react';
 import { motion } from 'framer-motion';
-import { Card, CardHeader, CardTitle, CardContent } from 'ui-components';
+import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui";
 import { StaffMember } from 'types';
 import { formatDate, formatTime } from 'utils';
 

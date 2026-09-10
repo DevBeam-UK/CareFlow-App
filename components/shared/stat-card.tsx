@@ -1,7 +1,7 @@
-import { MagicCard } from "ui-components";
+import { MagicCard } from @/components/ui;
 import { ArrowDown, ArrowUp } from "lucide-react";
 import { StatCardProps } from "types";
-import { Badge } from "ui-components";
+import { Badge } from @/components/ui;
 import { getScoreRingColor, showStatTrend } from "utils";
 
 function StatCard({

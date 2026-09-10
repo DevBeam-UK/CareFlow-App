@@ -12,7 +12,7 @@ import {
 } from "sections";
 import type { CarePlan, ModuleCreationData } from "types";
 import { mockCarePlan, mockModules } from "utils";
-import { Separator } from "ui-components";
+import { Separator } from @/components/ui;
 
 const mockCarePlansList: CarePlan[] = [
     mockCarePlan,

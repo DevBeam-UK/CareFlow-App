@@ -1,6 +1,6 @@
 'use client';
 
-import { Card, CardContent, CardHeader, CardTitle } from 'ui-components';
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui";
 import { Clock, Coffee, Heart, ThumbsUp, ThumbsDown } from 'lucide-react';
 
 interface PatientPreferencesTabProps {

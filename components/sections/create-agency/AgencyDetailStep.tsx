@@ -2,9 +2,9 @@
 
 "use client";
 
-import { Button } from "ui-components";
-import { Input } from "ui-components";
-import { Label } from "ui-components";
+import { Button } from @/components/ui;
+import { Input } from @/components/ui;
+import { Label } from @/components/ui;
 import { AlertCircle } from "lucide-react";
 
 interface AgencyFormData {

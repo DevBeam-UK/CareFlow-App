@@ -1,6 +1,6 @@
 'use client';
 
-import { Button } from "ui-components";
+import { Button } from @/components/ui;
 import { Plus, FileText } from 'lucide-react';
 
 interface CarePlanHeaderProps {

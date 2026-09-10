@@ -1,7 +1,7 @@
 'use client';
 
 import { ChevronRight, AlertCircle } from 'lucide-react';
-import { Badge, BadgeProps } from 'ui-components';
+import { Badge, BadgeProps } from "@/components/ui";
 import {
   Table,
   TableBody,
@@ -9,10 +9,10 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from 'ui-components';
-import { Avatar, AvatarFallback, AvatarImage } from 'ui-components';
+} from "@/components/ui";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui";
 import React from 'react';
-import { Button } from 'ui-components';
+import { Button } from "@/components/ui";
 import { getRiskBadgeVariant, getRiskDotColor } from 'utils';
 import type { Patient } from 'types';
 

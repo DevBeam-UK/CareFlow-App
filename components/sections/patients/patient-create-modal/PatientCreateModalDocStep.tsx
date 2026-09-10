@@ -1,15 +1,15 @@
 'use client';
 
 import { useState } from 'react';
-import { Card, CardContent } from 'ui-components';
-import { Label } from 'ui-components';
-import {
+import { 
+  Card,
+  Label,
+  CardContent,
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
-  SelectValue,
-} from 'ui-components';
+  SelectValue, } from "@/components/ui";
 import { Upload, X, FileText, ShieldAlert, Scale, FileHeart } from 'lucide-react';
 import { PatientFormData } from './PatientCreateModal';
 

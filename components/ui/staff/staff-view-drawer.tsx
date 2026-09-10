@@ -20,7 +20,7 @@ import {
   DropdownMenuContent,
   DropdownMenuItem,
   BadgeProps,
-} from 'ui-components';
+} from '@/components/ui';
 import {
   Mail,
   MessageSquare,

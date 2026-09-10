@@ -1,16 +1,16 @@
 'use client';
 
-import { Input } from 'ui-components';
-import { Label } from 'ui-components';
 import {
+  Input,
+  Label,
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from 'ui-components';
-import { Textarea } from 'ui-components';
-import { Checkbox } from 'ui-components';
+  Textarea,
+  Checkbox
+} from "@/components/ui"
 import { PatientFormData } from './PatientCreateModal';
 
 

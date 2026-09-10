@@ -2,7 +2,7 @@
 
 import { motion, type Variants } from 'framer-motion';
 import { UserPlus2, Mail, CheckCircle2, RotateCw, Trash2, Clock, LucideIcon } from 'lucide-react';
-import { Card, CardHeader, CardTitle, CardContent } from 'ui-components';
+import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui";
 import { StaffMember } from 'types';
 import { formatTime } from 'utils';
 

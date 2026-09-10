@@ -1,4 +1,3 @@
-// components/sections/patients/patient-drawer/PatientDischargeModal.tsx
 'use client';
 
 import { useState } from 'react';
@@ -9,19 +8,17 @@ import {
   DialogTitle,
   DialogDescription,
   DialogFooter,
-} from 'ui-components';
-import { Button } from 'ui-components';
-import { Label } from 'ui-components';
-import { Textarea } from 'ui-components';
-import { Checkbox } from 'ui-components';
-import {
+  Button,
+  Label,
+  Textarea,
+  Checkbox,
+  Input,
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from 'ui-components';
-import { Input } from 'ui-components';
+} from "@/components/ui";
 import { AlertTriangle } from 'lucide-react';
 
 export type DischargeReason =

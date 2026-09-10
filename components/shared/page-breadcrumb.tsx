@@ -7,7 +7,7 @@ import {
   BreadcrumbList,
   BreadcrumbPage,
   BreadcrumbSeparator,
-} from "ui-components";
+} from @/components/ui;
 
 function PageBreadcrumb({
   currentPage,

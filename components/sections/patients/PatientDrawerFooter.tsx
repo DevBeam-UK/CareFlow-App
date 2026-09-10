@@ -1,13 +1,13 @@
 // components/patients/PatientDrawerFooter.tsx
 'use client';
 
-import { Button } from 'ui-components';
+import { Button } from "@/components/ui";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from 'ui-components';
+} from "@/components/ui";
 import {
   Calendar,
   Edit,

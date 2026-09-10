@@ -8,13 +8,13 @@ import {
   CardDescription,
   CardHeader,
   CardTitle,
-} from 'ui-components';
+} from '@/components/ui';
 import {
   ChartContainer,
   ChartTooltip,
   ChartTooltipContent,
   type ChartConfig,
-} from 'ui-components';
+} from '@/components/ui';
 
 const weeklyActivityData = [
   { day: 'Mon', done: 45, active: 23, missed: 5 },

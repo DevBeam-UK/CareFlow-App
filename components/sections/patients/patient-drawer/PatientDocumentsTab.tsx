@@ -1,15 +1,16 @@
 'use client';
 
 import { useRef, useState } from 'react';
-import { Card, CardContent } from 'ui-components';
-import { Button } from 'ui-components';
 import {
+  Button,
+  Card,
+  CardContent,
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from 'ui-components';
+} from "@/components/ui";
 import { FileText, Upload, X, FolderOpen } from 'lucide-react';
 
 const DOCUMENT_TYPES = [

@@ -1,4 +1,4 @@
-import { Button, DialogFooter } from "ui-components";
+import { Button, DialogFooter } from "@/components/ui";
 import { Loader2 } from "lucide-react";
 
 function PermissionsFooter({

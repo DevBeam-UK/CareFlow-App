@@ -1,4 +1,4 @@
-import { Button } from 'ui-components'
+import { Button } from "@/components/ui"
 import { Download, Plus } from 'lucide-react'
 import React from 'react'
 import { AddStaffModal } from './AddStaffModal'

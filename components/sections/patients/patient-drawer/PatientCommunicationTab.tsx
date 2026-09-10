@@ -1,7 +1,6 @@
 'use client';
 
-import { Card, CardContent, CardHeader, CardTitle } from 'ui-components';
-import { Badge } from 'ui-components';
+import { Card, CardContent, CardHeader, CardTitle, Badge } from "@/components/ui";
 import { Languages, Ear, Eye, Brain, Users } from 'lucide-react';
 
 interface PatientCommunicationTabProps {

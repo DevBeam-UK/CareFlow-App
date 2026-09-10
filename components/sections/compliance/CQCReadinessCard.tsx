@@ -1,4 +1,4 @@
-import { Badge, Button, Card, CardAction, CardContent, CardFooter, CardHeader, CardTitle, Separator, Progress, ProgressIndicator, ProgressTrack } from 'ui-components'
+import { Badge, Button, Card, CardAction, CardContent, CardFooter, CardHeader, CardTitle, Separator, Progress, ProgressIndicator, ProgressTrack } from '@/components/ui'
 import { Shield, Heart, Users, Clock, Award, AlertTriangle } from 'lucide-react'
 import React from 'react'
 import { getProgressColor, getStatusFromScore, getIconColor } from 'utils'

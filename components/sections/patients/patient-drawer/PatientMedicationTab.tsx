@@ -1,7 +1,6 @@
 'use client';
 
-import { Card, CardContent } from 'ui-components';
-import { Badge } from 'ui-components';
+import { Card, CardContent, Badge } from "@/components/ui";
 
 const MEDICATION_TYPE_LABEL: Record<string, string> = {
   regular: 'Regular',

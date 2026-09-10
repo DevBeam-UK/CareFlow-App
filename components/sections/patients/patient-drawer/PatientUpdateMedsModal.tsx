@@ -1,26 +1,24 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { Button } from "@/components/ui";
+import { Input } from "@/components/ui";
+import { Label } from "@/components/ui";
+import { Card, CardContent } from "@/components/ui";
+import { Badge } from "@/components/ui";
 import {
-  Dialog,
+   Dialog,
   DialogContent,
   DialogHeader,
   DialogTitle,
   DialogFooter,
   DialogDescription,
-} from 'ui-components';
-import { Button } from 'ui-components';
-import { Input } from 'ui-components';
-import { Label } from 'ui-components';
-import { Card, CardContent } from 'ui-components';
-import { Badge } from 'ui-components';
-import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from 'ui-components';
+} from "@/components/ui";
 import { X, Plus, Loader2 } from 'lucide-react';
 
 const MEDICATION_TYPES = [

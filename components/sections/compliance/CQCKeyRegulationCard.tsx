@@ -1,6 +1,6 @@
 'use client';
 
-import { Card, CardHeader, CardTitle, CardContent, Badge } from 'ui-components';
+import { Card, CardHeader, CardTitle, CardContent, Badge } from '@/components/ui';
 import { ChevronRight } from 'lucide-react';
 
 const regulationsMockData = [

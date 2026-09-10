@@ -1,7 +1,7 @@
 // components/sections/dashboard/DashboardOnShiftSection.tsx
 import React from 'react';
-import { Card, CardContent, CardHeader, CardTitle } from 'ui-components';
-import { Badge, BadgeProps } from 'ui-components';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui';
+import { Badge, BadgeProps } from '@/components/ui';
 import { Users } from 'lucide-react';
 
 interface Carer {

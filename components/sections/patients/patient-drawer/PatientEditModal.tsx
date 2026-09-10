@@ -1,6 +1,9 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { Button } from "@/components/ui"
+import { Input } from "@/components/ui"
+import { Label } from "@/components/ui"
 import {
   Dialog,
   DialogContent,
@@ -8,17 +11,12 @@ import {
   DialogTitle,
   DialogFooter,
   DialogDescription,
-} from 'ui-components';
-import { Button } from 'ui-components';
-import { Input } from 'ui-components';
-import { Label } from 'ui-components';
-import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from 'ui-components';
+} from "@/components/ui"
 import type { Patient } from "types";
 import { Loader2 } from 'lucide-react';
 

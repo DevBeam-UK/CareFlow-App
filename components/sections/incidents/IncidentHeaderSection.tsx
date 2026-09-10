@@ -1,7 +1,7 @@
 
 'use client';
 
-import { Button } from 'ui-components';
+import { Button } from '@/components/ui';
 import { Plus } from 'lucide-react';
 
 interface IncidentHeaderSectionProps {

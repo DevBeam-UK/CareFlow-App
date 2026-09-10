@@ -16,7 +16,7 @@ import {
   SelectValue,
   Card,
   Badge,
-} from 'ui-components';
+} from '@/components/ui';
 import { Incident, IncidentSeverity, IncidentType } from '@/types';
 
 

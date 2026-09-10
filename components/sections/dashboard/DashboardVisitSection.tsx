@@ -6,10 +6,10 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "ui-components";
-import { Button } from "ui-components";
-import { Badge, BadgeProps } from "ui-components";
-import { Avatar, AvatarFallback, AvatarImage } from "ui-components";
+} from @/components/ui;
+import { Button } from @/components/ui;
+import { Badge, BadgeProps } from @/components/ui;
+import { Avatar, AvatarFallback, AvatarImage } from @/components/ui;
 import { Filter, Eye } from "lucide-react";
 import Link from "next/link";
 

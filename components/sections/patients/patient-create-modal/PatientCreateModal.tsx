@@ -7,8 +7,8 @@ import {
   DialogHeader,
   DialogTitle,
   DialogDescription,
-} from 'ui-components';
-import { ScrollArea } from 'ui-components';
+  ScrollArea
+} from "@/components/ui"
 import { CreatePatientModalProgress } from './PatientCreateModalProgress';
 import { CreatePatientModalFooter } from './PatientCreateModalFooter';
 import { AttachmentsStep } from './PatientCreateModalDocStep';

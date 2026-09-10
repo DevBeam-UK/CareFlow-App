@@ -1,8 +1,8 @@
 "use client";
 
 import { useState, type ReactElement } from "react";
-import { Popover, PopoverTrigger, PopoverContent } from "ui-components";
-import { Button } from "ui-components";
+import { Popover, PopoverTrigger, PopoverContent } from @/components/ui;
+import { Button } from @/components/ui;
 import { Building2, MoreVertical } from "lucide-react";
 
 export interface SidebarAgencySectionProps {
