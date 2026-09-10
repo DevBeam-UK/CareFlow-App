@@ -338,15 +338,15 @@ export function AddVisitModal({
               <div
                 className={`space-y-1.5 rounded-lg border p-3 ${
                   hasBlockingConflict
-                    ? 'border-red-200 bg-red-50'
-                    : 'border-amber-200 bg-amber-50'
+                    ? 'border-[var(--cf-error)]/20 bg-[var(--cf-error-muted)]'
+                    : 'border-[var(--cf-warning)]/20 bg-[var(--cf-warning-muted)]'
                 }`}
               >
                 {conflicts.map((issue, i) => (
                   <div
                     key={i}
                     className={`flex items-start gap-2 text-xs font-medium ${
-                      issue.level === 'error' ? 'text-red-700' : 'text-amber-700'
+                      issue.level === 'error' ? 'text-[var(--cf-error)]' : 'text-[var(--cf-warning)]'
                     }`}
                   >
                     <AlertTriangle className="h-3.5 w-3.5 mt-0.5 shrink-0" />
