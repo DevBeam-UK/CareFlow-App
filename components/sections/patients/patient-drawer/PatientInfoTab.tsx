@@ -1,9 +1,9 @@
-// components/sections/patients/tabs/PatientInfoTab.tsx
 'use client';
 
 import { Card, CardContent, CardHeader, CardTitle } from 'ui-components';
 import { Badge } from 'ui-components';
 import { ShieldCheck, ShieldQuestion } from 'lucide-react';
+import type { Patient } from "types";
 
 interface PatientInfoTabProps {
   patient: {
@@ -16,7 +16,7 @@ interface PatientInfoTabProps {
     email: string;
     phone: string;
     carer: string;
-    status: 'active' | 'on-hold' | 'new';
+    status: 'active' | 'on-hold' | 'new' | 'discharged';
     nextVisit: string;
     gpName?: string;
     gpPhone?: string;

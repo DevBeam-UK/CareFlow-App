@@ -18,6 +18,7 @@ export { PatientInfoTab } from "./patient-drawer/PatientInfoTab";
 export { PatientMedicalHistoryTab } from "./patient-drawer/PatientMedicalHistoryTab";
 export { PatientMedicationsTab } from "./patient-drawer/PatientMedicationTab";
 export { PatientPreferencesTab } from "./patient-drawer/PatientPreferenceTab";
+export { PatientDischargeModal} from "./patient-drawer/PatientDischargeModal";
 export {
   CreatePatientModal,
   type PatientFormData,

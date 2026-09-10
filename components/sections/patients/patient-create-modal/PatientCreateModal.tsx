@@ -234,6 +234,18 @@ export function CreatePatientModal({
       if (!formData.address.trim()) newErrors.address = 'Address is required';
     }
 
+    if (step === 5) {
+      if (formData.contacts.length === 0) {
+        newErrors.contacts = 'Add at least one key contact before continuing';
+      }
+    }
+
+    if (step === 8) {
+      if (formData.selectedCarers.length === 0) {
+        newErrors.carers = 'Select at least one carer before continuing';
+      }
+    }
+
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
@@ -414,7 +426,14 @@ export function CreatePatientModal({
       case 4:
         return <PreferencesStep formData={formData} setFormData={setFormData} />;
       case 5:
-        return <KeyContactsStep formData={formData} setFormData={setFormData} />;
+        return (
+          <KeyContactsStep
+            formData={formData}
+            setFormData={setFormData}
+            errors={errors}
+            setErrors={setErrors}
+          />
+        );
       case 6:
         return <LifeStoryStep formData={formData} setFormData={setFormData} />;
       case 7:

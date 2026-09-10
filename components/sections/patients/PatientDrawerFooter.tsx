@@ -14,11 +14,10 @@ import {
   FileText,
   Pill,
   MoreHorizontal,
-  Clock,
-  Mail,
   AlertTriangle,
   BarChart3,
   Archive,
+  LogOut,
 } from 'lucide-react';
 
 interface PatientDrawerFooterProps {
@@ -30,6 +29,7 @@ interface PatientDrawerFooterProps {
   onRiskAssessment?: () => void;
   onGenerateReport?: () => void;
   onArchive?: () => void;
+  onDischarge?: () => void;
 }
 
 export function PatientDrawerFooter({
@@ -38,10 +38,10 @@ export function PatientDrawerFooter({
   onCarePlan,
   onMedication,
   onAddDocument,
- 
   onRiskAssessment,
   onGenerateReport,
   onArchive,
+  onDischarge,
 }: PatientDrawerFooterProps) {
   return (
     <div className="flex items-center justify-between px-4 py-3 border-t border-cf-border bg-cf-surface">
@@ -63,7 +63,7 @@ export function PatientDrawerFooter({
       </Button>
 
       <DropdownMenu>
-        <DropdownMenuTrigger >
+        <DropdownMenuTrigger>
           <Button variant="outline" size="sm" className="gap-1.5">
             <MoreHorizontal className="h-4 w-4" />
             More
@@ -86,6 +86,19 @@ export function PatientDrawerFooter({
             <Archive className="h-4 w-4" />
             Archive Patient
           </DropdownMenuItem>
+
+          {onDischarge && (
+            <>
+              <div className="my-1 border-t border-cf-border-light" />
+              <DropdownMenuItem
+                onClick={onDischarge}
+                className="gap-2 text-[var(--cf-error)] focus:text-[var(--cf-error)] focus:bg-[var(--cf-error-muted)]"
+              >
+                <LogOut className="h-4 w-4" />
+                Discharge Patient
+              </DropdownMenuItem>
+            </>
+          )}
         </DropdownMenuContent>
       </DropdownMenu>
     </div>

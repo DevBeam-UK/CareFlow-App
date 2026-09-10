@@ -1,7 +1,6 @@
 'use client';
 
 import { ChevronRight, AlertCircle } from 'lucide-react';
-import Link from 'next/link';
 import { Badge, BadgeProps } from 'ui-components';
 import {
   Table,
@@ -12,25 +11,10 @@ import {
   TableRow,
 } from 'ui-components';
 import { Avatar, AvatarFallback, AvatarImage } from 'ui-components';
-import { Checkbox } from 'ui-components';
 import React from 'react';
 import { Button } from 'ui-components';
 import { getRiskBadgeVariant, getRiskDotColor } from 'utils';
-
-interface Patient {
-  id: string;
-  name: string;
-  address: string;
-  avatar?: string;
-  initials: string;
-  age: number;
-  risk: 'low' | 'medium' | 'high';
-  status: 'active' | 'on-hold' | 'new';
-  carer: string;
-  nextVisit: string;
-  email?: string;
-  phone?: string;
-}
+import type { Patient } from 'types';
 
 interface PatientsTableProps {
   patients: Patient[];
@@ -38,28 +22,18 @@ interface PatientsTableProps {
   onView?: (patient: Patient) => void;
 }
 
-const riskColors: Record<'low' | 'medium' | 'high', string> = {
-  low: 'text-green-600',
-  medium: 'text-yellow-600',
-  high: 'text-red-600',
-};
-
-const riskBgColors: Record<'low' | 'medium' | 'high', string> = {
-  low: 'bg-green-100/50',
-  medium: 'bg-yellow-100/50',
-  high: 'bg-red-100/50',
-};
-
-const statusVariants: Record<'active' | 'on-hold' | 'new', BadgeProps['variant']> = {
+const statusVariants: Record<Patient['status'], BadgeProps['variant']> = {
   active: 'pastel-success',
   'on-hold': 'pastel-warning',
   new: 'pastel-info',
+  discharged: 'pastel-muted' as BadgeProps['variant'],
 };
 
-const statusLabels: Record<'active' | 'on-hold' | 'new', string> = {
+const statusLabels: Record<Patient['status'], string> = {
   active: 'Active',
   'on-hold': 'On Hold',
   new: 'New',
+  discharged: 'Discharged',
 };
 
 export function PatientsTable({ patients, isLoading, onView }: PatientsTableProps) {
@@ -88,7 +62,6 @@ export function PatientsTable({ patients, isLoading, onView }: PatientsTableProp
         <Table>
           <TableHeader>
             <TableRow className="border-b border-cf-border-light hover:bg-transparent">
-              
               <TableHead className="text-cf-ink-60 font-medium text-xs">Patient</TableHead>
               <TableHead className="text-cf-ink-60 font-medium text-xs">Age</TableHead>
               <TableHead className="text-cf-ink-60 font-medium text-xs">Risk</TableHead>
@@ -106,20 +79,14 @@ export function PatientsTable({ patients, isLoading, onView }: PatientsTableProp
                   selectedRows.has(patient.id) ? 'bg-cf-surface-muted/50' : ''
                 }`}
               >
-               
-
-    
                 <TableCell>
                   <div className="flex items-center gap-3 min-w-0">
-                    
                     <Avatar className="h-8 w-8 border border-cf-border-light flex-shrink-0">
                       {patient.avatar && <AvatarImage src={patient.avatar} alt={patient.name} />}
                       <AvatarFallback className="bg-cf-surface-muted text-cf-ink-60 text-xs font-medium">
                         {patient.initials}
                       </AvatarFallback>
                     </Avatar>
-
-                
                     <div className="flex-1 min-w-0">
                       <p className="text-sm font-medium text-cf-ink truncate">{patient.name}</p>
                       <p className="text-xs text-cf-ink-40 truncate">{patient.address}</p>
@@ -127,22 +94,21 @@ export function PatientsTable({ patients, isLoading, onView }: PatientsTableProp
                   </div>
                 </TableCell>
 
-               
                 <TableCell className="text-sm text-cf-ink-60 whitespace-nowrap">
                   {patient.age}
                 </TableCell>
 
-              
                 <TableCell>
-  <Badge
-    variant={getRiskBadgeVariant(patient.risk) as BadgeProps['variant']}
-    className='flex items-center gap-x-2 '
-    shape={'pill'}
-  >
-    <span className={`w-1.5 h-1.5 rounded-full ${getRiskDotColor(patient.risk)}`} />
-    {patient.risk}
-  </Badge>
-</TableCell>        
+                  <Badge
+                    variant={getRiskBadgeVariant(patient.risk) as BadgeProps['variant']}
+                    className='flex items-center gap-x-2 '
+                    shape={'pill'}
+                  >
+                    <span className={`w-1.5 h-1.5 rounded-full ${getRiskDotColor(patient.risk)}`} />
+                    {patient.risk}
+                  </Badge>
+                </TableCell>
+
                 <TableCell>
                   <Badge
                     variant={statusVariants[patient.status]}
@@ -153,17 +119,14 @@ export function PatientsTable({ patients, isLoading, onView }: PatientsTableProp
                   </Badge>
                 </TableCell>
 
-                
                 <TableCell className="text-sm text-cf-ink-60 whitespace-nowrap">
                   {patient.carer}
                 </TableCell>
 
-             
                 <TableCell className="text-sm text-cf-ink-60 whitespace-nowrap">
                   {patient.nextVisit}
                 </TableCell>
 
-               
                 <TableCell className="text-right">
                   <Button
                     onClick={() => onView?.(patient)}
@@ -179,4 +142,4 @@ export function PatientsTable({ patients, isLoading, onView }: PatientsTableProp
       </div>
     </div>
   );
-}9
+}

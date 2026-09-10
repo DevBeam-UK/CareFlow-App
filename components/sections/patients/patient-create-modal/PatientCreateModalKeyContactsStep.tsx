@@ -14,13 +14,15 @@ import {
   SelectValue,
 } from 'ui-components';
 import { Checkbox } from 'ui-components';
-import { X, Plus, User, Phone, Mail } from 'lucide-react';
+import { X, Plus, User, Phone, Mail, AlertCircle } from 'lucide-react';
 import { PatientFormData } from './PatientCreateModal';
 
 
 interface KeyContactsStepProps {
   formData: PatientFormData;
   setFormData: (data: PatientFormData) => void;
+  errors: Record<string, string>;
+  setErrors: (errors: Record<string, string>) => void;
 }
 
 interface Contact {
@@ -30,12 +32,12 @@ interface Contact {
   role: string;
   phone: string;
   email: string;
-  relationship?: string;
+  relationship: string;
   isPrimary: boolean;
   isEmergency: boolean;
 }
 
-export function KeyContactsStep({ formData, setFormData }: KeyContactsStepProps) {
+export function KeyContactsStep({ formData, setFormData, errors, setErrors }: KeyContactsStepProps) {
   const [newContact, setNewContact] = useState<Omit<Contact, 'id'>>({
     type: 'family',
     name: '',
@@ -67,6 +69,9 @@ export function KeyContactsStep({ formData, setFormData }: KeyContactsStepProps)
         isPrimary: false,
         isEmergency: false,
       });
+      if (errors.contacts) {
+        setErrors({ ...errors, contacts: '' });
+      }
     }
   };
 
@@ -101,6 +106,13 @@ export function KeyContactsStep({ formData, setFormData }: KeyContactsStepProps)
         <h3 className="text-lg font-semibold text-cf-ink">Key Contacts</h3>
         <p className="text-sm text-cf-ink-60">Everyone involved in the patient's care</p>
       </div>
+
+      {errors.contacts && (
+        <div className="flex items-center gap-2 p-3 bg-[var(--cf-error-muted)] border border-[var(--cf-error)]/20 rounded-lg">
+          <AlertCircle className="w-4 h-4 text-[var(--cf-error)] flex-shrink-0" />
+          <p className="text-xs text-[var(--cf-error)]">{errors.contacts}</p>
+        </div>
+      )}
 
       <Card className="border-cf-border p-4 space-y-3">
         <div className="grid grid-cols-2 gap-3">
@@ -220,10 +232,10 @@ export function KeyContactsStep({ formData, setFormData }: KeyContactsStepProps)
                     <p className="text-sm font-medium text-cf-ink">{contact.name}</p>
                     <span className="text-xs text-cf-ink-40">({contactTypeLabels[contact.type]})</span>
                     {contact.isPrimary && (
-                      <span className="text-[10px] bg-blue-100 text-blue-700 px-1.5 py-0.5 rounded-full">Primary</span>
+                      <span className="text-[10px] bg-[var(--cf-info-muted)] text-[var(--cf-info)] px-1.5 py-0.5 rounded-full">Primary</span>
                     )}
                     {contact.isEmergency && (
-                      <span className="text-[10px] bg-red-100 text-red-700 px-1.5 py-0.5 rounded-full">Emergency</span>
+                      <span className="text-[10px] bg-[var(--cf-error-muted)] text-[var(--cf-error)] px-1.5 py-0.5 rounded-full">Emergency</span>
                     )}
                   </div>
                   <div className="flex items-center gap-3 text-xs text-cf-ink-60 mt-1">
