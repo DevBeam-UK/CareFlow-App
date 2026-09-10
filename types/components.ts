@@ -98,7 +98,8 @@ export interface Patient {
   email: string;
   phone: string;
   carer: string;
-  status: 'active' | 'on-hold' | 'new';
+  status: 'active' | 'on-hold' | 'new' | 'discharged';
+  dischargeDetails?: any;  
   nextVisit: string;
   gpName?: string;
   gpPhone?: string;

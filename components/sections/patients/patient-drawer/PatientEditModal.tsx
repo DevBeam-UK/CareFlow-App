@@ -19,6 +19,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from 'ui-components';
+import type { Patient } from "types";
 import { Loader2 } from 'lucide-react';
 
 interface PatientData {
@@ -32,7 +33,7 @@ interface PatientData {
   phone: string;
   address: string;
   risk: 'low' | 'medium' | 'high';
-  status: 'active' | 'on-hold' | 'new';
+  status: 'active' | 'on-hold' | 'new' | 'discharged';
   carer: string;
   nextVisit: string;
   gpName?: string;

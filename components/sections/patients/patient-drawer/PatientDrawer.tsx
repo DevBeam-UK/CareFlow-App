@@ -22,6 +22,7 @@ import {
 import { Button } from 'ui-components';
 import { ChevronDown } from 'lucide-react';
 import { PatientDrawerFooter } from '../PatientDrawerFooter';
+import { PatientDischargeModal, type DischargePayload } from './PatientDischargeModal';
 import { PatientInfoTab } from './PatientInfoTab';
 import { PatientMedicalHistoryTab } from './PatientMedicalHistoryTab';
 import { PatientCommunicationTab } from './PatientCommunicationTab';
@@ -44,7 +45,7 @@ interface Patient {
   initials: string;
   age: number;
   risk: 'low' | 'medium' | 'high';
-  status: 'active' | 'on-hold' | 'new';
+  status: 'active' | 'on-hold' | 'new' | 'discharged';
   carer: string;
   nextVisit: string;
   email: string;
@@ -105,6 +106,7 @@ interface PatientDrawerProps {
   onOpenChange: (open: boolean) => void;
   onEditPatient?: () => void;
   onUpdateMeds?: () => void;
+  onDischarge?: (patientId: string, payload: DischargePayload) => Promise<void> | void;
 }
 
 const MAIN_TABS = [
@@ -122,8 +124,9 @@ const MORE_TABS = [
   { value: 'risk', label: 'Risk' },
 ];
 
-export function PatientDrawer({ patient, open, onOpenChange, onEditPatient, onUpdateMeds }: PatientDrawerProps) {
+export function PatientDrawer({ patient, open, onOpenChange, onEditPatient, onUpdateMeds, onDischarge }: PatientDrawerProps) {
   const [activeTab, setActiveTab] = useState('info');
+  const [dischargeModalOpen, setDischargeModalOpen] = useState(false);
 
   if (!patient) return null;
 
@@ -161,6 +164,11 @@ export function PatientDrawer({ patient, open, onOpenChange, onEditPatient, onUp
                 >
                   {patient.risk.charAt(0).toUpperCase() + patient.risk.slice(1)} Risk
                 </Badge>
+                {patient.status === 'discharged' && (
+                  <Badge variant="softMuted" className="text-xs" shape="pill">
+                    Discharged
+                  </Badge>
+                )}
               </div>
             </div>
           </div>
@@ -187,7 +195,7 @@ export function PatientDrawer({ patient, open, onOpenChange, onEditPatient, onUp
                     <ChevronDown className="h-3.5 w-3.5" />
                   </Button>
                 </DropdownMenuTrigger>
-                <DropdownMenuContent align="end" className="w-40">
+                <DropdownMenuContent align="end" className="w-48">
                   {MORE_TABS.map((tab) => (
                     <DropdownMenuItem
                       key={tab.value}
@@ -271,9 +279,26 @@ export function PatientDrawer({ patient, open, onOpenChange, onEditPatient, onUp
         </ScrollArea>
 
         <DrawerFooter>
-          <PatientDrawerFooter onEdit={onEditPatient} onMedication={onUpdateMeds} />
+          <PatientDrawerFooter
+            onEdit={onEditPatient}
+            onMedication={onUpdateMeds}
+            onDischarge={patient.status !== 'discharged' ? () => setDischargeModalOpen(true) : undefined}
+          />
         </DrawerFooter>
       </DrawerContent>
+
+      <PatientDischargeModal
+        open={dischargeModalOpen}
+        onOpenChange={setDischargeModalOpen}
+        patientName={patient.name}
+        gpName={patient.gpName}
+        nextOfKinName={patient.nextOfKinName}
+        emergencyContact={patient.emergencyContact}
+        onConfirm={async (payload) => {
+          await onDischarge?.(patient.id, payload);
+          onOpenChange(false);
+        }}
+      />
     </Drawer>
   );
 }

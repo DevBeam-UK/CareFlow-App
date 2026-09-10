@@ -5,7 +5,7 @@ import { Badge } from 'ui-components';
 import { AlertTriangle, Heart, Activity } from 'lucide-react';
 
 interface PatientMedicalHistoryTabProps {
-  conditions: Array<{ name: string; diagnosedDate: string; status: 'active' | 'managed' | 'resolved' }>;
+  conditions: Array<{ name: string; diagnosedDate: string; status: 'active' | 'managed' | 'resolved' | 'discharged' }>;
   allergies: Array<{ name: string; severity: 'mild' | 'moderate' | 'severe'; reaction: string }>;
   hospitalisations: Array<{ date: string; reason: string; duration: string; outcome: string }>;
 }
