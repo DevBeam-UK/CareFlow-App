@@ -3,8 +3,8 @@
 import { motion } from "framer-motion";
 import { useEffect } from "react";
 
-import { Button, Card, CardContent } from "@/components/ui";
-import { OtpBoxes, VerifyEmailHeader } from "ui-components";
+import { Button, Card, CardContent } from @/components/ui;
+import { OtpBoxes, VerifyEmailHeader } from "@/components/ui";
 import { useEmailVerification } from "hooks";
 
 export function VerifyEmailUI(): React.JSX.Element {

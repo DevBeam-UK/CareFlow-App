@@ -2,7 +2,7 @@
 
 import * as React from "react"
 
-import { cn } from "@/lib/utils"
+import { cn } from "lib"
 
 type LabelProps = React.ComponentProps<"label"> & {
   /** Shows trailing asterisk — HTML `.label-required` */
